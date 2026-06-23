@@ -1,0 +1,1840 @@
+<!DOCTYPE html>
+<!-- saved from url=(0021)https://balansapp.it/ -->
+<html lang="it"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Balans — Ritrova la serenità nella gestione della tua azienda</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<style>
+  @font-face {
+    font-family: 'Galldis';
+    src: url('fonts/Galldis.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Libre Franklin';
+    src: url('fonts/LibreFranklin.ttf') format('truetype-variations'),
+         url('fonts/LibreFranklin.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+  }
+</style>
+
+<style>
+  :root {
+    --teal:        #1ABFA0;
+    --teal-2:      #14A88C;
+    --teal-soft:   #DDF2EB;
+    --teal-tint:   #EEF8F4;
+    --teal-ink:    #0E7A66;
+
+    --navy:        #0E1130;
+    --navy-2:      #1A1F4A;
+
+    --ink:         #1A1D24;
+    --ink-2:       #393E4A;
+    --ink-3:       #6B7080;
+    --ink-4:       #9CA0AE;
+    --ink-5:       #C2C4CE;
+
+    --bg:          #F8F4EC;
+    --bg-2:        #F1ECDF;
+    --bg-3:        #EEE7D5;
+    --surface:     #FFFFFF;
+    --surface-alt: #FCFAF4;
+    --hairline:    #E8E1CE;
+    --hairline-2:  #D6CCB1;
+  }
+
+  /* ───────── Theme: Dark ───────── */
+  [data-theme="dark"] {
+    --ink:         #F1F4F9;
+    --ink-2:       #CFD5E0;
+    --ink-3:       #8C95A6;
+    --ink-4:       #5F6776;
+    --ink-5:       #3A4150;
+
+    --bg:          #0A0D14;
+    --bg-2:        #0F1320;
+    --bg-3:        #141828;
+    --surface:     #14182A;
+    --surface-alt: #181D33;
+    --hairline:    #232943;
+    --hairline-2:  #2D3454;
+
+    --teal-soft:   rgba(26,191,160,0.18);
+    --teal-tint:   rgba(26,191,160,0.10);
+    --teal-ink:    #5BDEC2;
+
+    --navy:        #7AA8FF;
+  }
+
+  /* Element-specific dark overrides for hardcoded values */
+  [data-theme="dark"] .hdr {
+    background: rgba(10,13,20,0.72) !important;
+    border-bottom: 1px solid rgba(35,41,67,0.6);
+  }
+  [data-theme="dark"] .ftr { background: #06080F; }
+  [data-theme="dark"] .phone {
+    background: #2A3047;
+    border-color: #14182A;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.08) inset,
+      0 50px 100px -20px rgba(0,0,0,0.50),
+      0 30px 60px -30px rgba(0,0,0,0.40);
+  }
+  [data-theme="dark"] .logo-wordmark,
+  [data-theme="dark"] .logo-mark { background-color: #F1F4F9; }
+  [data-theme="dark"] .hero-input { background: var(--surface); color: var(--ink); }
+  [data-theme="dark"] .hero-input::placeholder { color: var(--ink-4); }
+  [data-theme="dark"] .float-card,
+  [data-theme="dark"] .feat-card,
+  [data-theme="dark"] .review,
+  [data-theme="dark"] .review-count,
+  [data-theme="dark"] .faq-item { box-shadow: none; }
+  [data-theme="dark"] .compare-col.bad {
+    background: rgba(201,72,62,0.10);
+    border-color: rgba(201,72,62,0.28);
+  }
+  [data-theme="dark"] .compare-col.bad .mark {
+    background: rgba(201,72,62,0.20); color: #FF8A7E;
+  }
+  [data-theme="dark"] .feat-card:hover { border-color: var(--teal); }
+  [data-theme="dark"] .hero-btn.ghost { border-color: var(--hairline-2); }
+  [data-theme="dark"] .hero-btn.ghost:hover { background: var(--surface); }
+  [data-theme="dark"] .hero-bg {
+    background:
+      radial-gradient(circle at 12% 18%, rgba(26,191,160,0.10) 0%, transparent 38%),
+      radial-gradient(circle at 88% 65%, rgba(122,168,255,0.05) 0%, transparent 42%);
+  }
+  /* Smooth theme transition */
+  body, .hdr, .ftr, .phone, .surface, .feat-card, .review, .faq-item,
+  .compare-col, .float-card, .review-count, .hero-input {
+    transition: background-color .25s ease, color .25s ease, border-color .25s ease;
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0; background: var(--bg);
+    font-family: 'Libre Franklin', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Selection */
+  ::selection { background: var(--teal-soft); color: var(--teal-ink); }
+
+  /* Utility */
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+  .container-narrow { max-width: 1000px; margin: 0 auto; padding: 0 32px; }
+
+  /* ───────── Header ───────── */
+  .hdr {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(248, 244, 236, 0.78);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border-bottom: 1px solid rgba(232, 225, 206, 0.6);
+  }
+  .hdr-row .right-group {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hdr-row {
+    height: 72px; display: flex; align-items: center;
+    justify-content: space-between; gap: 32px;
+  }
+  .hdr-nav { display: flex; gap: 32px; align-items: center; }
+  .hdr-nav a {
+    color: var(--ink-2); text-decoration: none; font-size: 14.5px;
+    font-weight: 500; letter-spacing: -0.1px;
+    transition: color .15s;
+  }
+  .hdr-nav a:hover { color: var(--ink); }
+  .hdr-cta {
+    height: 44px; padding: 0 18px;
+    background: linear-gradient(to bottom, var(--teal-ink) 0%, var(--teal) 100%);
+    color: #fff; border-radius: 12px; border: 0; cursor: pointer;
+    font-family: inherit; font-weight: 600; font-size: 14px;
+    letter-spacing: -0.1px;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.25) inset,
+      0 -1px 0 rgba(0,0,0,0.10) inset,
+      0 4px 12px -2px rgba(14,122,102,0.35);
+    transition: filter .15s, transform .15s;
+  }
+  .hdr-cta:hover { filter: brightness(1.05); }
+  .hdr-cta:active { transform: translateY(1px); }
+
+  /* ───────── Logo ───────── */
+  .logo-mark {
+    display: inline-block;
+    background-color: var(--navy);
+    -webkit-mask: url('logos/icona-standard.png') center/contain no-repeat;
+    mask: url('logos/icona-standard.png') center/contain no-repeat;
+    height: 32px; aspect-ratio: 47/99;
+  }
+  .logo-wordmark {
+    display: inline-block;
+    background-color: var(--navy);
+    -webkit-mask: url('logos/logo-scuro.png') left center/contain no-repeat;
+    mask: url('logos/logo-scuro.png') left center/contain no-repeat;
+    height: 32px; aspect-ratio: 345/99;
+  }
+  .logo-wordmark.light {
+    background-color: #fff;
+    -webkit-mask-image: url('logos/logo-chiaro.png');
+    mask-image: url('logos/logo-chiaro.png');
+  }
+
+  /* ───────── Icon (mask-based) ───────── */
+  .ic {
+    display: inline-block; flex-shrink: 0;
+    background-color: currentColor;
+    -webkit-mask: var(--src) center/contain no-repeat;
+    mask: var(--src) center/contain no-repeat;
+  }
+
+  /* ───────── Hero ───────── */
+  .hero {
+    position: relative; overflow: hidden;
+    padding: 88px 0 100px;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(circle at 12% 18%, rgba(26,191,160,0.10) 0%, transparent 38%),
+      radial-gradient(circle at 88% 65%, rgba(14,17,48,0.04) 0%, transparent 42%);
+  }
+  .hero-grid {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1.05fr 0.95fr;
+    gap: 64px; align-items: center;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 8px 14px 8px 8px;
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 999px; margin-bottom: 32px;
+    font-size: 13px; font-weight: 500; color: var(--ink-2);
+    letter-spacing: -0.1px;
+  }
+  .hero-eyebrow .dot {
+    width: 26px; height: 26px; border-radius: 999px;
+    background: var(--teal); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Libre Franklin', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  h1.hero-h1 {
+    margin: 0; font-size: 76px; line-height: 1.02; font-weight: 600;
+    letter-spacing: -2.6px; color: var(--ink);
+    text-wrap: balance; font-family: 'Libre Franklin', sans-serif;
+  }
+  h1.hero-h1 em {
+    font-family: 'Galldis', serif; font-style: normal;
+    font-weight: 400; color: var(--teal-ink);
+    letter-spacing: -1.5px;
+  }
+  .hero-sub {
+    margin: 28px 0 36px; font-size: 19.5px; line-height: 1.5;
+    color: var(--ink-3); max-width: 540px; font-weight: 400;
+    text-wrap: pretty;
+  }
+  .hero-form {
+    display: flex; gap: 8px; max-width: 460px; margin-bottom: 16px;
+  }
+  .hero-input {
+    flex: 1; height: 56px; padding: 0 20px;
+    border: 1px solid var(--hairline); border-radius: 14px;
+    background: var(--surface); font-family: inherit;
+    font-size: 15.5px; font-weight: 500; color: var(--ink);
+    outline: none; letter-spacing: -0.2px;
+    transition: border-color .15s, background .15s;
+  }
+  .hero-input:focus { border-color: var(--teal); background: #fff; }
+  .hero-input::placeholder { color: var(--ink-4); font-weight: 400; }
+  .hero-btn {
+    height: 56px; padding: 0 24px;
+    background: linear-gradient(to bottom, var(--teal-ink) 0%, var(--teal) 100%);
+    color: #fff; border: 0; border-radius: 14px; cursor: pointer;
+    font-family: inherit; font-weight: 600; font-size: 14.5px;
+    letter-spacing: -0.2px; display: inline-flex; align-items: center; gap: 8px;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.3) inset,
+      0 -1px 0 rgba(0,0,0,0.10) inset,
+      0 6px 18px -3px rgba(14,122,102,0.40);
+    transition: filter .15s, transform .15s;
+  }
+  .hero-btn:hover { filter: brightness(1.05); }
+  .hero-btn:active { transform: translateY(1px); }
+  .hero-fine {
+    font-size: 12.5px; color: var(--ink-4); font-weight: 500;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .hero-fine .ic { color: var(--teal); }
+
+  /* ───────── Phone (used multiple places) ───────── */
+  .phone {
+    width: 320px; aspect-ratio: 320/640;
+    background: #fff; border-radius: 42px;
+    position: relative; overflow: hidden;
+    border: 8px solid #1A1D24;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.5) inset,
+      0 50px 100px -20px rgba(14,17,48,0.30),
+      0 30px 60px -30px rgba(14,17,48,0.20);
+  }
+  .phone.lg { width: 360px; }
+  .phone-content {
+    position: absolute; inset: 0; overflow: hidden;
+    background: var(--bg);
+  }
+  .phone-island {
+    position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+    width: 102px; height: 28px; background: #1A1D24; border-radius: 100px;
+    z-index: 5;
+  }
+  .phone-statusbar {
+    height: 52px; padding: 18px 28px 0; display: flex;
+    justify-content: space-between; align-items: center;
+    font-size: 14px; font-weight: 600; color: var(--ink);
+    font-family: -apple-system, system-ui;
+  }
+  .phone-statusbar .right {
+    display: flex; gap: 5px; align-items: center;
+    color: var(--ink);
+  }
+
+  /* Hero phone wrapper — floating with slight tilt */
+  .hero-phone-wrap {
+    position: relative;
+    display: flex; justify-content: center; align-items: center;
+    min-height: 640px;
+  }
+  .hero-phone {
+    transform: rotate(2deg);
+  }
+  .float-card {
+    position: absolute; z-index: 2;
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 18px; padding: 14px 16px;
+    box-shadow: 0 20px 50px -20px rgba(14,17,48,0.20);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .float-card .ic { color: var(--teal); }
+  .float-card .ic-bg {
+    width: 40px; height: 40px; border-radius: 11px;
+    background: var(--teal-soft); display: flex;
+    align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .float-card .label {
+    font-size: 12px; color: var(--ink-3); font-weight: 500;
+  }
+  .float-card .value {
+    font-size: 15px; font-weight: 700; color: var(--ink);
+    letter-spacing: -0.3px;
+  }
+  .float-1 { top: 64px; left: -32px; }
+  .float-2 { bottom: 80px; right: -48px; }
+  .float-3 { top: 280px; right: -16px; }
+
+  /* ───────── Phone Screen — Chat ───────── */
+  .ps-chat { padding: 0 0 0; }
+  .ps-chat-hdr {
+    padding: 8px 16px 12px; display: flex; align-items: center; gap: 10px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .ps-chat-hdr .av {
+    width: 36px; height: 36px; border-radius: 999px;
+    background: transparent;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ink); position: relative;
+  }
+  .ps-chat-hdr .nm { font-size: 14px; font-weight: 700; color: var(--ink); }
+  .ps-chat-hdr .st { font-size: 11px; color: var(--ink-3); }
+  .ps-chat-body { padding: 14px 14px; display: flex; flex-direction: column; gap: 10px; }
+  .bub {
+    max-width: 78%; padding: 10px 14px; border-radius: 18px;
+    font-size: 13px; line-height: 1.4; letter-spacing: -0.1px;
+  }
+  .bub.ai {
+    background: var(--surface); color: var(--ink);
+    border: 1px solid var(--hairline); border-radius: 18px 18px 18px 4px;
+    align-self: flex-start;
+  }
+  .bub.me {
+    background: var(--teal); color: #fff;
+    border-radius: 18px 18px 4px 18px;
+    align-self: flex-end;
+  }
+  .bub.ai-card {
+    background: var(--teal-tint); border: 1px solid var(--teal-soft);
+    color: var(--ink); border-radius: 16px;
+    align-self: flex-start; padding: 12px 14px; max-width: 86%;
+  }
+  .bub.ai-card .h {
+    font-size: 11px; font-weight: 700; color: var(--teal-ink);
+    text-transform: uppercase; letter-spacing: 0.5px;
+    margin-bottom: 6px; display: flex; align-items: center; gap: 5px;
+    font-family: 'Libre Franklin', sans-serif;
+  }
+  .bub.ai-card .h .ic { width: 11px; height: 11px; color: var(--teal-ink); }
+  .bub.ai-card .row {
+    display: flex; justify-content: space-between;
+    font-size: 12px; padding: 4px 0;
+  }
+  .bub.ai-card .row + .row { border-top: 1px dashed rgba(14,17,48,0.08); }
+  .bub.ai-card .row .k { color: var(--ink-3); font-weight: 500; }
+  .bub.ai-card .row .v { color: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; }
+
+  .ps-chat-comp {
+    position: absolute; bottom: 18px; left: 14px; right: 14px;
+    background: var(--bg); border-radius: 22px; padding: 6px 6px 6px 16px;
+    display: flex; align-items: center; gap: 8px;
+    border: 1px solid var(--hairline);
+  }
+  .ps-chat-comp .ph {
+    flex: 1; color: var(--ink-4); font-size: 13px;
+  }
+  .ps-chat-comp .send-btn {
+    width: 34px; height: 34px; border-radius: 999px;
+    background: var(--teal); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ps-chat-comp .send-btn .ic { width: 16px; height: 16px; color: #fff; }
+
+  /* ───────── Phone Screen — Fatture ───────── */
+  .ps-list-hdr {
+    padding: 14px 18px 12px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .ps-list-hdr h3 {
+    margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.7px;
+    font-family: 'Libre Franklin', sans-serif;
+  }
+  .ps-list-hdr .badge {
+    width: 32px; height: 32px; border-radius: 999px;
+    background: var(--teal-soft); color: var(--teal-ink);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 13px;
+  }
+  .ps-tabs {
+    padding: 0 18px 12px; display: flex; gap: 6px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .ps-tabs .t {
+    padding: 6px 12px; border-radius: 999px; font-size: 12px;
+    font-weight: 600; color: var(--ink-3);
+  }
+  .ps-tabs .t.on { background: var(--ink); color: #fff; }
+  .ps-row {
+    padding: 12px 16px; display: flex; align-items: center; gap: 12px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .ps-row .ic-box {
+    width: 38px; height: 38px; border-radius: 10px;
+    background: var(--surface); border: 1px solid var(--hairline);
+    color: var(--ink-2); display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0;
+  }
+  .ps-row .nm { font-size: 13.5px; font-weight: 600; color: var(--ink); letter-spacing: -0.2px; }
+  .ps-row .sm { font-size: 11px; color: var(--ink-3); margin-top: 1px; }
+  .ps-row .amt { font-size: 14px; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .pill { font-size: 10px; padding: 2px 7px; border-radius: 999px; font-weight: 600; font-family: 'Libre Franklin', sans-serif; letter-spacing: 0.3px; text-transform: uppercase; }
+  .pill.ok { background: var(--teal-soft); color: var(--teal-ink); }
+  .pill.wait { background: #FCEFD2; color: #876110; }
+  .pill.late { background: #FBDBD9; color: #8A2A22; }
+
+  /* ───────── Phone Screen — Hub (Dashboard) ───────── */
+  .ps-hub-hdr {
+    padding: 14px 18px 6px;
+  }
+  .ps-hub-hdr .small {
+    font-size: 11px; color: var(--ink-3); font-family: 'Libre Franklin', sans-serif;
+    text-transform: uppercase; letter-spacing: 0.4px;
+  }
+  .ps-hub-hdr h3 {
+    margin: 4px 0 0; font-size: 26px; font-weight: 700; letter-spacing: -0.8px;
+    font-family: 'Libre Franklin', sans-serif;
+  }
+  .ps-bigcard {
+    margin: 10px 16px; padding: 16px;
+    background: var(--ink); color: #fff; border-radius: 20px;
+    position: relative; overflow: hidden;
+  }
+  .ps-bigcard .lbl { font-size: 10.5px; opacity: 0.6; font-family: 'Libre Franklin', sans-serif; text-transform: uppercase; letter-spacing: 0.5px; }
+  .ps-bigcard .nm { font-size: 28px; font-weight: 700; letter-spacing: -0.8px; margin-top: 6px; font-variant-numeric: tabular-nums; }
+  .ps-bigcard .nm .small { font-size: 14px; opacity: 0.6; font-weight: 500; }
+  .ps-bigcard .row {
+    margin-top: 12px; padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 11.5px; opacity: 0.8;
+  }
+  .ps-bigcard .delta {
+    background: var(--teal); padding: 3px 8px; border-radius: 999px;
+    color: #fff; font-weight: 700; font-size: 10.5px; opacity: 1;
+  }
+  .ps-quick {
+    margin: 0 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  }
+  .ps-quick .q {
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 14px; padding: 12px;
+  }
+  .ps-quick .q .ic-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; color: var(--teal); }
+  .ps-quick .q .nm { font-size: 12.5px; font-weight: 700; color: var(--ink); letter-spacing: -0.2px; }
+  .ps-quick .q .sm { font-size: 10.5px; color: var(--ink-3); margin-top: 2px; }
+
+  /* ───────── Proof strip ───────── */
+  .proof {
+    padding: 64px 0;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .proof-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+    align-items: start;
+  }
+  .proof-card { display: flex; gap: 14px; align-items: flex-start; }
+  .proof-card .ic-bg {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: var(--teal-tint); color: var(--teal-ink);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .proof-card h4 {
+    margin: 0; font-size: 15px; font-weight: 700; color: var(--ink);
+    letter-spacing: -0.3px;
+  }
+  .proof-card p {
+    margin: 4px 0 0; font-size: 13px; color: var(--ink-3);
+    line-height: 1.45;
+  }
+
+  /* ───────── Feature section ───────── */
+  .feat {
+    padding: 120px 0;
+    position: relative;
+  }
+  .feat-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 96px; align-items: center;
+  }
+  .feat-grid.reverse > .feat-text { order: 2; }
+  .feat-eyebrow {
+    display: inline-block; font-family: 'Libre Franklin', sans-serif;
+    font-size: 11.5px; font-weight: 600; color: var(--teal-ink);
+    letter-spacing: 1.2px; text-transform: uppercase;
+    padding: 4px 10px; background: var(--teal-soft); border-radius: 6px;
+    margin-bottom: 24px;
+  }
+  .feat h2 {
+    margin: 0; font-size: 52px; line-height: 1.08; font-weight: 500;
+    letter-spacing: -1.5px; color: var(--ink); text-wrap: balance;
+    font-family: 'Libre Franklin', sans-serif;
+  }
+  .feat h2 em {
+    font-family: 'Galldis', serif; font-style: normal; font-weight: 400;
+    color: var(--teal-ink); letter-spacing: -0.8px;
+  }
+  .feat p {
+    margin: 24px 0 32px; font-size: 18px; line-height: 1.55;
+    color: var(--ink-3); max-width: 460px; text-wrap: pretty;
+  }
+  .feat-list { display: flex; flex-direction: column; gap: 14px; }
+  .feat-li {
+    display: flex; align-items: flex-start; gap: 12px;
+    font-size: 15px; color: var(--ink-2); font-weight: 500;
+    letter-spacing: -0.1px;
+  }
+  .feat-li .ic {
+    color: var(--teal); width: 22px; height: 22px;
+    background: var(--teal-soft); border-radius: 6px;
+    padding: 5px; flex-shrink: 0; margin-top: 1px;
+  }
+  .feat-phone-wrap {
+    display: flex; justify-content: center;
+    position: relative;
+  }
+
+  /* ───────── Manifesto strip ───────── */
+  .manifesto {
+    padding: 140px 0; background: var(--ink);
+    color: #fff; position: relative; overflow: hidden;
+  }
+  .manifesto::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 18% 28%, rgba(26,191,160,0.15) 0%, transparent 38%),
+      radial-gradient(circle at 82% 78%, rgba(26,191,160,0.08) 0%, transparent 42%);
+    pointer-events: none;
+  }
+  .manifesto-inner { position: relative; text-align: center; }
+  .manifesto blockquote {
+    margin: 0 auto; max-width: 920px;
+    font-size: 54px; line-height: 1.18; font-weight: 500;
+    letter-spacing: -1.5px; text-wrap: balance;
+    font-family: 'Libre Franklin', sans-serif;
+  }
+  .manifesto blockquote em {
+    font-family: 'Galldis', serif; font-style: normal; font-weight: 400;
+    color: var(--teal); letter-spacing: -0.8px;
+  }
+  .manifesto .sig {
+    margin-top: 40px; font-size: 13px; opacity: 0.6;
+    font-family: 'Libre Franklin', sans-serif; text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+
+  /* ───────── Pricing / CTA ───────── */
+  .cta {
+    padding: 140px 0 120px;
+    text-align: center;
+  }
+  .cta h2 {
+    margin: 0; font-size: 64px; line-height: 1.05; font-weight: 500;
+    letter-spacing: -2px; color: var(--ink); text-wrap: balance;
+    font-family: 'Libre Franklin', sans-serif;
+  }
+  .cta h2 em {
+    font-family: 'Galldis', serif; font-style: normal; font-weight: 400;
+    color: var(--teal-ink); letter-spacing: -1.2px;
+  }
+  .cta p {
+    margin: 28px auto 40px; font-size: 19.5px; line-height: 1.5;
+    color: var(--ink-3); max-width: 600px; text-wrap: pretty;
+  }
+  .cta-form {
+    display: flex; gap: 10px; max-width: 520px; margin: 0 auto 20px;
+  }
+  .cta-perks {
+    display: flex; gap: 32px; justify-content: center; flex-wrap: wrap;
+    margin-top: 40px;
+  }
+  .cta-perk {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; color: var(--ink-3); font-weight: 500;
+  }
+  .cta-perk .ic { color: var(--teal); }
+
+  /* ───────── Footer ───────── */
+  .ftr {
+    background: var(--ink); color: #fff;
+    padding: 80px 0 40px;
+  }
+  .ftr-top {
+    display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 48px; padding-bottom: 56px;
+    border-bottom: 1px solid rgba(255,255,255,0.10);
+  }
+  .ftr-top h5 {
+    margin: 0 0 16px; font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1px; opacity: 0.5;
+    font-family: 'Libre Franklin', sans-serif;
+  }
+  .ftr-top a {
+    display: block; color: #fff; opacity: 0.8; text-decoration: none;
+    font-size: 14px; font-weight: 500; padding: 6px 0;
+    transition: opacity .15s;
+  }
+  .ftr-top a:hover { opacity: 1; }
+  .ftr-tagline {
+    font-size: 15.5px; color: rgba(255,255,255,0.6); line-height: 1.5;
+    max-width: 320px; margin-top: 16px;
+  }
+  .ftr-bottom {
+    padding-top: 32px; display: flex; justify-content: space-between;
+    align-items: flex-end; gap: 24px;
+  }
+  .ftr-legal {
+    font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.6;
+  }
+  .ftr-social { display: flex; gap: 12px; }
+  .ftr-social a {
+    width: 38px; height: 38px; border-radius: 11px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    display: inline-flex; align-items: center; justify-content: center;
+    color: #fff; opacity: 0.7;
+  }
+  .ftr-social a:hover { opacity: 1; background: rgba(255,255,255,0.10); }
+
+  /* ─────────────── COMPARE ─────────────── */
+  .compare { padding: 96px 0; background: var(--surface-alt); }
+  .compare-head { text-align: center; margin-bottom: 56px; }
+  .compare-head h2 {
+    margin: 0; font-size: 48px; line-height: 1.1; font-weight: 500;
+    letter-spacing: -1.5px; color: var(--ink);
+    font-family: 'Libre Franklin', sans-serif;
+  }
+  .compare-head p {
+    margin: 20px auto 0; font-size: 18px; color: var(--ink-3);
+    line-height: 1.5; max-width: 580px; text-wrap: pretty;
+  }
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .compare-col { padding: 36px 32px; border-radius: 20px; }
+  .compare-col.bad {
+    background: rgba(201,72,62,0.05); border: 1px solid rgba(201,72,62,0.18);
+  }
+  .compare-col.good {
+    background: var(--teal-tint); border: 1px solid var(--teal-soft);
+  }
+  .compare-col h3 {
+    margin: 0 0 24px; font-size: 22px; font-weight: 700;
+    letter-spacing: -0.5px; color: var(--ink);
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Libre Franklin', sans-serif;
+  }
+  .compare-col h3 .emo { font-size: 24px; }
+  .compare-li {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 10px 0; font-size: 15px; line-height: 1.5;
+    color: var(--ink-2); font-weight: 400; letter-spacing: -0.1px;
+  }
+  .compare-col.good .compare-li { font-weight: 500; color: var(--ink); }
+  .compare-li .mark {
+    width: 24px; height: 24px; border-radius: 999px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .compare-col.bad .mark {
+    background: rgba(201,72,62,0.15); color: var(--danger, #C9483E);
+    font-weight: 700; font-size: 11px;
+  }
+  .compare-col.good .mark { background: var(--teal-soft); color: var(--teal-ink); }
+
+  /* ─────────────── VIDEO ─────────────── */
+  .video-sec { padding: 96px 0; }
+  .video-head { text-align: center; margin-bottom: 48px; }
+  .video-head h2 {
+    margin: 0; font-size: 48px; line-height: 1.1; font-weight: 500;
+    letter-spacing: -1.5px; color: var(--ink);
+    font-family: 'Libre Franklin', sans-serif;
+  }
+  .video-head p {
+    margin: 16px auto 0; font-size: 18px; color: var(--ink-3);
+    line-height: 1.5; max-width: 540px;
+  }
+  .video-frame {
+    max-width: 920px; margin: 0 auto;
+    aspect-ratio: 16/9; border-radius: 24px;
+    position: relative; overflow: hidden;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--ink) 100%);
+    box-shadow: 0 30px 80px -20px rgba(14,17,48,0.30);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .video-frame::before {
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0 14px, transparent 14px 28px);
+  }
+  .video-play {
+    width: 88px; height: 88px; border-radius: 999px;
+    background: #fff; color: var(--teal);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; z-index: 1;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.30);
+    transition: transform .2s; cursor: pointer; border: 0;
+  }
+  .video-play:hover { transform: scale(1.06); }
+
+  /* ─────────────── REVIEWS ─────────────── */
+  .reviews { padding: 96px 0; background: var(--surface-alt); }
+  .reviews-head { text-align: center; margin-bottom: 56px; }
+  .reviews-head h2 {
+    margin: 0; font-size: 48px; line-height: 1.1; font-weight: 500;
+    letter-spacing: -1.5px; color: var(--ink);
+    font-family: 'Libre Franklin', sans-serif;
+  }
+  .reviews-head p {
+    margin: 14px auto 0; font-size: 17px; color: var(--ink-3);
+  }
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .review {
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 20px; padding: 28px 26px;
+    box-shadow: 0 4px 24px -8px rgba(14,17,48,0.06);
+  }
+  .review .stars {
+    display: flex; gap: 2px; margin-bottom: 16px; color: #F4C66E;
+  }
+  .review-text {
+    font-size: 15px; line-height: 1.55; color: var(--ink-2);
+    margin: 0 0 24px; font-weight: 400;
+  }
+  .review-author {
+    display: flex; align-items: center; gap: 12px;
+    padding-top: 20px; border-top: 1px solid var(--hairline);
+  }
+  .review-author .avatar {
+    width: 44px; height: 44px; border-radius: 999px;
+    background: var(--teal-soft); color: var(--teal-ink);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 14px; flex-shrink: 0;
+    letter-spacing: -0.3px;
+  }
+  .review-author .name-block { flex: 1; min-width: 0; }
+  .review-author .nm { font-size: 14.5px; font-weight: 700; color: var(--ink); }
+  .review-author .role { font-size: 13px; color: var(--ink-3); margin-top: 1px; }
+  .review-count {
+    display: flex; align-items: center; gap: 14px;
+    margin: 48px auto 0; padding: 10px 22px 10px 14px;
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 999px; width: fit-content;
+    font-size: 14.5px; font-weight: 600; color: var(--ink);
+    box-shadow: 0 4px 16px -4px rgba(14,17,48,0.08);
+  }
+  .review-count .avatars { display: flex; }
+  .review-count .avatars > div {
+    width: 30px; height: 30px; border-radius: 999px;
+    border: 2px solid var(--surface);
+    margin-left: -10px;
+  }
+  .review-count .avatars > div:first-child { margin-left: 0; }
+
+  /* ─────────────── FEATS 6-card ─────────────── */
+  .feats { padding: 96px 0; }
+  .feats-head { text-align: center; margin-bottom: 56px; }
+  .feats-head h2 {
+    margin: 0; font-size: 48px; line-height: 1.1; font-weight: 500;
+    letter-spacing: -1.5px; color: var(--ink);
+    font-family: 'Libre Franklin', sans-serif;
+  }
+  .feats-head p {
+    margin: 14px auto 0; font-size: 17px; color: var(--ink-3);
+  }
+  .feats-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .feat-card {
+    padding: 32px 28px; background: var(--surface);
+    border: 1px solid var(--hairline); border-radius: 20px;
+    transition: border-color .15s, transform .15s;
+  }
+  .feat-card:hover {
+    border-color: var(--teal-soft);
+    transform: translateY(-2px);
+  }
+  .feat-card .ic-bg {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: var(--teal-tint); color: var(--teal-ink);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 22px;
+  }
+  .feat-card h4 {
+    margin: 0 0 8px; font-size: 19px; font-weight: 700;
+    letter-spacing: -0.4px; color: var(--ink);
+    font-family: 'Libre Franklin', sans-serif;
+  }
+  .feat-card p {
+    margin: 0; font-size: 14.5px; line-height: 1.55; color: var(--ink-3);
+  }
+
+  /* ─────────────── FAQ ─────────────── */
+  .faq { padding: 96px 0; background: var(--surface-alt); }
+  .faq-head { text-align: center; margin-bottom: 56px; }
+  .faq-head h2 {
+    margin: 0; font-size: 48px; line-height: 1.1; font-weight: 500;
+    letter-spacing: -1.5px; color: var(--ink);
+    font-family: 'Libre Franklin', sans-serif;
+  }
+  .faq-head p {
+    margin: 14px auto 0; font-size: 17px; color: var(--ink-3);
+  }
+  .faq-list {
+    max-width: 800px; margin: 0 auto;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .faq-item {
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 14px; overflow: hidden;
+  }
+  .faq-q {
+    width: 100%; padding: 22px 24px;
+    background: transparent; border: 0; cursor: pointer;
+    font-family: inherit; font-size: 16px; font-weight: 600;
+    color: var(--ink); letter-spacing: -0.2px;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 16px; text-align: left;
+  }
+  .faq-q .chev {
+    width: 22px; height: 22px; color: var(--ink-3);
+    transition: transform .2s; flex-shrink: 0;
+  }
+  .faq-item.open .faq-q .chev { transform: rotate(180deg); }
+  .faq-a {
+    max-height: 0; overflow: hidden;
+    transition: max-height .25s ease, padding .25s ease;
+    padding: 0 24px;
+    font-size: 14.5px; line-height: 1.55; color: var(--ink-3);
+  }
+  .faq-item.open .faq-a { max-height: 400px; padding: 0 24px 22px; }
+
+  /* ─────────────── Section CTA (shared) ─────────────── */
+  .section-cta {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 12px; margin-top: 48px;
+  }
+  .section-cta .btn {
+    height: 54px; padding: 0 28px; border: 0; border-radius: 14px;
+    background: linear-gradient(to bottom, var(--teal-ink) 0%, var(--teal) 100%);
+    color: #fff; font-family: 'Libre Franklin', sans-serif;
+    font-weight: 600; font-size: 15px; letter-spacing: -0.2px; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 9px;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.3) inset,
+      0 -1px 0 rgba(0,0,0,0.10) inset,
+      0 6px 18px -3px rgba(14,122,102,0.40);
+    transition: filter .15s, transform .15s;
+  }
+  .section-cta .btn:hover { filter: brightness(1.05); }
+  .section-cta .btn:active { transform: translateY(1px); }
+  .section-cta .btn.ghost {
+    background: transparent; color: var(--ink);
+    border: 1px solid var(--hairline-2); box-shadow: none;
+  }
+  .section-cta .btn.ghost:hover { background: var(--surface); filter: none; }
+  .section-cta .note {
+    font-size: 13px; color: var(--ink-4); font-weight: 500;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .section-cta .note .ic { color: var(--teal); }
+  /* CTA inside a feature column (left-aligned) */
+  .feat-cta { margin-top: 28px; }
+  .feat-cta .btn {
+    height: 52px; padding: 0 26px; border: 0; border-radius: 14px;
+    background: linear-gradient(to bottom, var(--teal-ink) 0%, var(--teal) 100%);
+    color: #fff; font-family: 'Libre Franklin', sans-serif;
+    font-weight: 600; font-size: 14.5px; letter-spacing: -0.2px; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 9px;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.3) inset,
+      0 -1px 0 rgba(0,0,0,0.10) inset,
+      0 6px 18px -3px rgba(14,122,102,0.40);
+    transition: filter .15s, transform .15s;
+  }
+  .feat-cta .btn:hover { filter: brightness(1.05); }
+  .feat-cta .btn:active { transform: translateY(1px); }
+
+  /* ─────────────── Hero secondary button ─────────────── */
+  .hero-btn.ghost {
+    background: transparent; color: var(--ink);
+    border: 1px solid var(--hairline-2);
+    box-shadow: none;
+  }
+  .hero-btn.ghost:hover {
+    background: var(--surface); filter: none;
+  }
+  .hero-btn.ghost .ic-play {
+    color: var(--teal);
+  }
+  .hero-actions {
+    display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px;
+  }
+
+  /* Hero waitlist form */
+  .hero-waitlist { margin-bottom: 20px; max-width: 540px; }
+  .hero-waitlist-row {
+    display: flex; gap: 8px; margin-bottom: 12px;
+  }
+  .hero-waitlist-row .hero-input { flex: 1; }
+  .hero-waitlist-check {
+    display: flex; align-items: flex-start; gap: 10px;
+    cursor: pointer; user-select: none;
+    font-size: 13.5px; color: var(--ink-3); line-height: 1.5;
+    font-weight: 400;
+  }
+  .hero-waitlist-check input { position: absolute; opacity: 0; pointer-events: none; }
+  .hero-waitlist-check .box {
+    flex-shrink: 0; width: 20px; height: 20px; border-radius: 6px;
+    border: 1.5px solid var(--hairline-2); background: var(--surface);
+    display: inline-flex; align-items: center; justify-content: center;
+    color: transparent; margin-top: 1px;
+    transition: background .15s, border-color .15s, color .15s;
+  }
+  .hero-waitlist-check .box svg { width: 13px; height: 13px; }
+  .hero-waitlist-check input:checked + .box {
+    background: linear-gradient(to bottom, var(--teal-ink) 0%, var(--teal) 100%);
+    border-color: var(--teal-ink);
+    color: #fff;
+  }
+  .hero-waitlist-check input:focus-visible + .box {
+    box-shadow: 0 0 0 3px var(--teal-soft);
+  }
+  .hero-waitlist-check .txt a {
+    color: var(--ink-2); text-decoration: underline;
+    text-underline-offset: 2px; font-weight: 500;
+  }
+  .hero-waitlist-check .txt a:hover { color: var(--teal-ink); }
+  .hero-perks {
+    display: flex; gap: 24px; flex-wrap: wrap;
+  }
+  .hero-perks .perk {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 14px; color: var(--ink-3); font-weight: 500;
+  }
+  .hero-perks .perk .ic { color: var(--teal); }
+
+  /* CTA buttons row */
+  .cta-actions {
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .cta-btn-white {
+    height: 56px; padding: 0 26px; background: #fff;
+    color: var(--ink); border: 0; border-radius: 14px; cursor: pointer;
+    font-family: inherit; font-weight: 700; font-size: 14.5px;
+    letter-spacing: -0.2px; box-shadow: 0 8px 24px -8px rgba(0,0,0,0.25);
+    transition: filter .15s, transform .15s;
+  }
+  .cta-btn-white:hover { filter: brightness(1.04); }
+  .cta-btn-outline {
+    height: 56px; padding: 0 26px; background: transparent;
+    color: #fff; border: 1.5px solid rgba(255,255,255,0.3); border-radius: 14px;
+    cursor: pointer;
+    font-family: inherit; font-weight: 600; font-size: 14.5px;
+    letter-spacing: -0.2px;
+    transition: border-color .15s, background .15s;
+  }
+  .cta-btn-outline:hover {
+    border-color: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.06);
+  }
+
+  /* Theme toggle */
+  .theme-toggle {
+    width: 40px; height: 40px; border-radius: 999px;
+    background: transparent; border: 1px solid var(--hairline-2);
+    color: var(--ink-2); cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: background .15s, color .15s, border-color .15s, transform .15s;
+    flex-shrink: 0;
+  }
+  .theme-toggle:hover {
+    background: var(--surface); color: var(--ink);
+    border-color: var(--hairline-2);
+  }
+  .theme-toggle:active { transform: scale(0.94); }
+  .theme-toggle .ic-sun { display: none; }
+  .theme-toggle .ic-moon { display: block; }
+  [data-theme="dark"] .theme-toggle .ic-sun  { display: block; }
+  [data-theme="dark"] .theme-toggle .ic-moon { display: none; }
+
+  /* Coming soon flag in header */
+  .cs-flag {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 10px; border-radius: 999px;
+    background: var(--teal-soft); color: var(--teal-ink);
+    font-family: 'Libre Franklin', sans-serif; font-size: 10.5px;
+    font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase;
+  }
+  .cs-flag .dot {
+    width: 6px; height: 6px; background: var(--teal); border-radius: 999px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+
+  /* ─────────────── Responsive ─────────────── */
+
+  /* Evita overflow orizzontale su qualsiasi schermo */
+  html, body { overflow-x: hidden; }
+  img, svg, .phone { max-width: 100%; }
+
+  /* ── Tablet / piccoli laptop ── */
+  @media (max-width: 920px) {
+    .container, .container-narrow { padding: 0 24px; }
+    .hero { padding: 56px 0 72px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+    .hero-text { max-width: 100% !important; width: 100% !important; }
+    h1.hero-h1 { font-size: 52px !important; letter-spacing: -2px; max-width: 100% !important; }
+    h1.hero-h1 span { font-size: 46px !important; }
+    h1.hero-h1 b { font-size: 52px !important; }
+    .hero-sub { font-size: 17px !important; max-width: 100% !important; }
+    .hero-phone-wrap { min-height: auto; }
+    .proof-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .feat { padding: 80px 0; }
+    .feat-grid { grid-template-columns: 1fr; gap: 56px; }
+    .feat-grid.reverse > .feat-text { order: 0; }
+    .feat h2 { font-size: 40px; letter-spacing: -1.2px; }
+    .manifesto blockquote { font-size: 36px; letter-spacing: -1.2px; }
+    .cta h2 { font-size: 48px; letter-spacing: -1.6px; }
+    .ftr-top { grid-template-columns: 1fr 1fr; }
+    .hdr-nav { display: none; }
+    .float-card { display: none; }
+    .steps-3 { grid-template-columns: 1fr 1fr !important; }
+    .purpose h2 { font-size: 34px !important; letter-spacing: -1px !important; }
+    /* new sections */
+    .compare-head h2,
+    .video-head h2,
+    .reviews-head h2,
+    .feats-head h2,
+    .faq-head h2 { font-size: 34px !important; letter-spacing: -1px !important; }
+    .compare-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+    .reviews-grid { grid-template-columns: 1fr !important; }
+    .feats-grid { grid-template-columns: 1fr !important; }
+    .compare { padding: 64px 0 !important; }
+    .video-sec, .reviews, .feats, .faq { padding: 64px 0 !important; }
+    .cta { padding: 64px 0 !important; }
+    .cta-actions { flex-direction: column; }
+    .cta-actions button { width: 100%; }
+    .hero-actions { flex-direction: column; }
+    .hero-actions button { width: 100%; }
+    .hero-waitlist-row { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .hero-waitlist-row .hero-input { width: 100%; max-width: 340px; height: 60px; }
+    .hero-waitlist-row .hero-btn { width: auto; padding: 0 30px; }
+  }
+
+  /* ── Telefono ── */
+  @media (max-width: 600px) {
+    .container, .container-narrow { padding: 0 20px; }
+    .hdr-row { height: 64px; gap: 12px; }
+    .hdr-cta { height: 40px; padding: 0 13px; font-size: 12.5px; }
+    .logo-wordmark { height: 26px; }
+    .hero { padding: 40px 0 56px; }
+    .hero-eyebrow { margin-bottom: 24px; }
+    h1.hero-h1 { font-size: 40px !important; letter-spacing: -1.4px; }
+    h1.hero-h1 span { font-size: 36px !important; }
+    h1.hero-h1 b { font-size: 40px !important; }
+    .hero-sub { font-size: 16px !important; margin: 20px 0 28px !important; }
+    .phone, .phone.lg { width: 300px; }
+    .proof { padding: 48px 0; }
+    .proof-grid { grid-template-columns: 1fr; gap: 24px; }
+    .feat { padding: 56px 0; }
+    .feat-grid { gap: 40px; }
+    .feat h2 { font-size: 32px !important; letter-spacing: -1px; }
+    .feat p { font-size: 16px; }
+    .steps-3 { grid-template-columns: 1fr !important; }
+    .compare-col { padding: 28px 22px; }
+    .compare-head h2,
+    .video-head h2,
+    .reviews-head h2,
+    .feats-head h2,
+    .faq-head h2 { font-size: 28px !important; }
+    .reviews-head p, .feats-head p, .faq-head p,
+    .compare-head p, .video-head p { font-size: 15px; }
+    .video-play { width: 68px; height: 68px; }
+    .cta h2 { font-size: 36px !important; letter-spacing: -1.2px; }
+    .purpose { padding: 72px 0 !important; }
+    .purpose h2 { font-size: 27px !important; }
+    .ftr { padding: 56px 0 32px; }
+    .ftr-bottom { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* ── Telefono piccolo ── */
+  @media (max-width: 380px) {
+    .container, .container-narrow { padding: 0 16px; }
+    h1.hero-h1 { font-size: 34px !important; }
+    h1.hero-h1 span { font-size: 31px !important; }
+    h1.hero-h1 b { font-size: 34px !important; }
+    .hero-sub { font-size: 15px !important; }
+    .phone, .phone.lg { width: 270px; }
+    .hdr-cta { padding: 0 11px; font-size: 12px; }
+    .ftr-top { grid-template-columns: 1fr; gap: 28px; }
+  }
+</style>
+</head>
+<body data-screen-label="01 Balans Landing">
+
+<!-- ─────────────── HEADER ─────────────── -->
+<header class="hdr">
+  <div class="container hdr-row">
+    <div style="display:flex; align-items:center; gap:14px;">
+      <span class="logo-wordmark"></span>
+    </div>
+    <nav class="hdr-nav">
+      <a href="https://balansapp.it/#come-funziona">Come funziona</a>
+      <a href="https://balansapp.it/#funzionalita">Assistente</a>
+      <a href="https://balansapp.it/#funzioni">Funzioni</a>
+      <a href="https://balansapp.it/#testimonianze">Testimonianze</a>
+      <a href="https://balansapp.it/#faq">FAQ</a>
+    </nav>
+    <button class="hdr-cta">Iscriviti alla waiting list</button>
+    <button class="theme-toggle" aria-label="Cambia tema" type="button">
+      <svg class="ic-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 13a8 8 0 1 1-10-10 7 7 0 0 0 10 10Z"></path>
+      </svg>
+      <svg class="ic-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="4"></circle>
+        <path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.5 5.5 7 7M17 17l1.5 1.5M5.5 18.5 7 17M17 7l1.5-1.5"></path>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- ─────────────── HERO ─────────────── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="container hero-grid">
+
+    <div class="hero-text" style="max-width: 600px;">
+      <div class="hero-eyebrow" style="background-color: rgba(255, 255, 255, 0); color: rgba(57, 62, 74, 0); border-color: rgba(232, 225, 206, 0)">
+        <span style="width: 8px; height: 8px; background: var(--teal); border-radius: 999px; display: inline-block; margin-left: 6px; background-color: rgba(26, 191, 160, 0)"></span>
+        Già centinaia di partite IVA in lista d'attesa
+      </div>
+      <h1 class="hero-h1" style="font-weight: 300; font-family: &quot;Libre Franklin&quot;; font-size: 70px; max-width: 582px; padding: 1px; border-width: 0px; border-style: solid">
+        Meno tempo sulla <b style="color: var(--navy); font-family: &quot;Libre Franklin&quot;; font-weight: 300">burocrazia</b>,
+        <span style="font-family: &#39;Galldis&#39;, serif; color: rgb(26, 191, 160); font-weight: 300; font-size: 62px">più tempo</span> per il tuo <b style="color: rgb(26, 29, 36); font-family: &quot;Libre Franklin&quot;; font-weight: 700; font-size: 70px">business</b>
+      </h1>
+      <p class="hero-sub" style="font-size: 18px; max-width: 541px; margin: 28px 0px 36px">Sappiamo che la fatturazione ti toglie tempo prezioso. Con Balans gestisci tutto in pochi minuti parlando naturalmente, come se scrivessi a un amico.
+Niente complicazioni, solo semplicità.</p>
+
+      <form class="hero-waitlist" onsubmit="event.preventDefault()">
+        <div class="hero-waitlist-row">
+          <input class="hero-input" type="email" placeholder="La tua email" required="">
+          <button class="hero-btn" type="submit">
+            Iscriviti alla waiting list
+          </button>
+        </div>
+        <label class="hero-waitlist-check">
+          <input type="checkbox" required="">
+          <span class="box" aria-hidden="true">
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m3 7 3 3 5-6"></path></svg>
+          </span>
+          <span class="txt">Accetto la <a href="https://balansapp.it/#">Privacy Policy</a> e i <a href="https://balansapp.it/#">Termini di servizio</a>.</span>
+        </label>
+      </form>
+
+      <div class="hero-perks">
+        <span class="perk" style="color: rgba(26, 191, 160, 0)">
+          <span class="ic" style="--src: url(&#39;icons/check.png&#39;); width: 14px; height: 14px; color: rgba(0, 0, 0, 0); background-color: rgba(51, 51, 51, 0)"></span>
+          Nessuna carta richiesta
+        </span>
+        <span class="perk" style="color: rgba(26, 191, 160, 0)">
+          <span class="ic" style="--src: url(&#39;icons/check.png&#39;); width: 14px; height: 14px; background-color: rgba(26, 191, 160, 0); color: rgb(158, 188, 183)"></span>
+          Cancellazione in qualsiasi momento
+        </span>
+      </div>
+    </div>
+
+    <div class="hero-phone-wrap">
+      <!-- Floating preview cards -->
+      <div class="float-card float-1" style="top: 96px; left: -40px;">
+        <div class="ic-bg">
+          <span class="ic" style="--src:url(&#39;icons/send.png&#39;); width:20px; height:20px;"></span>
+        </div>
+        <div>
+          <div class="label">Fattura creata!</div>
+          <div class="value">In soli 30 secondi</div>
+        </div>
+      </div>
+
+      <div class="float-card float-2" style="bottom: 64px; right: -52px;">
+        <div class="ic-bg" style="background-color: rgb(248, 245, 238)">
+          <span class="ic" style="--src: url(&#39;icons/time.png&#39;); width: 20px; height: 20px; color: rgb(232, 141, 21); background-color: rgb(232, 141, 21)"></span>
+        </div>
+        <div>
+          <div class="label">Tempo risparmiato</div>
+          <div class="value">15 ore al mese</div>
+        </div>
+      </div>
+
+      <!-- Phone with chat preview -->
+      <div class="phone hero-phone lg">
+        <div class="phone-island"></div>
+        <div class="phone-content" style="background-color: rgb(248, 244, 236)">
+          <div class="phone-statusbar">
+            <span>9:41</span>
+            <span class="right">
+              <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="6.5" width="2.6" height="4" rx="0.6"></rect><rect x="4" y="4.5" width="2.6" height="6" rx="0.6"></rect><rect x="8" y="2.5" width="2.6" height="8" rx="0.6"></rect><rect x="12" y="0" width="2.6" height="10" rx="0.6"></rect></svg>
+              <svg width="22" height="11" viewBox="0 0 22 11"><rect x="0.5" y="0.5" width="18" height="10" rx="2" fill="none" stroke="currentColor" opacity="0.4"></rect><rect x="2" y="2" width="14" height="7" rx="1" fill="currentColor"></rect></svg>
+            </span>
+          </div>
+          <div class="ps-chat-hdr">
+            <div class="av" style="opacity: 1"><span class="ic" style="--src: url(&#39;icons/menu.png&#39;); width: 20px; height: 20px; border: 0px solid;"></span></div>
+            <div style="flex:1;">
+              <div class="nm" style="color: rgba(26, 29, 36, 0)">Balans Assistant</div>
+              <div class="st" style="color: rgba(107, 112, 128, 0)">● Online</div>
+            </div>
+          </div>
+          <div class="ps-chat-body">
+            <div class="bub me">Devo fare una fattura a Mario Rossi per €500</div>
+            <div class="bub ai" style="background-color: rgba(255, 255, 255, 0); border-color: rgba(232, 225, 206, 0)">Perfetto! Ho trovato Mario Rossi nei tuoi contatti. Per cosa era la prestazione?</div>
+            <div class="bub me">Consulenza del 15 maggio</div>
+            <div class="bub ai-card" style="border-color: rgb(94, 238, 191)">
+              <div class="h"><span class="ic" style="--src:url(&#39;icons/doc.png&#39;);"></span> Ecco la tua fattura ✨</div>
+              <div class="row"><span class="k">Cliente</span><span class="v">Mario Rossi</span></div>
+              <div class="row"><span class="k">Importo</span><span class="v">€ 500,00</span></div>
+              <div class="row"><span class="k">Data</span><span class="v">15/05/2026</span></div>
+              <button style="margin-top:10px; width:100%; height:34px; border:0; border-radius:9px; background:linear-gradient(to bottom, var(--teal-ink) 0%, var(--teal) 100%); color:#fff; font-family:inherit; font-weight:600; font-size:12.5px; cursor:pointer;">
+                Invia Fattura
+              </button>
+            </div>
+          </div>
+          <div class="ps-chat-comp" style="border-width: 2px; border-color: rgb(25, 187, 157); border-radius: 14px">
+            <span class="ph">Scrivi a Balans...</span>
+            <div class="send-btn" style="color: rgb(26, 188, 157); background-color: rgba(26, 191, 160, 0)"><span class="ic" style="--src: url(&#39;icons/send.png&#39;); color: rgb(25, 184, 154)"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─────────────── COMPARE — Prima / Con Balans ─────────────── -->
+<section class="compare">
+  <div class="container">
+    <div class="compare-head">
+      <h2>Ti riconosci in questa <em>situazione?</em></h2>
+      <p>
+        Sappiamo quanto può essere frustrante gestire la contabilità quando
+        tutto quello che vuoi è concentrarti sul tuo lavoro.
+      </p>
+    </div>
+    <div class="compare-grid">
+      <div class="compare-col bad" style="background-color: rgb(255, 249, 237); border-color: rgb(255, 230, 203)">
+        <h3>Prima di Balans <span class="emo">😰</span></h3>
+        <div class="compare-li">
+          <span class="mark">✕</span>
+          Passi ore ogni mese a organizzare scontrini e fatture
+        </div>
+        <div class="compare-li">
+          <span class="mark">✕</span>
+          Software complicati che richiedono corsi per essere usati
+        </div>
+        <div class="compare-li">
+          <span class="mark">✕</span>
+          Ansia da scadenze e paura di dimenticare qualcosa
+        </div>
+      </div>
+      <div class="compare-col good">
+        <h3>Con Balans <span class="emo">😊</span></h3>
+        <div class="compare-li">
+          <span class="mark"><span class="ic" style="--src:url(&#39;icons/check.png&#39;); width:13px; height:13px;"></span></span>
+          Crei fatture in 30 secondi parlando naturalmente
+        </div>
+        <div class="compare-li">
+          <span class="mark"><span class="ic" style="--src:url(&#39;icons/check.png&#39;); width:13px; height:13px;"></span></span>
+          Nessuna formazione richiesta: semplice come usare WhatsApp
+        </div>
+        <div class="compare-li">
+          <span class="mark"><span class="ic" style="--src:url(&#39;icons/check.png&#39;); width:13px; height:13px;"></span></span>
+          Scadenze ricordate al posto tuo: zero pensieri
+        </div>
+      </div>
+    </div>
+    </div>
+  
+</section>
+
+<!-- ─────────────── COME FUNZIONA — 3 step ─────────────── -->
+<section class="how" id="come-funziona" style="padding: 100px 0; background: var(--surface-alt);">
+  <div class="container">
+    <div class="feats-head">
+      <h2>Inizia in <em>3 passi</em></h2>
+      <p>Dalla registrazione alla prima fattura in pochi minuti — senza perdere tempo.</p>
+    </div>
+    <div class="steps-3" style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px; max-width:1040px; margin:0 auto;">
+
+      <div style="position:relative; background:var(--surface); border:1px solid var(--hairline); border-radius:20px; padding:32px 28px;">
+        <div style="display:flex; align-items:center; gap:14px; margin-bottom:20px;">
+          <div style="width:42px; height:42px; border-radius:999px; background:var(--ink); color:#fff; display:flex; align-items:center; justify-content:center; font-family:&#39;Libre Franklin&#39;,sans-serif; font-weight:700; font-size:17px;">1</div>
+          <div style="width:42px; height:42px; border-radius:12px; background:var(--teal-soft); color:var(--teal-ink); display:flex; align-items:center; justify-content:center;">
+            <span class="ic" style="--src:url(&#39;icons/download.png&#39;); width:22px; height:22px;"></span>
+          </div>
+        </div>
+        <h4 style="margin:0 0 8px; font-family:&#39;Libre Franklin&#39;,sans-serif; font-size:19px; font-weight:600; letter-spacing:-0.4px; color:var(--ink);">Scarichi l'app</h4>
+        <p style="margin:0; font-size:14.5px; line-height:1.55; color:var(--ink-3);">Disponibile per iPhone e Android. Bastano pochi secondi per installarla e iniziare.</p>
+      </div>
+
+      <div style="position:relative; background:var(--surface); border:1px solid var(--hairline); border-radius:20px; padding:32px 28px;">
+        <div style="display:flex; align-items:center; gap:14px; margin-bottom:20px;">
+          <div style="width:42px; height:42px; border-radius:999px; background:var(--ink); color:#fff; display:flex; align-items:center; justify-content:center; font-family:&#39;Libre Franklin&#39;,sans-serif; font-weight:700; font-size:17px;">2</div>
+          <div style="width:42px; height:42px; border-radius:12px; background:var(--teal-soft); color:var(--teal-ink); display:flex; align-items:center; justify-content:center;">
+            <span class="ic" style="--src:url(&#39;icons/user.png&#39;); width:22px; height:22px;"></span>
+          </div>
+        </div>
+        <h4 style="margin:0 0 8px; font-family:&#39;Libre Franklin&#39;,sans-serif; font-size:19px; font-weight:600; letter-spacing:-0.4px; color:var(--ink);">Ti registri con la tua P.IVA</h4>
+        <p style="margin:0; font-size:14.5px; line-height:1.55; color:var(--ink-3);">Inserisci la partita IVA: Balans configura in automatico regime fiscale e scadenze.</p>
+      </div>
+
+      <div style="position:relative; background:var(--surface); border:1px solid var(--hairline); border-radius:20px; padding:32px 28px;">
+        <div style="display:flex; align-items:center; gap:14px; margin-bottom:20px;">
+          <div style="width:42px; height:42px; border-radius:999px; background:var(--teal); color:#fff; display:flex; align-items:center; justify-content:center; font-family:&#39;Libre Franklin&#39;,sans-serif; font-weight:700; font-size:17px;">3</div>
+          <div style="width:42px; height:42px; border-radius:12px; background:var(--teal-soft); color:var(--teal-ink); display:flex; align-items:center; justify-content:center;">
+            <span class="ic" style="--src:url(&#39;icons/send.png&#39;); width:22px; height:22px;"></span>
+          </div>
+        </div>
+        <h4 style="margin:0 0 8px; font-family:&#39;Libre Franklin&#39;,sans-serif; font-size:19px; font-weight:600; letter-spacing:-0.4px; color:var(--ink);">Emetti la prima fattura</h4>
+        <p style="margin:0; font-size:14.5px; line-height:1.55; color:var(--ink-3);">In meno di 30 secondi, parlando in italiano. La invii allo SDI senza pensieri.</p>
+      </div>
+
+    </div>
+    <div class="section-cta">
+      <button class="btn" type="button">Iscriviti alla waiting list</button>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── PURPOSE ─────────────── -->
+<section class="purpose" id="purpose" style="padding: 120px 0; background: linear-gradient(to bottom, var(--teal-soft) 0%, var(--teal-tint) 55%, var(--surface-alt) 100%); border-top: 1px solid var(--teal-soft); border-bottom: 1px solid var(--teal-soft); position: relative; overflow: hidden;">
+  <div style="
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(circle at 18% 22%, rgba(26,191,160,0.10) 0%, transparent 42%),
+        radial-gradient(circle at 84% 80%, rgba(14,17,48,0.04) 0%, transparent 44%);"></div>
+
+  <div class="container-narrow" style="position: relative; text-align: center; max-width: 880px; margin: 0 auto;">
+    <h2 style="
+        margin: 0; font-family: &#39;Libre Franklin&#39;, sans-serif;
+        font-size: 46px; line-height: 1.18; font-weight: 500;
+        letter-spacing: -1.4px; color: var(--ink); text-wrap: balance;">
+      Il nostro scopo è <strong style="font-weight: 700;">non</strong> farti passare le notti sulle
+      <span style="font-family: &#39;Galldis&#39;, serif; font-weight: 400; color: var(--teal-ink); letter-spacing: -0.8px;">scadenze</span>
+      ed <strong style="font-weight: 700;">evitarti preoccupazioni</strong> inutili.
+    </h2>
+
+    <p style="margin: 32px auto 0; max-width: 620px; font-family: &#39;Libre Franklin&#39;, sans-serif; font-size: 18px; line-height: 1.6; font-weight: 400; color: var(--ink-2); text-align: center; text-wrap: balance;">Balans nasce per restituirti tempo e serenità: la tecnologia si occupa della burocrazia, tu torni a fare ciò che ami.<br>Crediamo che gestire un'azienda debba essere semplice, e alla&nbsp;portata&nbsp;di&nbsp;tutti.</p>
+  </div>
+</section>
+
+<!-- ─────────────── CHAT FEATURE ─────────────── -->
+<section class="feat" id="funzionalita">
+  <div class="container">
+    <div class="feat-grid">
+      <div class="feat-text">
+        <span class="feat-eyebrow">Conversazione naturale</span>
+        <h2>Parla con Balans come parleresti con il tuo
+commercialista.</h2>
+        <p>
+          Niente menu complicati. Solo una conversazione naturale.
+          Scrivi quello che ti serve, Balans capisce e fa il lavoro per te.
+        </p>
+        <div class="feat-list">
+          <div class="feat-li">
+            <span class="ic" style="--src: url(&#39;icons/check.png&#39;); background-color: rgb(26, 191, 160)"></span>
+            Crea fatture dettando il cliente e l'importo
+          </div>
+          <div class="feat-li">
+            <span class="ic" style="--src: url(&#39;icons/check.png&#39;); background-color: rgb(26, 191, 160)"></span>
+            Importa scontrini fotografandoli, niente più digitazione
+          </div>
+          <div class="feat-li">
+            <span class="ic" style="--src: url(&#39;icons/check.png&#39;); background-color: rgb(26, 191, 160)"></span>
+            Risposte istantanee a domande di fatturazione e tasse
+          </div>
+        </div>
+
+      </div>
+
+      <div class="feat-phone-wrap">
+        <div class="phone">
+          <div class="phone-island"></div>
+          <div class="phone-content">
+            <div class="phone-statusbar">
+              <span>9:41</span>
+              <span class="right">
+                <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="6.5" width="2.6" height="4" rx="0.6"></rect><rect x="4" y="4.5" width="2.6" height="6" rx="0.6"></rect><rect x="8" y="2.5" width="2.6" height="8" rx="0.6"></rect><rect x="12" y="0" width="2.6" height="10" rx="0.6"></rect></svg>
+                <svg width="22" height="11" viewBox="0 0 22 11"><rect x="0.5" y="0.5" width="18" height="10" rx="2" fill="none" stroke="currentColor" opacity="0.4"></rect><rect x="2" y="2" width="14" height="7" rx="1" fill="currentColor"></rect></svg>
+              </span>
+            </div>
+            <div class="ps-chat-hdr">
+              <div class="av"><span class="ic" style="--src:url(&#39;icons/menu.png&#39;); width:20px; height:20px;"></span></div>
+              <div style="flex:1;">
+                <div class="nm">Balans Assistant</div>
+                <div class="st">● Online</div>
+              </div>
+            </div>
+            <div class="ps-chat-body">
+              <div class="bub me">Quanto ho fatturato questo mese?</div>
+              <div class="bub ai" style="background-color: rgba(255, 255, 255, 0); border-color: rgba(232, 225, 206, 0)">A maggio hai fatturato € 4.230 con 7 fatture. Sei al 22% del tuo limite forfettario annuale.</div>
+              <div class="bub me">Crea una fattura per Studio Bianchi, €800, consulenza marketing</div>
+              <div class="bub ai-card" style="border-color: rgb(158, 232, 207)">
+                <div class="h"><span class="ic" style="--src:url(&#39;icons/doc.png&#39;);"></span> Fattura pronta</div>
+                <div class="row"><span class="k">Cliente</span><span class="v">Studio Bianchi</span></div>
+                <div class="row"><span class="k">Causale</span><span class="v">Consulenza marketing</span></div>
+                <div class="row"><span class="k">Importo</span><span class="v">€ 800,00</span></div>
+              </div>
+            </div>
+            <div class="ps-chat-comp">
+              <span class="ph">Scrivi a Balans...</span>
+              <div class="send-btn"><span class="ic" style="--src:url(&#39;icons/send.png&#39;);"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── VIDEO ─────────────── -->
+<section class="video-sec">
+  <div class="container">
+    <div class="video-head">
+      <h2>Guarda Balans in <em>azione</em></h2>
+      <p>2 minuti per capire come renderti la vita più semplice</p>
+    </div>
+    <div class="video-frame">
+      <button class="video-play" aria-label="Riproduci video">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8 5v14l11-7z"></path>
+        </svg>
+      </button>
+    </div>
+    </div>
+  
+</section>
+
+<!-- ─────────────── FEATS — 6-card grid ─────────────── -->
+<section class="feats" id="funzioni">
+  <div class="container">
+    <div class="feats-head">
+      <h2>Tutto quello che ti serve, <em>di più</em></h2>
+      <p>Semplicità non significa rinunciare alle funzionalità.</p>
+    </div>
+    <div class="feats-grid">
+
+      <div class="feat-card">
+        <div class="ic-bg">
+          <span class="ic" style="--src:url(&#39;icons/chat.png&#39;); width:24px; height:24px;"></span>
+        </div>
+        <h4>Interfaccia Conversazionale</h4>
+        <p>Parla naturalmente, come faresti con un amico. Niente moduli complicati da compilare.</p>
+      </div>
+
+      <div class="feat-card">
+        <div class="ic-bg" style="color: rgb(232, 141, 21); background-color: rgb(248, 245, 238)">
+          <span class="ic" style="--src:url(&#39;icons/send.png&#39;); width:24px; height:24px;"></span>
+        </div>
+        <h4>Veloce come un Lampo</h4>
+        <p>Crea fatture in 30 secondi. Importa scontrini con una foto. Tutto automatizzato.</p>
+      </div>
+
+      <div class="feat-card">
+        <div class="ic-bg">
+          <span class="ic" style="--src:url(&#39;icons/lock.png&#39;); width:24px; height:24px;"></span>
+        </div>
+        <h4>Sempre Conforme</h4>
+        <p>Controlli automatici per evitare errori. Aggiornato alle ultime normative fiscali.</p>
+      </div>
+
+      <div class="feat-card">
+        <div class="ic-bg" style="color: rgb(232, 141, 21); background-color: rgb(248, 245, 238)">
+          <span class="ic" style="--src:url(&#39;icons/time.png&#39;); width:24px; height:24px;"></span>
+        </div>
+        <h4>Risparmi Tempo</h4>
+        <p>In media 15 ore al mese risparmiate. Più tempo per far crescere il tuo business.</p>
+      </div>
+
+      <div class="feat-card">
+        <div class="ic-bg">
+          <span class="ic" style="--src:url(&#39;icons/ai.png&#39;); width:24px; height:24px;"></span>
+        </div>
+        <h4>Categorizzazione Intelligente</h4>
+        <p>L'AI riconosce automaticamente le spese e le categorizza correttamente.</p>
+      </div>
+
+      <div class="feat-card">
+        <div class="ic-bg" style="background-color: rgb(248, 245, 238); color: rgb(232, 141, 21)">
+          <span class="ic" style="--src:url(&#39;icons/user.png&#39;); width:24px; height:24px;"></span>
+        </div>
+        <h4>Supporto Umano</h4>
+        <p>Team italiano sempre disponibile. Risposte in minuti, non giorni.</p>
+      </div>
+
+    </div>
+    </div>
+  
+</section>
+
+<!-- ─────────────── REVIEWS ─────────────── -->
+<section class="reviews" id="testimonianze">
+  <div class="container">
+    <div class="reviews-head">
+      <h2>Cosa dicono gli imprenditori <em>come te</em></h2>
+      <p>Persone vere, risultati veri.</p>
+    </div>
+
+    <div style="display:flex; justify-content:center; gap:56px; flex-wrap:wrap; margin:0 auto 48px; max-width:760px;">
+      <div style="text-align:center;">
+        <div style="font-family:&#39;Libre Franklin&#39;,sans-serif; font-size:42px; font-weight:700; letter-spacing:-1.6px; color:var(--ink); line-height:1;">200+</div>
+        <div style="font-size:13px; color:var(--ink-3); margin-top:6px;">imprenditori in lista d'attesa</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;Libre Franklin&#39;,sans-serif; font-size:42px; font-weight:700; letter-spacing:-1.6px; color:var(--ink); line-height:1;">4,9<span style="font-size:22px; color:var(--ink-3);">/5</span></div>
+        <div style="font-size:13px; color:var(--ink-3); margin-top:6px;">voto medio dai beta tester</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:&#39;Libre Franklin&#39;,sans-serif; font-size:42px; font-weight:700; letter-spacing:-1.6px; color:var(--ink); line-height:1;">~12<span style="font-size:22px; color:var(--ink-3);">h</span></div>
+        <div style="font-size:13px; color:var(--ink-3); margin-top:6px;">risparmiate ogni mese</div>
+      </div>
+    </div>
+    <div class="reviews-grid">
+
+      <div class="review">
+        <div class="stars" style="font-size:18px;">★★★★★</div>
+        <p class="review-text">
+          "Finalmente un software che capisco! Prima ci mettevo mezza giornata
+          per le fatture, ora 10 minuti. E ho 58 anni, se ce la faccio io..."
+        </p>
+        <div class="review-author">
+          <div class="avatar" style="background:#E8DCC4; color:#7A5C2E;">GF</div>
+          <div class="name-block">
+            <div class="nm">Giuseppe Ferri</div>
+            <div class="role">Idraulico</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review">
+        <div class="stars" style="font-size:18px;">★★★★★</div>
+        <p class="review-text">
+          "Ho recuperato ore preziose ogni settimana.
+          Il supporto è fantastico, rispondono sempre in pochi minuti."
+        </p>
+        <div class="review-author">
+          <div class="avatar" style="background:#D5E8DC; color:#1A8B5F;">AC</div>
+          <div class="name-block">
+            <div class="nm">Alessia Conti</div>
+            <div class="role">Consulente Marketing</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review">
+        <div class="stars" style="font-size:18px;">★★★★★</div>
+        <p class="review-text">
+          "Gestiamo tutto dal telefono mentre serviamo i clienti.
+          Foto allo scontrino e fatto! È una magia."
+        </p>
+        <div class="review-author">
+          <div class="avatar" style="background:#F3D8C4; color:#A0532A;">MB</div>
+          <div class="name-block">
+            <div class="nm">Marco &amp; Sofia Bianchi</div>
+            <div class="role">Caffetteria "Da Noi"</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="review-count">Unisciti a oltre 200 imprenditori già in lista d'attesa</div>
+    <div class="section-cta">
+      <button class="btn" type="button">Iscriviti alla waiting list</button>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── FAQ ─────────────── -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="faq-head">
+      <h2>Domande <em>frequenti</em></h2>
+      <p>Le risposte alle domande che ci fanno più spesso.</p>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item open">
+        <button class="faq-q" type="button">
+          Devo essere bravo con i computer per usare Balans?
+          <span class="ic chev" style="--src:url(&#39;icons/chevronDown.png&#39;);"></span>
+        </button>
+        <div class="faq-a">
+          No. Se sai usare WhatsApp, sai usare Balans. Scrivi quello che ti serve
+          in italiano e l'AI fa il resto. Niente moduli, niente menu nascosti.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" type="button">
+          Come funziona la lista d'attesa?
+          <span class="ic chev" style="--src:url(&#39;icons/chevronDown.png&#39;);"></span>
+        </button>
+        <div class="faq-a">
+          Ti iscrivi con la tua email, senza impegno e senza carta. Apriamo gli
+          accessi a ondate nei primi mesi del 2026: i primi iscritti entrano per
+          primi e con condizioni riservate.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" type="button">
+          È conforme alle leggi italiane sulla fatturazione?
+          <span class="ic chev" style="--src:url(&#39;icons/chevronDown.png&#39;);"></span>
+        </button>
+        <div class="faq-a">
+          Assolutamente. Balans è certificato per la fatturazione elettronica SDI,
+          conforme al regime forfettario e ordinario, e si aggiorna automaticamente
+          alle nuove normative.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" type="button">
+          Cosa succede se ho bisogno di aiuto?
+          <span class="ic chev" style="--src:url(&#39;icons/chevronDown.png&#39;);"></span>
+        </button>
+        <div class="faq-a">
+          Il nostro team italiano è disponibile in chat dal lunedì al venerdì,
+          dalle 9 alle 19. Rispondiamo in minuti, non in giorni.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" type="button">
+          Per quali partite IVA è pensato Balans?
+          <span class="ic chev" style="--src:url(&#39;icons/chevronDown.png&#39;);"></span>
+        </button>
+        <div class="faq-a">
+          Per freelance, autonomi e piccole imprese, in regime forfettario o
+          ordinario. Se hai una partita IVA italiana, Balans fa per te.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" type="button">
+          I miei dati sono al sicuro?
+          <span class="ic chev" style="--src:url(&#39;icons/chevronDown.png&#39;);"></span>
+        </button>
+        <div class="faq-a">
+          I dati sono ospitati su server in Italia, cifrati end-to-end e conformi
+          al GDPR. Solo tu puoi accedervi.
+        </div>
+      </div>
+
+    </div>
+    <div class="faq-foot" style="text-align:center; margin-top:40px; font-size:14px; color:var(--ink-3);">Ancora dubbi? Le trovi tutte qui sopra — oppure scrivici.</div>
+  </div>
+</section>
+
+<!-- ─────────────── CTA — Riprendi il controllo ─────────────── -->
+<section class="cta" style="background:linear-gradient(to bottom, #073D33 0%, #0C6957 100%); color:#fff; padding: 100px 0;">
+  <div class="container-narrow" style="position:relative;">
+    <h2 style="color:#fff;">Riprendi il controllo del tuo <em style="color: rgb(255, 255, 255)">tempo</em></h2>
+
+    <div class="cta-actions" style="margin-top: 36px;">
+      <button class="cta-btn-white" type="button" style="color: var(--teal-ink); background: #fff; box-shadow: 0 1px 0 rgba(255,255,255,0.4) inset, 0 8px 22px -6px rgba(0,0,0,0.35);">
+        Iscriviti alla waiting list
+      </button>
+      <button class="cta-btn-outline" type="button">
+        Parla con il Nostro Team
+      </button>
+    </div>
+
+    <div class="cta-perks" style="margin-top:20px;">
+      <div class="cta-perk" style="color:rgba(255,255,255,0.85);">
+        <span class="ic" style="--src:url(&#39;icons/check.png&#39;); width:16px; height:16px; color:#A8E5D5;"></span>
+        Nessun impegno
+      </div>
+      <div class="cta-perk" style="color:rgba(255,255,255,0.85);">
+        <span class="ic" style="--src:url(&#39;icons/check.png&#39;); width:16px; height:16px; color:#A8E5D5;"></span>
+        Ti avvisiamo noi al lancio
+      </div>
+      <div class="cta-perk" style="color:rgba(255,255,255,0.85);">
+        <span class="ic" style="--src:url(&#39;icons/check.png&#39;); width:16px; height:16px; color:#A8E5D5;"></span>
+        Supporto in italiano
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── FOOTER ─────────────── -->
+<footer class="ftr">
+  <div class="container">
+    <div class="ftr-top">
+      <div>
+        <span class="logo-wordmark light" style="height:30px;"></span>
+        <p class="ftr-tagline">
+          La fatturazione semplice per chi ha di meglio da fare.
+        </p>
+      </div>
+      <div>
+        <h5>Prodotto</h5>
+        <a href="https://balansapp.it/#">Funzionalità</a>
+        <a href="https://balansapp.it/#">Prezzi</a>
+        <a href="https://balansapp.it/#">Testimonianze</a>
+        <a href="https://balansapp.it/#">Roadmap</a>
+      </div>
+      <div>
+        <h5>Risorse</h5>
+        <a href="https://balansapp.it/#">Guide</a>
+        <a href="https://balansapp.it/#">Video Tutorial</a>
+        <a href="https://balansapp.it/#">Blog</a>
+        <a href="https://balansapp.it/#">FAQ</a>
+      </div>
+      <div>
+        <h5>Azienda</h5>
+        <a href="https://balansapp.it/#">Chi Siamo</a>
+        <a href="mailto:info@balansapp.it">Contatti</a>
+        <a href="https://balansapp.it/#">Privacy</a>
+        <a href="https://balansapp.it/#">Termini</a>
+      </div>
+    </div>
+    <div class="ftr-bottom">
+      <div class="ftr-legal">
+        © 2026 Balans · NETTA AI S.R.L. · P.IVA 07368320821<br>
+        Fatto con ♥ in Italia, per gli imprenditori italiani.
+      </div>
+      <div class="ftr-social">
+        <a href="https://instagram.com/balans.app" aria-label="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+            <circle cx="12" cy="12" r="4"></circle>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor"></circle>
+          </svg>
+        </a>
+        <a href="https://balansapp.it/#" aria-label="LinkedIn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 3H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM8.3 18.3H5.7V10h2.6v8.3zM7 8.8c-.8 0-1.5-.7-1.5-1.5S6.2 5.8 7 5.8s1.5.7 1.5 1.5S7.8 8.8 7 8.8zm11.3 9.5h-2.6v-4.6c0-1.1-.4-1.8-1.4-1.8-.8 0-1.2.5-1.4 1v5.4h-2.6V10h2.5v1.1c.3-.5 1.1-1.3 2.5-1.3 1.8 0 3 1.2 3 3.7v4.8z"></path>
+          </svg>
+        </a>
+        <a href="mailto:info@balansapp.it" aria-label="Email">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+            <path d="m3 7 9 6 9-6"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Theme toggle (light/dark)
+  (function() {
+    const KEY = 'balans-theme';
+    const saved = localStorage.getItem(KEY);
+    if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.theme-toggle');
+      if (!btn) return;
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem(KEY, 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem(KEY, 'dark');
+      }
+    });
+  })();
+</script>
+
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.closest('.faq-item');
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+</script>
+
+
+
+
+<style id="__om-edit-overrides">
+:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) >div { font-weight: 600 !important }
+</style>
+</body></html>
