@@ -1,20 +1,21 @@
-@font-face {
+/* @font-face {
     font-family: 'Galldis';
     src: url('fonts/Galldis.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
-}
+} */
+@import url('https://fonts.cdnfonts.com/css/galledis');
 
-@font-face {
+/* @font-face {
     font-family: 'Libre Franklin';
     src: url('fonts/LibreFranklin.ttf') format('truetype-variations'),
         url('fonts/LibreFranklin.ttf') format('truetype');
     font-weight: 100 900;
     font-style: normal;
     font-display: swap;
-}
-
+} */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
 
 
 :root {
@@ -259,8 +260,8 @@ body {
 .logo-mark {
     display: inline-block;
     background-color: var(--navy);
-    -webkit-mask: url('logos/icona-standard.png') center/contain no-repeat;
-    mask: url('logos/icona-standard.png') center/contain no-repeat;
+    -webkit-mask: url('../img/logos/Icona_512x512_Balans.png') center/contain no-repeat;
+    mask: url('../img/logos/Icona_512x512_Balans.png') center/contain no-repeat;
     height: 32px;
     aspect-ratio: 47/99;
 }
@@ -268,16 +269,16 @@ body {
 .logo-wordmark {
     display: inline-block;
     background-color: var(--navy);
-    -webkit-mask: url('logos/logo-scuro.png') left center/contain no-repeat;
-    mask: url('logos/logo-scuro.png') left center/contain no-repeat;
+    -webkit-mask: url('../img/logos/logo-nero.png') left center/contain no-repeat;
+    mask: url('../img/logos/logo-nero-full.png') left center/contain no-repeat;
     height: 32px;
     aspect-ratio: 345/99;
 }
 
 .logo-wordmark.light {
     background-color: #fff;
-    -webkit-mask-image: url('logos/logo-chiaro.png');
-    mask-image: url('logos/logo-chiaro.png');
+    -webkit-mask-image: url('../img/logos/logo-bianco.png');
+    mask-image: url('../img/logos/logo-bianco-full.png');
 }
 
 /* ───────── Icon (mask-based) ───────── */
@@ -2109,7 +2110,7 @@ h1.hero-h1 em {
 /* Evita overflow orizzontale su qualsiasi schermo */
 html,
 body {
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 img,
@@ -2661,8 +2662,8 @@ svg,
         .logo-mark {
             display: inline-block;
             background-color: var(--navy);
-            -webkit-mask: url('logos/icona-standard.png') center/contain no-repeat;
-            mask: url('logos/icona-standard.png') center/contain no-repeat;
+            -webkit-mask: url('../img/logos/Icona_512x512_Balans.png') center/contain no-repeat;
+            mask: url('../img/logos/Icona_512x512_Balans.png') center/contain no-repeat;
             height: 32px;
             aspect-ratio: 47/99;
         }
@@ -2670,16 +2671,16 @@ svg,
         .logo-wordmark {
             display: inline-block;
             background-color: var(--navy);
-            -webkit-mask: url('logos/logo-scuro.png') left center/contain no-repeat;
-            mask: url('logos/logo-scuro.png') left center/contain no-repeat;
+            -webkit-mask: url('../img/logos/logo-nero.png') left center/contain no-repeat;
+            mask: url('../img/logos/logo-nero.png') left center/contain no-repeat;
             height: 32px;
             aspect-ratio: 345/99;
         }
 
         .logo-wordmark.light {
             background-color: #fff;
-            -webkit-mask-image: url('logos/logo-chiaro.png');
-            mask-image: url('logos/logo-chiaro.png');
+            -webkit-mask-image: url('../img/logos/logo-bianco.png');
+            mask-image: url('../img/logos/logo-bianco.png');
         }
 
         /* ───────── Icon (mask-based) ───────── */
