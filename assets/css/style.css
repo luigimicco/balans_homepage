@@ -703,12 +703,15 @@ h1.hero-h1 em {
 .bub.ai-card .row .k {
     color: var(--ink-3);
     font-weight: 500;
+    flex-shrink: 0;
 }
 
 .bub.ai-card .row .v {
     color: var(--ink);
     font-weight: 700;
     font-variant-numeric: tabular-nums;
+    text-align: right;
+    margin-left: 1rem;
 }
 
 .ps-chat-comp {
