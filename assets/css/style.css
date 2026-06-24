@@ -1509,6 +1509,10 @@ h1.hero-h1 em {
     gap: 20px;
 }
 
+.dash-cards {
+    grid-template-columns: repeat(3, 1fr);
+}
+
 .review {
     background: var(--surface);
     border: 1px solid var(--hairline);
@@ -2424,6 +2428,10 @@ svg,
     .ftr-bottom {
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    .dash-cards {
+        grid-template-columns: 1fr;
     }
 }
 
