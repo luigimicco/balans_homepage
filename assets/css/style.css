@@ -1,21 +1,26 @@
-/* @font-face {
+@font-face {
     font-family: 'Galldis';
-    src: url('fonts/Galldis.ttf') format('truetype');
+    src: url('../fonts/Galldis/Galldis.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
-} */
-@import url('https://fonts.cdnfonts.com/css/galledis');
+}
 
-/* @font-face {
+@font-face {
     font-family: 'Libre Franklin';
-    src: url('fonts/LibreFranklin.ttf') format('truetype-variations'),
-        url('fonts/LibreFranklin.ttf') format('truetype');
+    src: url('../fonts/Libre_Franklin/LibreFranklin-VariableFont_wght.ttf') format('truetype');
     font-weight: 100 900;
     font-style: normal;
     font-display: swap;
-} */
-@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
+}
+
+@font-face {
+    font-family: 'Libre Franklin';
+    src: url('../fonts/Libre_Franklin/LibreFranklin-Italic-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+}
 
 
 :root {
