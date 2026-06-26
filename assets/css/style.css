@@ -51,6 +51,7 @@
     --business-radial-2-light: rgba(0, 21, 255, 0.016);
 
     --video-navy: #0E1130;
+    --right-stat-panel: rgba(255,255,255,0.05);
 }
 
 /* ───────── Theme: Dark ───────── */
@@ -80,6 +81,7 @@
     --business-radial-2-light: rgba(14, 17, 48, 0.04);
 
     --video-navy: #7aa8ff;
+    --right-stat-panel: rgba(255,255,255,0.05);
 }
 
 /* Element-specific dark overrides for hardcoded values */
