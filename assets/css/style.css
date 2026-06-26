@@ -51,7 +51,7 @@
     --business-radial-2-light: rgba(0, 21, 255, 0.016);
 
     --video-navy: #0E1130;
-    --right-stat-panel: rgba(255,255,255,0.05);
+    --right-stat-panel: rgba(255, 255, 255, 0.05);
     --fatture: #1A1D24;
 }
 
@@ -62,7 +62,7 @@
     --ink-3: #8C95A6;
     --ink-4: #5F6776;
     --ink-5: #3A4150;
-    
+
     --navy: #0E1130;
     --navy-2: #1A1F4A;
 
@@ -82,7 +82,7 @@
     --business-radial-2-light: rgba(14, 17, 48, 0.04);
 
     --video-navy: #7aa8ff;
-    --right-stat-panel: rgba(255,255,255,0.05);
+    --right-stat-panel: rgba(255, 255, 255, 0.05);
     --fatture: #7aa8ff;
 }
 
@@ -2128,6 +2128,107 @@ h1.hero-h1 em {
     border-radius: 999px;
     animation: pulse 2s ease-in-out infinite;
 }
+
+
+.privacy-hero {
+    padding: 72px 0 48px;
+    border-bottom: 1px solid var(--border, var(--hairline));
+}
+
+.privacy-hero h1 {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    margin: 0 0 12px;
+    line-height: 1.2;
+}
+
+.privacy-hero .subtitle {
+    font-size: 15px;
+    opacity: 0.55;
+    margin: 0;
+}
+
+.privacy-body {
+    padding: 56px 0 96px;
+}
+
+.privacy-body h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 48px 0 12px;
+    padding-top: 8px;
+    border-top: 1px solid var(--border, var(--hairline));
+}
+
+.privacy-body h2:first-child {
+    margin-top: 0;
+    border-top: none;
+}
+
+.privacy-body p {
+    font-size: 15px;
+    line-height: 1.75;
+    margin: 0 0 14px;
+    opacity: 0.85;
+    color: var(--ink);
+}
+
+.privacy-body ul {
+    padding-left: 22px;
+    margin: 0 0 14px;
+}
+
+.privacy-body ul li {
+    font-size: 15px;
+    line-height: 1.75;
+    margin-bottom: 6px;
+    opacity: 0.85;
+}
+
+.privacy-table-wrap {
+    overflow-x: auto;
+    margin: 16px 0 28px;
+    border-radius: 10px;
+    border: 1px solid var(--border, var(--bg));
+}
+
+.privacy-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink);
+}
+
+.privacy-table th {
+    background: var(--surface, --bg-3);
+    font-weight: 600;
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border, var(--bg));
+}
+
+.privacy-table td {
+    padding: 12px 16px;
+    vertical-align: top;
+    border-bottom: 1px solid var(--border, var(--bg));
+    opacity: 0.85;
+}
+
+.privacy-table tr:last-child td {
+    border-bottom: none;
+}
+
+.privacy-table tr:nth-child(even) td {
+    background: var(--surface, --bg-3);
+}
+
+.privacy-last-updated {
+    font-size: 13px;
+    margin-top: 48px;
+    padding-top: 24px;
+}
+
 
 @keyframes pulse {
 
