@@ -286,7 +286,7 @@ body {
 
 .logo-wordmark {
     display: inline-block;
-    background-color: var(--navy);
+    background-color: var(--ink);
     -webkit-mask: url('../img/logos/logo-nero.png') left center/contain no-repeat;
     mask: url('../img/logos/logo-nero-full.png') left center/contain no-repeat;
     height: 32px;
