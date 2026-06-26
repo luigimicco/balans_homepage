@@ -52,6 +52,7 @@
 
     --video-navy: #0E1130;
     --right-stat-panel: rgba(255,255,255,0.05);
+    --fatture: #1A1D24;
 }
 
 /* ───────── Theme: Dark ───────── */
@@ -82,6 +83,7 @@
 
     --video-navy: #7aa8ff;
     --right-stat-panel: rgba(255,255,255,0.05);
+    --fatture: #7aa8ff;
 }
 
 /* Element-specific dark overrides for hardcoded values */
