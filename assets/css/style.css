@@ -2194,6 +2194,7 @@ h1.hero-h1 em {
 
 .privacy-table {
     width: 100%;
+    min-width: 600px;
     border-collapse: collapse;
     font-size: 14px;
     line-height: 1.6;
