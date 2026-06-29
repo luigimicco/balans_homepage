@@ -116,7 +116,7 @@
 }
 
 [data-theme="dark"] .hero-input::placeholder {
-    color: var(--ink-4);
+    color: var(--ink-3);
 }
 
 [data-theme="dark"] .float-card,
@@ -389,7 +389,7 @@ h1.hero-h1 em {
     margin: 28px 0 36px;
     font-size: 19.5px;
     line-height: 1.5;
-    color: var(--ink-3);
+    color: var(--ink-2);
     max-width: 540px;
     font-weight: 400;
     text-wrap: pretty;
@@ -424,7 +424,7 @@ h1.hero-h1 em {
 }
 
 .hero-input::placeholder {
-    color: var(--ink-4);
+    color: var(--ink-3);
     font-weight: 400;
 }
 
@@ -460,7 +460,7 @@ h1.hero-h1 em {
 
 .hero-fine {
     font-size: 12.5px;
-    color: var(--ink-4);
+    color: var(--ink-3);
     font-weight: 500;
     display: inline-flex;
     align-items: center;
@@ -573,7 +573,7 @@ h1.hero-h1 em {
 
 .float-card .label {
     font-size: 12px;
-    color: var(--ink-3);
+    color: var(--ink-2);
     font-weight: 500;
 }
 
@@ -632,7 +632,7 @@ h1.hero-h1 em {
 
 .ps-chat-hdr .st {
     font-size: 11px;
-    color: var(--ink-3);
+    color: var(--ink-2);
 }
 
 .ps-chat-body {
@@ -716,7 +716,7 @@ h1.hero-h1 em {
 }
 
 .bub.ai-card .row .k {
-    color: var(--ink-3);
+    color: var(--ink-2);
     font-weight: 500;
     flex-shrink: 0;
 }
@@ -745,7 +745,7 @@ h1.hero-h1 em {
 
 .ps-chat-comp .ph {
     flex: 1;
-    color: var(--ink-3);
+    color: var(--ink-2);
     font-size: 13px;
 }
 
@@ -807,7 +807,7 @@ h1.hero-h1 em {
     border-radius: 999px;
     font-size: 12px;
     font-weight: 600;
-    color: var(--ink-3);
+    color: var(--ink-2);
 }
 
 .ps-tabs .t.on {
@@ -845,7 +845,7 @@ h1.hero-h1 em {
 
 .ps-row .sm {
     font-size: 11px;
-    color: var(--ink-3);
+    color: var(--ink-2);
     margin-top: 1px;
 }
 
@@ -888,7 +888,7 @@ h1.hero-h1 em {
 
 .ps-hub-hdr .small {
     font-size: 11px;
-    color: var(--ink-3);
+    color: var(--ink-2);
     font-family: 'Libre Franklin', sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.4px;
@@ -986,7 +986,7 @@ h1.hero-h1 em {
 
 .ps-quick .q .sm {
     font-size: 10.5px;
-    color: var(--ink-3);
+    color: var(--ink-2);
     margin-top: 2px;
 }
 
@@ -1033,7 +1033,7 @@ h1.hero-h1 em {
 .proof-card p {
     margin: 4px 0 0;
     font-size: 13px;
-    color: var(--ink-3);
+    color: var(--ink-2);
     line-height: 1.45;
 }
 
@@ -1091,7 +1091,7 @@ h1.hero-h1 em {
     margin: 24px 0 32px;
     font-size: 18px;
     line-height: 1.55;
-    color: var(--ink-3);
+    color: var(--ink-2);
     max-width: 460px;
     text-wrap: pretty;
 }
@@ -1210,7 +1210,7 @@ h1.hero-h1 em {
     margin: 28px auto 40px;
     font-size: 19.5px;
     line-height: 1.5;
-    color: var(--ink-3);
+    color: var(--ink-2);
     max-width: 600px;
     text-wrap: pretty;
 }
@@ -1235,7 +1235,7 @@ h1.hero-h1 em {
     align-items: center;
     gap: 8px;
     font-size: 13px;
-    color: var(--ink-3);
+    color: var(--ink-2);
     font-weight: 500;
 }
 
@@ -1351,7 +1351,7 @@ h1.hero-h1 em {
 .compare-head p {
     margin: 20px auto 0;
     font-size: 18px;
-    color: var(--ink-3);
+    color: var(--ink-2);
     line-height: 1.5;
     max-width: 580px;
     text-wrap: pretty;
@@ -1457,7 +1457,7 @@ h1.hero-h1 em {
 .video-head p {
     margin: 16px auto 0;
     font-size: 18px;
-    color: var(--ink-3);
+    color: var(--ink-2);
     line-height: 1.5;
     max-width: 540px;
 }
@@ -1528,7 +1528,7 @@ h1.hero-h1 em {
 .reviews-head p {
     margin: 14px auto 0;
     font-size: 17px;
-    color: var(--ink-3);
+    color: var(--ink-2);
 }
 
 .reviews-grid {
@@ -1600,7 +1600,7 @@ h1.hero-h1 em {
 
 .review-author .role {
     font-size: 13px;
-    color: var(--ink-3);
+    color: var(--ink-2);
     margin-top: 1px;
 }
 
@@ -1659,7 +1659,7 @@ h1.hero-h1 em {
 .feats-head p {
     margin: 14px auto 0;
     font-size: 17px;
-    color: var(--ink-3);
+    color: var(--ink-2);
 }
 
 .feats-grid {
@@ -1706,7 +1706,7 @@ h1.hero-h1 em {
     margin: 0;
     font-size: 14.5px;
     line-height: 1.55;
-    color: var(--ink-3);
+    color: var(--ink-2);
 }
 
 /* ─────────────── FAQ ─────────────── */
@@ -1733,7 +1733,7 @@ h1.hero-h1 em {
 .faq-head p {
     margin: 14px auto 0;
     font-size: 17px;
-    color: var(--ink-3);
+    color: var(--ink-2);
 }
 
 .faq-list {
@@ -1772,7 +1772,7 @@ h1.hero-h1 em {
 .faq-q .chev {
     width: 22px;
     height: 22px;
-    color: var(--ink-3);
+    color: var(--ink-2);
     transition: transform .2s;
     flex-shrink: 0;
 }
@@ -1788,7 +1788,7 @@ h1.hero-h1 em {
     padding: 0 24px;
     font-size: 14.5px;
     line-height: 1.55;
-    color: var(--ink-3);
+    color: var(--ink-2);
 }
 
 .faq-item.open .faq-a {
@@ -1849,7 +1849,7 @@ h1.hero-h1 em {
 
 .section-cta .note {
     font-size: 13px;
-    color: var(--ink-4);
+    color: var(--ink-3);
     font-weight: 500;
     display: inline-flex;
     align-items: center;
@@ -1942,7 +1942,7 @@ h1.hero-h1 em {
     cursor: pointer;
     user-select: none;
     font-size: 13.5px;
-    color: var(--ink-3);
+    color: var(--ink-2);
     line-height: 1.5;
     font-weight: 400;
 }
@@ -2005,7 +2005,7 @@ h1.hero-h1 em {
     align-items: center;
     gap: 8px;
     font-size: 14px;
-    color: var(--ink-3);
+    color: var(--ink-2);
     font-weight: 500;
 }
 
