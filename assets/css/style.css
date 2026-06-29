@@ -1264,7 +1264,6 @@ h1.hero-h1 em {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    opacity: 0.5;
     font-family: 'Libre Franklin', sans-serif;
 }
 
@@ -1554,7 +1553,7 @@ h1.hero-h1 em {
     display: flex;
     gap: 2px;
     margin-bottom: 16px;
-    color: #F4C66E;
+    color: #d66b13;
 }
 
 .review-text {
