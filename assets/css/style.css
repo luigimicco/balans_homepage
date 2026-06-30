@@ -2348,8 +2348,14 @@ svg,
         display: none;
     }
 
-    .steps-3 {
+    .steps-3,
+    .steps-4 {
         grid-template-columns: 1fr 1fr !important;
+    }
+
+    .dash-2col {
+        grid-template-columns: 1fr !important;
+        gap: 48px !important;
     }
 
     .purpose h2 {
@@ -2513,7 +2519,8 @@ svg,
         font-size: 16px;
     }
 
-    .steps-3 {
+    .steps-3,
+    .steps-4 {
         grid-template-columns: 1fr !important;
     }
 
