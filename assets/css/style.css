@@ -29,6 +29,7 @@
     --teal-soft: #DDF2EB;
     --teal-tint: #EEF8F4;
     --teal-ink: #0E7A66;
+    --teal-ink-2: #075949;
 
     --navy: #0E1130;
     --navy-2: #1A1F4A;
@@ -2426,7 +2427,7 @@ svg,
     .hero-waitlist-row .hero-input {
         width: 100%;
         max-width: 340px;
-        height: 60px;
+        padding: 10px 20px;
     }
 
     .hero-waitlist-row .hero-btn {
