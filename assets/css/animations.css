@@ -99,7 +99,7 @@ html { scroll-behavior: smooth; }
   transform: translateY(14px) scale(0.8);
   transition: opacity 0.6s var(--anim-ease), transform 0.6s var(--anim-spring);
 }
-.anim-ready .float-card.in { opacity: 1; }
+.anim-ready .float-card.in { opacity: 1; transform: none; }
 .float-card.in.float-1 { animation: float-y 6s ease-in-out 0.9s infinite; }
 .float-card.in.float-2 { animation: float-y 7s ease-in-out 1.3s infinite; }
 @keyframes float-y {
