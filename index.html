@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com/">
   <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
   <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/animations.css">
 
 </head>
 
@@ -491,20 +492,20 @@
       <div style="display:flex; justify-content:center; gap:56px; flex-wrap:wrap; margin:0 auto 48px; max-width:760px;">
         <div style="text-align:center;">
           <div
-            style="font-family:'Libre Franklin',sans-serif; font-size:42px; font-weight:700; letter-spacing:-1.6px; color:var(--ink); line-height:1;">
-            200+</div>
+            style="font-family:'Libre Franklin',sans-serif; font-size:42px; font-weight:700; letter-spacing:-1.6px; color:var(--ink); line-height:1;"
+            data-count="200" data-suffix="+">200+</div>
           <div style="font-size:13px; color:var(--ink-2); margin-top:6px;">imprenditori in lista d'attesa</div>
         </div>
         <div style="text-align:center;">
           <div
             style="font-family:'Libre Franklin',sans-serif; font-size:42px; font-weight:700; letter-spacing:-1.6px; color:var(--ink); line-height:1;">
-            4,9<span style="font-size:22px; color:var(--ink-2);">/5</span></div>
+            <span data-count="4.9" data-decimals="1">4,9</span><span style="font-size:22px; color:var(--ink-2);">/5</span></div>
           <div style="font-size:13px; color:var(--ink-2); margin-top:6px;">voto medio dai beta tester</div>
         </div>
         <div style="text-align:center;">
           <div
             style="font-family:'Libre Franklin',sans-serif; font-size:42px; font-weight:700; letter-spacing:-1.6px; color:var(--ink); line-height:1;">
-            ~12<span style="font-size:22px; color:var(--ink-2);">h</span></div>
+            <span data-count="12" data-prefix="~">~12</span><span style="font-size:22px; color:var(--ink-2);">h</span></div>
           <div style="font-size:13px; color:var(--ink-2); margin-top:6px;">risparmiate ogni mese</div>
         </div>
       </div>
@@ -732,7 +733,8 @@
 
           <div style="display:flex; align-items:baseline; gap:10px; margin-bottom:6px;">
             <span
-              style="font-family:'Libre Franklin',sans-serif; font-size:64px; font-weight:700; letter-spacing:-2.5px; line-height:1;">70</span>
+              style="font-family:'Libre Franklin',sans-serif; font-size:64px; font-weight:700; letter-spacing:-2.5px; line-height:1;"
+              data-slot="70">70</span>
             <span style="font-size:17px; color:rgba(255,255,255,0.7); font-weight:600;">licenze cliente</span>
           </div>
           <div style="font-size:14.5px; color:rgba(255,255,255,0.6); margin-bottom:28px;">
@@ -938,6 +940,7 @@
   </footer>
 
   <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/animations.js"></script>
 </body>
 
 </html>

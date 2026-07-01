@@ -1,0 +1,412 @@
+/* ============================================================
+   BALANS — Animation layer (additive, progressive-enhancement)
+   Loaded after style.css. All initial-hidden states are scoped
+   under html.anim-ready (added by JS) so the page is fully
+   visible if JS fails. Everything is disabled under
+   prefers-reduced-motion. Uses only transform/opacity/filter.
+   ============================================================ */
+
+:root {
+  --anim-ease: cubic-bezier(0.22, 0.61, 0.36, 1); /* soft ease-out */
+  --anim-spring: cubic-bezier(0.34, 1.56, 0.64, 1); /* gentle overshoot */
+}
+
+/* smooth in-page anchor scrolling */
+html { scroll-behavior: smooth; }
+
+/* ---------- Generic scroll-reveal ---------- */
+.anim-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.75s var(--anim-ease),
+    transform 0.75s var(--anim-ease);
+  will-change: opacity, transform;
+}
+.anim-ready [data-reveal].in {
+  opacity: 1;
+  transform: none;
+}
+/* directional variants */
+.anim-ready [data-reveal="left"]  { transform: translateX(-38px); }
+.anim-ready [data-reveal="right"] { transform: translateX(38px); }
+.anim-ready [data-reveal="scale"] { transform: scale(0.94); }
+.anim-ready [data-reveal="left"].in,
+.anim-ready [data-reveal="right"].in,
+.anim-ready [data-reveal="scale"].in { transform: none; }
+
+/* once revealed, drop will-change to free the compositor */
+[data-reveal].in { will-change: auto; }
+
+/* ---------- Header condense on scroll ---------- */
+.hdr {
+  transition: background 0.35s ease, box-shadow 0.35s ease,
+              backdrop-filter 0.35s ease, padding 0.35s ease;
+}
+.hdr.scrolled {
+  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  backdrop-filter: saturate(180%) blur(16px);
+  box-shadow: 0 6px 26px -14px rgba(14, 17, 48, 0.28);
+}
+
+/* ---------- Hero animated aurora background ---------- */
+.hero { position: relative; }
+.hero-bg { position: relative; overflow: hidden; }
+.hero-bg::before,
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+.hero-bg::before {
+  width: 46vw; height: 46vw; max-width: 620px; max-height: 620px;
+  top: -14%; right: -6%;
+  background: radial-gradient(circle, rgba(26, 191, 160, 0.22), transparent 68%);
+  animation: aurora-a 16s ease-in-out infinite;
+}
+.hero-bg::after {
+  width: 40vw; height: 40vw; max-width: 520px; max-height: 520px;
+  bottom: -18%; left: -8%;
+  background: radial-gradient(circle, rgba(14, 122, 102, 0.14), transparent 66%);
+  animation: aurora-b 20s ease-in-out infinite;
+}
+@keyframes aurora-a {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(-4%, 6%, 0) scale(1.12); }
+}
+@keyframes aurora-b {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(6%, -5%, 0) scale(1.15); }
+}
+/* keep hero content above the blobs */
+.hero-grid { position: relative; z-index: 1; }
+
+/* ---------- Hero entrance (runs on load, staggered via JS delays) ---------- */
+.anim-ready .hero-phone-wrap {
+  opacity: 0;
+  transform: translateY(30px) scale(0.96);
+  transition: opacity 0.9s var(--anim-ease), transform 0.9s var(--anim-ease);
+}
+.anim-ready .hero-phone-wrap.in { opacity: 1; transform: none; }
+
+/* floating cards: fade+pop in, then gentle continuous float */
+.anim-ready .float-card {
+  opacity: 0;
+  transform: translateY(14px) scale(0.8);
+  transition: opacity 0.6s var(--anim-ease), transform 0.6s var(--anim-spring);
+}
+.anim-ready .float-card.in { opacity: 1; }
+.float-card.in.float-1 { animation: float-y 6s ease-in-out 0.9s infinite; }
+.float-card.in.float-2 { animation: float-y 7s ease-in-out 1.3s infinite; }
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-11px); }
+}
+
+/* ---------- Phone chat: sequential bubble reveal ---------- */
+.anim-ready .ps-chat-body .bub {
+  opacity: 0;
+  transform: translateY(12px) scale(0.97);
+  transition: opacity 0.45s var(--anim-ease), transform 0.45s var(--anim-spring);
+}
+.anim-ready .ps-chat-body .bub.pop { opacity: 1; transform: none; }
+
+/* typing indicator injected by JS */
+.typing-bub {
+  align-self: flex-start;
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  padding: 12px 15px;
+  border-radius: 16px 16px 16px 5px;
+  background: var(--surface, #fff);
+  border: 1px solid var(--hairline, #e8e1ce);
+  box-shadow: 0 2px 8px -4px rgba(14, 17, 48, 0.14);
+  width: fit-content;
+  margin-bottom: 2px;
+}
+.typing-bub span {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--ink-4, #9ca0ae);
+  animation: typing-dot 1.2s ease-in-out infinite;
+}
+.typing-bub span:nth-child(2) { animation-delay: 0.16s; }
+.typing-bub span:nth-child(3) { animation-delay: 0.32s; }
+@keyframes typing-dot {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.45; }
+  30%           { transform: translateY(-5px); opacity: 1; }
+}
+
+/* ---------- Micro-interactions: hover lift ---------- */
+.feat-card,
+.review,
+.steps-3 > div,
+.dash-cards > div {
+  transition: transform 0.3s var(--anim-ease), box-shadow 0.3s var(--anim-ease),
+              border-color 0.3s var(--anim-ease);
+}
+.feat-card:hover,
+.review:hover,
+.steps-3 > div:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 44px -22px rgba(14, 17, 48, 0.26);
+  border-color: color-mix(in srgb, var(--teal) 45%, var(--hairline));
+}
+.dash-cards > div:hover {
+  transform: translateY(-6px);
+  border-color: rgba(127, 230, 206, 0.4);
+}
+
+/* icon badges get a playful pop on card hover */
+.feat-card .ic-bg { transition: transform 0.35s var(--anim-spring); }
+.feat-card:hover .ic-bg { transform: scale(1.1) rotate(-4deg); }
+
+/* buttons: lift + sheen */
+.hero-btn, .btn, .hdr-cta, .cta-btn-white, .cta-btn-outline {
+  transition: transform 0.22s var(--anim-ease), box-shadow 0.22s var(--anim-ease),
+              filter 0.22s var(--anim-ease);
+}
+.hero-btn:hover, .btn:hover, .hdr-cta:hover,
+.cta-btn-white:hover, .cta-btn-outline:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.04);
+}
+.hero-btn:active, .btn:active, .hdr-cta:active { transform: translateY(0); }
+
+/* primary CTA subtle attention pulse (once revealed) */
+.hero-btn::after { content: none; }
+
+/* animated stat numbers: avoid layout shift while counting */
+.counting { font-variant-numeric: tabular-nums; }
+
+/* video play button breathing */
+.video-play {
+  transition: transform 0.3s var(--anim-spring), box-shadow 0.3s ease;
+  animation: play-pulse 2.6s ease-in-out infinite;
+}
+.video-play:hover { transform: scale(1.12); animation-play-state: paused; }
+@keyframes play-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(26, 191, 160, 0.35); }
+  50%      { box-shadow: 0 0 0 16px rgba(26, 191, 160, 0); }
+}
+
+/* compare check/cross marks pop when the column reveals */
+.anim-ready .compare-col .compare-li .mark {
+  transition: transform 0.4s var(--anim-spring);
+}
+.anim-ready .compare-col:not(.in) .compare-li .mark { transform: scale(0); }
+
+/* FAQ chevron already rotates via style.css; add smooth answer height */
+.faq-a { transition: max-height 0.4s var(--anim-ease), opacity 0.35s ease,
+                     padding 0.4s var(--anim-ease); }
+
+/* ============================================================
+   Ambient scroll backdrop — drifting blobs w/ light parallax
+   Injected per-section by JS (.section-fx). Sits behind content.
+   ============================================================ */
+.fx-host { position: relative; }
+.fx-host > .container,
+.fx-host > .container-narrow { position: relative; z-index: 1; }
+
+.section-fx {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+/* parallax wrapper (moved by JS) */
+.section-fx .pfx {
+  position: absolute;
+  inset: -20% -10%;
+  will-change: transform;
+}
+/* the soft glowing blob (drifts on its own) */
+.section-fx .blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(64px);
+  opacity: 0.55;
+}
+.section-fx .blob.b-teal {
+  background: radial-gradient(circle, rgba(26, 191, 161, 0.05), transparent 70%);
+}
+.section-fx .blob.b-ink {
+  background: radial-gradient(circle, rgba(14, 122, 102, 0.05), transparent 70%);
+}
+/* on dark sections the glow is warmer/brighter to match existing radials */
+.section-fx.on-dark .blob.b-teal {
+  background: radial-gradient(circle, rgba(26, 191, 160, 0.05), transparent 68%);
+  opacity: 0.7;
+}
+.section-fx.on-dark .blob.b-ink {
+  background: radial-gradient(circle, rgba(127, 230, 206, 0.05), transparent 70%);
+}
+.section-fx .blob.drift-a { animation: blob-drift-a 22s ease-in-out infinite; }
+.section-fx .blob.drift-b { animation: blob-drift-b 28s ease-in-out infinite; }
+@keyframes blob-drift-a {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(6%, 8%, 0) scale(1.14); }
+}
+@keyframes blob-drift-b {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1.05); }
+  50%      { transform: translate3d(-7%, -6%, 0) scale(0.92); }
+}
+
+/* faint drifting dot-grid on a couple of sections for texture */
+.section-fx .grid-fx {
+  position: absolute;
+  inset: -40px;
+  background-image: radial-gradient(rgba(14, 17, 48, 0.05) 1px, transparent 1px);
+  background-size: 26px 26px;
+  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 72%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 72%);
+  animation: grid-pan 40s linear infinite;
+}
+.section-fx.on-dark .grid-fx {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+}
+@keyframes grid-pan {
+  from { background-position: 0 0; }
+  to   { background-position: 26px 26px; }
+}
+
+/* ============================================================
+   Round 3 — word-by-word hero, animated card borders,
+   icon reveals, slot-machine number, magnetic buttons
+   ============================================================ */
+
+/* ---------- Hero: word-by-word reveal ---------- */
+.anim-ready .hword {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.5em) rotate(2deg);
+  transition: opacity 0.6s var(--anim-ease), transform 0.6s var(--anim-spring);
+  will-change: opacity, transform;
+}
+.anim-ready .hword.in { opacity: 1; transform: none; will-change: auto; }
+
+/* ---------- Feature cards: animated conic gradient border on hover ---------- */
+@property --ba {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+.feat-card { position: relative; isolation: isolate; }
+.feat-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.6px;
+  background: conic-gradient(from var(--ba, 0deg),
+    transparent 0 18%,
+    var(--teal) 34%,
+    var(--teal-ink) 50%,
+    var(--teal) 66%,
+    transparent 82% 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+.feat-card:hover::after {
+  opacity: 1;
+  animation: border-rot 2.4s linear infinite;
+}
+@keyframes border-rot { to { --ba: 360deg; } }
+
+/* ---------- Feature icon badges: pop in when card reveals ---------- */
+.anim-ready .feat-card .ic-bg {
+  transition: transform 0.5s var(--anim-spring), opacity 0.4s ease;
+}
+.anim-ready .feat-card:not(.in) .ic-bg {
+  transform: scale(0.3) rotate(-30deg);
+  opacity: 0;
+}
+/* keep the playful hover pop */
+.anim-ready .feat-card.in:hover .ic-bg { transform: scale(1.1) rotate(-4deg); }
+
+/* ---------- Compare marks: staggered spring pop / "draw" ---------- */
+.anim-ready .compare-col .compare-li .mark {
+  transition: transform 0.55s var(--anim-spring);
+}
+.anim-ready .compare-col:not(.in) .compare-li .mark {
+  transform: scale(0) rotate(-40deg);
+}
+.compare-col.in .compare-li:nth-of-type(1) .mark { transition-delay: 0.10s; }
+.compare-col.in .compare-li:nth-of-type(2) .mark { transition-delay: 0.22s; }
+.compare-col.in .compare-li:nth-of-type(3) .mark { transition-delay: 0.34s; }
+
+/* ---------- Slot-machine number ---------- */
+.slot {
+  display: inline-flex;
+  height: 1em;
+  overflow: hidden;
+  vertical-align: baseline;
+  line-height: 1;
+}
+.slot .reel {
+  display: flex;
+  flex-direction: column;
+  transform: translateY(0);
+}
+.slot .reel > span {
+  display: block;
+  height: 1em;
+  line-height: 1;
+}
+
+/* ---------- Magnetic buttons ---------- */
+.magnetic { will-change: transform; }
+
+/* ---------- Scroll progress bar ---------- */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, var(--teal-ink), var(--teal));
+  z-index: 999;
+  pointer-events: none;
+  box-shadow: 0 0 12px rgba(26, 191, 160, 0.55);
+}
+
+/* ---------- Respect reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .anim-ready [data-reveal],
+  .anim-ready .hero-phone-wrap,
+  .anim-ready .float-card,
+  .anim-ready .ps-chat-body .bub,
+  .anim-ready .hword,
+  .anim-ready .feat-card .ic-bg,
+  .anim-ready .compare-col .compare-li .mark {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .feat-card:hover::after { animation: none !important; }
+  .magnetic { transform: none !important; }
+  .hero-bg::before, .hero-bg::after,
+  .float-card, .video-play, .typing-bub span,
+  .section-fx .blob, .section-fx .grid-fx {
+    animation: none !important;
+  }
+  .section-fx .pfx { transform: none !important; }
+  .section-fx { opacity: 0.5; }
+  .feat-card:hover, .review:hover, .steps-3 > div:hover,
+  .dash-cards > div:hover, .hero-btn:hover, .btn:hover {
+    transform: none;
+  }
+}
