@@ -17,12 +17,6 @@
     });
 })();
 
-
-// Scroll phone chat bodies to bottom so the last message is always visible
-document.querySelectorAll('.ps-chat-body').forEach(el => {
-    el.scrollTop = el.scrollHeight;
-});
-
 // FAQ accordion
 document.querySelectorAll('.faq-q').forEach(q => {
     q.addEventListener('click', () => {

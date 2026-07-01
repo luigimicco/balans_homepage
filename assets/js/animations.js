@@ -297,7 +297,13 @@
     }
 
     var i = 0;
-    var toBottom = function () { body.scrollTop = body.scrollHeight; };
+    var toBottom = function (el) {
+      // offsetTop non è affidabile: .ps-chat-body non è positioned, quindi
+      // offsetTop risalirebbe a .phone-content includendo l'header del telefono
+      var elBottom = el.getBoundingClientRect().bottom - body.getBoundingClientRect().top + body.scrollTop;
+      var target = elBottom - body.clientHeight + 80; // 80 = margine sopra il composer
+      body.scrollTop = Math.max(0, target);
+    };
 
     function next() {
       if (i >= bubbles.length) return;
@@ -306,18 +312,18 @@
 
       if (isAI) {
         var typing = makeTyping();
-        body.appendChild(typing);
-        toBottom();
+        body.insertBefore(typing, bub);
+        toBottom(typing);
         setTimeout(function () {
           body.removeChild(typing);
           bub.classList.add('pop');
-          toBottom();
+          toBottom(bub);
           i++;
           setTimeout(next, 520);
         }, 950);
       } else {
         bub.classList.add('pop');
-        toBottom();
+        toBottom(bub);
         i++;
         setTimeout(next, 620);
       }
