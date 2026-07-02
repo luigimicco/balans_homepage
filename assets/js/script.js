@@ -26,3 +26,13 @@ document.querySelectorAll('.faq-q').forEach(q => {
         if (!wasOpen) item.classList.add('open');
     });
 });
+
+// Toggle Demo Interattiva (sezione #funzionalita)
+document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.demo-toggle');
+    if (!btn) return;
+    const section = btn.closest('#funzionalita');
+    const isDemo = section.getAttribute('data-mode') === 'demo';
+    section.setAttribute('data-mode', isDemo ? 'normal' : 'demo');
+    btn.setAttribute('aria-pressed', String(!isDemo));
+});
