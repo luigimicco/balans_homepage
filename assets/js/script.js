@@ -27,14 +27,14 @@ document.querySelectorAll('.faq-q').forEach(q => {
     });
 });
 
-// Waitlist form — submit via Web3Forms, confirmation modal, satellite buttons scroll to form
-(function () {
-    const form = document.getElementById('waitlist-form');
-    const modal = document.getElementById('waitlist-modal');
+// Waitlist / demo forms — submit via Web3Forms, confirmation modal, satellite buttons scroll to form
+function initWaitlistForm({ formId, modalId, emailId, errorId, scrollAttr }) {
+    const form = document.getElementById(formId);
+    const modal = document.getElementById(modalId);
     if (!form || !modal) return;
 
-    const emailInput = document.getElementById('waitlist-email');
-    const errorBox = document.getElementById('waitlist-error');
+    const emailInput = document.getElementById(emailId);
+    const errorBox = document.getElementById(errorId);
     const submitBtn = form.querySelector('.hero-btn');
     const submitLabel = submitBtn.querySelector('.btn-label') || submitBtn;
     const submitLabelDefault = submitLabel.textContent;
@@ -106,8 +106,8 @@ document.querySelectorAll('.faq-q').forEach(q => {
         }
     });
 
-    // Satellite buttons: scroll to the waitlist form and focus the email field
-    document.querySelectorAll('[data-waitlist-scroll]').forEach((btn) => {
+    // Satellite buttons: scroll to the form and focus the email field
+    document.querySelectorAll(`[${scrollAttr}]`).forEach((btn) => {
         btn.addEventListener('click', () => {
             form.scrollIntoView({ behavior: 'smooth', block: 'center' });
             emailInput.classList.remove('wl-highlight');
@@ -116,4 +116,7 @@ document.querySelectorAll('.faq-q').forEach(q => {
             window.setTimeout(() => emailInput.focus({ preventScroll: true }), 400);
         });
     });
-})();
+}
+
+initWaitlistForm({ formId: 'waitlist-form', modalId: 'waitlist-modal', emailId: 'waitlist-email', errorId: 'waitlist-error', scrollAttr: 'data-waitlist-scroll' });
+initWaitlistForm({ formId: 'demo-form', modalId: 'demo-modal', emailId: 'demo-email', errorId: 'demo-error', scrollAttr: 'data-demo-scroll' });

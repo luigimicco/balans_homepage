@@ -41,8 +41,7 @@
                 <a href="https://balansapp.it/#faq">FAQ</a>
                 <a href="https://balansapp.it">Per le partite IVA</a>
             </nav>
-            <button class="hdr-cta"><a href="https://balansapp.it/business"
-                    style="text-decoration: none; color: inherit;">Contattaci per Balans Business</a></button>
+            <button class="hdr-cta" type="button" data-demo-scroll>Contattaci per Balans Business</button>
             <!-- <button class="theme-toggle" aria-label="Cambia tema" type="button">
                 <svg class="ic-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -77,11 +76,18 @@
                     dall’app, tu segui tutto da un’unica dashboard e comunichi con loro in una chat privata.
                     Un solo canale, zero documenti sparsi — e tanto tempo risparmiato su ogni cliente.
                 </p>
-                <form class="hero-waitlist" onsubmit="event.preventDefault()">
+                <form class="hero-waitlist" id="demo-form" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="61f714c0-2082-4df7-b0d9-77fbf7235f55">
+                    <input type="hidden" name="subject" value="Nuova richiesta demo — Balans Business">
+                    <input type="hidden" name="from_name" value="Sito Balans Business">
+                    <input type="checkbox" name="botcheck" class="hero-waitlist-honeypot" tabindex="-1" autocomplete="off">
                     <div class="hero-waitlist-row">
-                        <input class="hero-input" type="email" placeholder="Email dello studio" required="">
-                        <button class="hero-btn" type="submit">Richiedi una demo</button>
+                        <input class="hero-input" id="demo-email" name="email" type="email" placeholder="Email dello studio" required="">
+                        <button class="hero-btn" type="submit">
+                            <span class="btn-label">Richiedi una demo</span>
+                        </button>
                     </div>
+                    <div class="hero-waitlist-error" id="demo-error" role="alert" hidden></div>
                 </form>
                 <div class="hero-perks">
                     <span class="perk"><img src="../assets/img/icons/vettoriale/check.svg" alt=""
@@ -643,11 +649,10 @@
                         un’unica dashboard e le assegni in pochi minuti. Onboarding e formazione del team inclusi.
                     </p>
                     <div style="display:flex; align-items:center; gap:18px; flex-wrap:wrap; margin-top:34px;">
-                        <button type="button"
-                            style="height:54px; padding:0 26px; background:var(--teal); color:#06231D; border:0; border-radius:14px; font-family:'Libre Franklin'; font-weight:700; font-size:15px; letter-spacing:-0.2px; cursor:pointer;"><a
-                                href="https://balansapp.it/business" style="text-decoration: none; color: inherit;">
-                                Contattaci per Balans Business
-                            </a></button>
+                        <button type="button" data-demo-scroll
+                            style="height:54px; padding:0 26px; background:var(--teal); color:#06231D; border:0; border-radius:14px; font-family:'Libre Franklin'; font-weight:700; font-size:15px; letter-spacing:-0.2px; cursor:pointer;">
+                            Contattaci per Balans Business
+                        </button>
                         <span style="font-size:13.5px; color:rgba(255,255,255,0.6);">Ti
                             rispondiamo entro 24h</span>
                     </div>
@@ -792,7 +797,7 @@
                 Prenota una demo: ti mostriamo la dashboard, rispondiamo alle tue domande e
                 costruiamo insieme il pacchetto su misura per il tuo parco clienti.
             </p>
-            <button class="cta-btn-white" type="button"
+            <button class="cta-btn-white" type="button" data-demo-scroll
                 style="height:56px; padding:0 30px; color:var(--teal-ink); background:#fff; border:0; border-radius:14px; font-family:'Libre Franklin'; font-weight:700; font-size:15.5px; cursor:pointer; box-shadow:0 1px 0 rgba(255,255,255,0.4) inset, 0 8px 22px -6px rgba(0,0,0,0.35);">
                 Diventa partner
             </button>
@@ -880,6 +885,25 @@
             </div>
         </div>
     </footer>
+
+    <!-- ─────────────── DEMO CONFIRM MODAL ─────────────── -->
+    <div class="wl-modal-overlay" id="demo-modal" hidden>
+        <div class="wl-modal" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title">
+            <button class="wl-modal-close" type="button" aria-label="Chiudi">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 6 6 18M6 6l12 12"></path>
+                </svg>
+            </button>
+            <div class="wl-modal-icon">
+                <img src="../assets/img/icons/vettoriale/check.svg" alt=""
+                    style="width:26px; height:26px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);">
+            </div>
+            <h3 id="demo-modal-title">Richiesta ricevuta!</h3>
+            <p>Grazie per l'interesse verso Balans Business. Ti contatteremo entro 24h per fissare la demo.</p>
+            <button class="wl-modal-ok hero-btn" type="button">Fatto</button>
+        </div>
+    </div>
 
     <script src="../assets/js/script.js"></script>
 
