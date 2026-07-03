@@ -1127,6 +1127,8 @@ h1.hero-h1 em {
 .feat-phone-wrap {
     display: flex;
     justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
     position: relative;
 }
 
@@ -2307,34 +2309,56 @@ h1.hero-h1 em {
     min-height: 0;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     text-align: center;
     padding: 24px 26px;
-    gap: 14px;
+    gap: 20px;
 }
 
-.dw-logo {
-    width: 140px;
-    height: 40px;
+.dw-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+}
+
+.dw-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
 }
 
 .dw-title {
     font-family: 'Libre Franklin', sans-serif;
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 700;
-    letter-spacing: -0.4px;
+    color: var(--ink);
+    margin-top: -4rem;
+}
+
+.dw-brand {
+    font-family: 'Galldis', serif;
+    font-size: 32px;
+    line-height: 1.3;
+    letter-spacing: -0.8px;
     color: var(--ink);
 }
 
 .dw-sub {
-    font-size: 12px;
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 10px;
     line-height: 1.55;
-    color: var(--ink-3);
+    color: var(--ink-4);
     max-width: 230px;
+    margin-top: 8px;
 }
 
 .dw-sub b {
-    color: var(--ink-2);
+    font-family: 'Libre Franklin', sans-serif;
+    color: var(--ink-4);
     font-weight: 700;
 }
 
@@ -2357,6 +2381,209 @@ h1.hero-h1 em {
 
 #funzionalita[data-mode="demo"] .demo-welcome {
     display: flex;
+}
+
+#funzionalita[data-mode="demo"] .demo-welcome.hidden {
+    display: none;
+}
+
+#funzionalita[data-mode="demo"] .feat-list.feat-copy-demo {
+    display: flex;
+}
+
+/* Demo chat — messaggi generati dalla domanda scelta nel menu categorie */
+.demo-chat {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px 14px 80px;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.demo-chat::-webkit-scrollbar {
+    display: none;
+}
+
+#funzionalita[data-mode="demo"] .demo-chat.active {
+    display: flex;
+}
+
+.typing {
+    align-self: flex-start;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    padding: 13px 15px;
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: 18px 18px 18px 4px;
+}
+
+.typing span {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--ink-4);
+    animation: dotblink 1.2s infinite;
+}
+
+.typing span:nth-child(2) {
+    animation-delay: .2s;
+}
+
+.typing span:nth-child(3) {
+    animation-delay: .4s;
+}
+
+@keyframes dotblink {
+
+    0%,
+    60%,
+    100% {
+        opacity: .25;
+    }
+
+    30% {
+        opacity: 1;
+    }
+}
+
+/* Mini bar chart (usato nella risposta "grafico incassi") */
+.mini-chart {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    gap: 12px;
+    padding-top: 8px;
+}
+
+.mc-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.mc-v {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+}
+
+.mc-fill {
+    width: 34px;
+    border-radius: 6px 6px 0 0;
+    background: linear-gradient(to top, var(--teal-ink), var(--teal));
+}
+
+.mc-x {
+    font-size: 10px;
+    color: var(--ink-2);
+    font-weight: 600;
+}
+
+.demo-invia {
+    margin-top: 10px;
+    width: 100%;
+    height: 34px;
+    border: 0;
+    border-radius: 9px;
+    background: linear-gradient(to bottom, var(--teal-ink) 0%, var(--teal) 100%);
+    color: #fff;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 12.5px;
+    cursor: pointer;
+}
+
+/* Menu categorie demo (a fianco del telefono) */
+.demo-cats {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    width: 196px;
+    flex-shrink: 0;
+    padding-top: 54px;
+}
+
+#funzionalita[data-mode="demo"] .demo-cats {
+    display: flex;
+}
+
+.cat-pill {
+    width: 100%;
+    text-align: left;
+    padding: 11px 16px;
+    border-radius: 999px;
+    border: 0;
+    cursor: pointer;
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: -0.2px;
+    line-height: 1.2;
+    background: linear-gradient(to bottom, var(--teal-ink) 0%, var(--teal) 100%);
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    transition: filter .15s, transform .1s;
+    box-shadow: 0 4px 12px -3px rgba(14, 122, 102, 0.35);
+}
+
+.cat-pill:hover {
+    filter: brightness(1.06);
+}
+
+.cat-pill:active {
+    transform: translateY(1px);
+}
+
+.cat-pill .chev {
+    transition: transform .2s;
+}
+
+.cat-group.open .cat-pill .chev {
+    transform: rotate(180deg);
+}
+
+.cat-qs {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .28s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.cat-group.open .cat-qs {
+    max-height: 420px;
+    padding: 8px 0 4px;
+}
+
+.cat-q {
+    text-align: left;
+    padding: 9px 13px;
+    border-radius: 12px;
+    border: 1px solid var(--hairline);
+    background: var(--surface);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--ink-2);
+    transition: border-color .15s, background .15s, color .15s;
+}
+
+.cat-q:hover {
+    border-color: var(--teal);
+    background: var(--teal-tint);
+    color: var(--ink);
 }
 
 
@@ -2739,6 +2966,17 @@ svg,
 
     .feat-grid {
         gap: 40px;
+    }
+
+    .feat-phone-wrap {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .demo-cats {
+        width: 100%;
+        max-width: 320px;
+        padding-top: 0;
     }
 
     .feat h2 {

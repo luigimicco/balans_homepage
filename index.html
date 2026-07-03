@@ -479,7 +479,7 @@
             </p>
           </div>
 
-          <div class="feat-list">
+          <div class="feat-list feat-copy-normal">
             <div class="feat-li">
               <img src="./assets/img/icons/vettoriale/check.svg" alt=""
                 style="width:22px; height:22px; display:inline-block; flex-shrink:0; margin-top:1px; filter:brightness(0) saturate(100%) invert(50%) sepia(20%) saturate(1400%) hue-rotate(120deg) brightness(115%);">
@@ -494,6 +494,23 @@
               <img src="./assets/img/icons/vettoriale/check.svg" alt=""
                 style="width:22px; height:22px; display:inline-block; flex-shrink:0; margin-top:1px; filter:brightness(0) saturate(100%) invert(50%) sepia(20%) saturate(1400%) hue-rotate(120deg) brightness(115%);">
               Scrivi al tuo studio direttamente in app, quando vuoi
+            </div>
+          </div>
+          <div class="feat-list feat-copy-demo">
+            <div class="feat-li">
+              <img src="./assets/img/icons/vettoriale/check.svg" alt=""
+                style="width:22px; height:22px; display:inline-block; flex-shrink:0; margin-top:1px; filter:brightness(0) saturate(100%) invert(50%) sepia(20%) saturate(1400%) hue-rotate(120deg) brightness(115%);">
+              Scegli una delle 4 categorie a fianco
+            </div>
+            <div class="feat-li">
+              <img src="./assets/img/icons/vettoriale/check.svg" alt=""
+                style="width:22px; height:22px; display:inline-block; flex-shrink:0; margin-top:1px; filter:brightness(0) saturate(100%) invert(50%) sepia(20%) saturate(1400%) hue-rotate(120deg) brightness(115%);">
+              Tocca una domanda già pronta
+            </div>
+            <div class="feat-li">
+              <img src="./assets/img/icons/vettoriale/check.svg" alt=""
+                style="width:22px; height:22px; display:inline-block; flex-shrink:0; margin-top:1px; filter:brightness(0) saturate(100%) invert(50%) sepia(20%) saturate(1400%) hue-rotate(120deg) brightness(115%);">
+              Balans risponde all'istante, come nella chat reale
             </div>
           </div>
 
@@ -551,16 +568,78 @@
                 <div class="bub ai">Fatto — inviata allo Studio Verardi. Ti avviso appena la registrano.</div>
               </div>
               <div class="demo-welcome">
-                <span class="logo-wordmark dw-logo"></span>
-                <div class="dw-title">Modalità demo</div>
-                <div class="dw-sub">Questa è una <b>simulazione</b>: le risposte che vedrai non sono generate in
-                  tempo reale, ma servono a mostrarti come funziona Balans nella chat reale.</div>
+                <div class="dw-center">
+                  <div class="dw-heading">
+                    <div class="dw-title">Benvenuto nella Demo di</div>
+                    <div class="dw-brand">Balans</div>
+                  </div>
+                  <div class="dw-sub">Questa è una <b>simulazione</b>: le risposte che vedrai non sono generate in
+                    tempo reale, ma servono a mostrarti come funziona Balans nella chat reale.</div>
+                </div>
               </div>
+              <div class="demo-chat"></div>
               <div class="ps-chat-comp">
                 <span class="ph">Scrivi a Balans...</span>
                 <div class="send-btn"><img src="./assets/img/icons/vettoriale/up.svg" alt=""
                     style="width:16px; height:16px; display:inline-block; flex-shrink:0; filter:brightness(0) invert(1);">
                 </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="demo-cats">
+            <div class="cat-group">
+              <button class="cat-pill" type="button">Fatturato e Limiti
+                <img src="./assets/img/icons/png/chevronDown.png" alt="" class="chev"
+                  style="width:14px; height:14px; display:inline-block; flex-shrink:0; filter:brightness(0) invert(1);">
+              </button>
+              <div class="cat-qs">
+                <button class="cat-q" type="button" data-key="c1q1">Quanto posso fatturare ancora prima di uscire dal
+                  forfettario?</button>
+                <button class="cat-q" type="button" data-key="c1q2">Qual è il mio fatturato totale da inizio
+                  anno?</button>
+                <button class="cat-q" type="button" data-key="c1q3">Mostrami il grafico degli incassi degli ultimi 3
+                  mesi.</button>
+              </div>
+            </div>
+            <div class="cat-group">
+              <button class="cat-pill" type="button">Creazione e Gestione Fatture
+                <img src="./assets/img/icons/png/chevronDown.png" alt="" class="chev"
+                  style="width:14px; height:14px; display:inline-block; flex-shrink:0; filter:brightness(0) invert(1);">
+              </button>
+              <div class="cat-qs">
+                <button class="cat-q" type="button" data-key="c2q1">Crea una fattura di 500€ per la prestazione di
+                  ieri a Studio Bianchi.</button>
+                <button class="cat-q" type="button" data-key="c2q2">Prepara una nota di credito di 150€ per la
+                  fattura numero 12.</button>
+                <button class="cat-q" type="button" data-key="c2q3">Devo mettere il bollo da 2€ sulla fattura che sto
+                  facendo?</button>
+              </div>
+            </div>
+            <div class="cat-group">
+              <button class="cat-pill" type="button">Tasse e Contributi
+                <img src="./assets/img/icons/png/chevronDown.png" alt="" class="chev"
+                  style="width:14px; height:14px; display:inline-block; flex-shrink:0; filter:brightness(0) invert(1);">
+              </button>
+              <div class="cat-qs">
+                <button class="cat-q" type="button" data-key="c3q1">Quante tasse e contributi dovrò pagare a
+                  giugno?</button>
+                <button class="cat-q" type="button" data-key="c3q2">Se incasso 3.000€ netti, quanto devo accantonare
+                  per le tasse?</button>
+                <button class="cat-q" type="button" data-key="c3q3">A quanto ammontano i miei contributi INPS/Cassa
+                  quest'anno?</button>
+              </div>
+            </div>
+            <div class="cat-group">
+              <button class="cat-pill" type="button">Spese e Deducibilità
+                <img src="./assets/img/icons/png/chevronDown.png" alt="" class="chev"
+                  style="width:14px; height:14px; display:inline-block; flex-shrink:0; filter:brightness(0) invert(1);">
+              </button>
+              <div class="cat-qs">
+                <button class="cat-q" type="button" data-key="c4q1">Posso scaricare la fattura del nuovo
+                  computer?</button>
+                <button class="cat-q" type="button" data-key="c4q2">Ho una cena di lavoro da 80€, come la
+                  registro?</button>
               </div>
             </div>
           </div>
