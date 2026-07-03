@@ -45,6 +45,7 @@
     ['.feat-li', 'up', 90],
     ['.feat-phone-wrap', 'right', 0],
     ['.steps-3 > div', 'up', 110],
+    ['.steps-4 > div', 'up', 110],
     ['.purpose h2', 'up', 0],
     ['.purpose p', 'up', 0],
     ['.feat-card', 'up', 90],

@@ -141,12 +141,13 @@
       </div>
       <nav class="hdr-nav">
         <a href="https://balansapp.it/#come-funziona" title="Scopri come funziona Balans">Come funziona</a>
-        <a href="https://balansapp.it/#funzionalita" title="Scopri l'assistente conversazionale di Balans">Assistente</a>
+        <a href="https://balansapp.it/#funzionalita"
+          title="Scopri l'assistente conversazionale di Balans">Assistente</a>
         <a href="https://balansapp.it/#funzioni" title="Scopri tutte le funzionalità di Balans">Funzioni</a>
         <a href="https://balansapp.it/#testimonianze" title="Leggi le testimonianze dei nostri utenti">Testimonianze</a>
         <a href="https://balansapp.it/#faq" title="Consulta le domande frequenti">FAQ</a>
       </nav>
-      <button class="hdr-cta">Iscriviti alla waiting list</button>
+      <button class="hdr-cta" type="button" data-waitlist-scroll>Iscriviti alla waiting list</button>
       <!-- <button class="theme-toggle" aria-label="Cambia tema" type="button">
         <svg class="ic-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
           stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -178,24 +179,32 @@
           e movimenti della tua partita IVA in pochissimo tempo.
           Quello che risparmi lo dedichi alla tua azienda — e a far crescere i tuoi guadagni.</p>
 
-        <form class="hero-waitlist" onsubmit="event.preventDefault()">
+        <form class="hero-waitlist" id="waitlist-form" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="61f714c0-2082-4df7-b0d9-77fbf7235f55">
+          <input type="hidden" name="subject" value="Nuova iscrizione waiting list — Balans">
+          <input type="hidden" name="from_name" value="Sito Balans">
+          <input type="checkbox" name="botcheck" class="hero-waitlist-honeypot" tabindex="-1" autocomplete="off">
           <div class="hero-waitlist-row">
-            <input class="hero-input" type="email" placeholder="La tua email" required="">
+            <input class="hero-input" id="waitlist-email" name="email" type="email" placeholder="La tua email"
+              required="">
             <button class="hero-btn" type="submit">
-              Iscriviti alla waiting list
+              <span class="btn-label">Iscriviti alla waiting list</span>
             </button>
           </div>
           <label class="hero-waitlist-check">
-            <input type="checkbox" required="">
+            <input type="checkbox" name="consenso_privacy" value="accettato" required="">
             <span class="box" aria-hidden="true">
               <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
                 stroke-linejoin="round">
                 <path d="m3 7 3 3 5-6"></path>
               </svg>
             </span>
-            <span class="txt">Accetto la <a href="https://balansapp.it/privacy" target="_blank" title="Leggi la Privacy Policy di Balans (si apre in una nuova scheda)">Privacy Policy</a> e i
-              <a href="https://balansapp.it/#" title="Leggi i Termini di servizio di Balans">Termini di servizio</a>.</span>
+            <span class="txt">Accetto la <a href="https://balansapp.it/privacy" target="_blank"
+                title="Leggi la Privacy Policy di Balans (si apre in una nuova scheda)">Privacy Policy</a> e i
+              <a href="https://balansapp.it/#" title="Leggi i Termini di servizio di Balans">Termini di
+                servizio</a>.</span>
           </label>
+          <div class="hero-waitlist-error" id="waitlist-error" role="alert" hidden></div>
         </form>
 
 
@@ -265,7 +274,7 @@
                   Ecco
                   la tua
                   fattura
-                  ✨</div>
+                </div>
                 <div class="row"><span class="k">Cliente</span><span class="v">Mario Rossi</span></div>
                 <div class="row"><span class="k">Importo</span><span class="v">€ 500,00</span></div>
                 <div class="row"><span class="k">Data</span><span class="v">15/05/2026</span></div>
@@ -412,7 +421,7 @@
 
       </div>
       <div class="section-cta">
-        <button class="btn" type="button">Iscriviti alla waiting list</button>
+        <button class="btn" type="button" data-waitlist-scroll>Iscriviti alla waiting list</button>
       </div>
     </div>
   </section>
@@ -724,7 +733,7 @@
 
       <div class="review-count">Unisciti a oltre 200 imprenditori già in lista d'attesa</div>
       <div class="section-cta">
-        <button class="btn" type="button">Iscriviti alla waiting list</button>
+        <button class="btn" type="button" data-waitlist-scroll>Iscriviti alla waiting list</button>
       </div>
     </div>
   </section>
@@ -888,7 +897,9 @@
           <div style="display:flex; align-items:center; gap:18px; flex-wrap:wrap;">
             <button type="button"
               style="height:54px; padding:0 26px; background:var(--teal); color:#06231D; border:0; border-radius:14px; font-family:'Libre Franklin',sans-serif; font-weight:700; font-size:15px; letter-spacing:-0.2px; cursor:pointer;">
-              <a href="https://balansapp.it/business" title="Contattaci per il servizio Balans Business dedicato a commercialisti e studi" style="text-decoration: none; color: inherit;">Contattaci per
+              <a href="https://balansapp.it/business"
+                title="Contattaci per il servizio Balans Business dedicato a commercialisti e studi"
+                style="text-decoration: none; color: inherit;">Contattaci per
                 Balans Business</a>
             </button>
             <span style="font-size:13.5px; color:rgba(255,255,255,0.6);">Onboarding e formazione inclusi</span>
@@ -1022,13 +1033,13 @@
       <h2 style="color:#fff;">Riprendi il controllo del tuo <em style="color: rgb(255, 255, 255)">tempo</em></h2>
 
       <div class="cta-actions" style="margin-top: 36px;">
-        <button class="cta-btn-white" type="button"
+        <button class="cta-btn-white" type="button" data-waitlist-scroll
           style="color: #0E7A66;; background: #fff; box-shadow: 0 1px 0 rgba(255,255,255,0.4) inset, 0 8px 22px -6px rgba(0,0,0,0.35);">
           Iscriviti alla waiting list
         </button>
-        <button class="cta-btn-outline" type="button">
+        <a class="cta-btn-outline" href="mailto:info@balansapp.it" style="text-decoration: none; color:inherit">
           Parla con il Nostro Team
-        </button>
+        </a>
       </div>
 
       <div class="cta-perks" style="margin-top:20px;">
@@ -1085,7 +1096,8 @@
           <h5 style="color: #ffffffb9;">Azienda</h5>
           <a href="https://balansapp.it/#" title="Scopri chi siamo">Chi Siamo</a>
           <a href="mailto:info@balansapp.it" title="Scrivici una email">Contatti</a>
-          <a href="https://balansapp.it/privacy" target="_blank" title="Leggi la Privacy Policy di Balans (si apre in una nuova scheda)">Privacy</a>
+          <a href="https://balansapp.it/privacy" target="_blank"
+            title="Leggi la Privacy Policy di Balans (si apre in una nuova scheda)">Privacy</a>
           <a href="https://balansapp.it/#" title="Leggi i Termini di servizio di Balans">Termini</a>
         </div>
       </div>
@@ -1102,7 +1114,8 @@
               <circle cx="17.5" cy="6.5" r="1" fill="currentColor"></circle>
             </svg>
           </a>
-          <a href="https://www.linkedin.com/company/balans-app/" aria-label="LinkedIn" target="_blank" title="Seguici su LinkedIn (si apre in una nuova scheda)">
+          <a href="https://www.linkedin.com/company/balans-app/" aria-label="LinkedIn" target="_blank"
+            title="Seguici su LinkedIn (si apre in una nuova scheda)">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
               <path
                 d="M19 3H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM8.3 18.3H5.7V10h2.6v8.3zM7 8.8c-.8 0-1.5-.7-1.5-1.5S6.2 5.8 7 5.8s1.5.7 1.5 1.5S7.8 8.8 7 8.8zm11.3 9.5h-2.6v-4.6c0-1.1-.4-1.8-1.4-1.8-.8 0-1.2.5-1.4 1v5.4h-2.6V10h2.5v1.1c.3-.5 1.1-1.3 2.5-1.3 1.8 0 3 1.2 3 3.7v4.8z">
@@ -1120,6 +1133,25 @@
       </div>
     </div>
   </footer>
+
+  <!-- ─────────────── WAITLIST CONFIRM MODAL ─────────────── -->
+  <div class="wl-modal-overlay" id="waitlist-modal" hidden>
+    <div class="wl-modal" role="dialog" aria-modal="true" aria-labelledby="waitlist-modal-title">
+      <button class="wl-modal-close" type="button" aria-label="Chiudi">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6 6 18M6 6l12 12"></path>
+        </svg>
+      </button>
+      <div class="wl-modal-icon">
+        <img src="./assets/img/icons/vettoriale/check.svg" alt=""
+          style="width:26px; height:26px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);">
+      </div>
+      <h3 id="waitlist-modal-title">Sei in lista!</h3>
+      <p>Grazie per esserti iscritto alla waiting list. Ti scriveremo appena Balans sarà pronto per te.</p>
+      <button class="wl-modal-ok hero-btn" type="button">Fatto</button>
+    </div>
+  </div>
 
   <script src="./assets/js/script.js"></script>
   <script src="./assets/js/animations.js"></script>

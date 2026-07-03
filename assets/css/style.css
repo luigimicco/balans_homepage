@@ -1995,6 +1995,118 @@ h1.hero-h1 em {
     color: var(--teal-ink);
 }
 
+.hero-waitlist-honeypot {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.hero-waitlist-error {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #C23B3B;
+}
+
+.hero-input.wl-highlight {
+    animation: wl-pulse 1.1s ease;
+}
+
+@keyframes wl-pulse {
+
+    0%,
+    100% {
+        box-shadow: none;
+    }
+
+    30% {
+        box-shadow: 0 0 0 4px var(--teal-soft);
+    }
+}
+
+/* Waitlist confirmation modal */
+.wl-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(14, 17, 48, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 999;
+}
+
+.wl-modal-overlay[hidden] {
+    display: none;
+}
+
+.wl-modal {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: 20px;
+    padding: 40px 32px 32px;
+    text-align: center;
+    box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.35);
+}
+
+.wl-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 32px;
+    height: 32px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--surface-alt);
+    color: var(--ink-3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background .15s, color .15s;
+}
+
+.wl-modal-close:hover {
+    background: var(--hairline);
+    color: var(--ink);
+}
+
+.wl-modal-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 18px;
+    border-radius: 999px;
+    background: var(--teal-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wl-modal h3 {
+    margin: 0 0 10px;
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+    color: var(--ink);
+}
+
+.wl-modal p {
+    margin: 0 0 24px;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink-2);
+}
+
+.wl-modal-ok {
+    width: 100%;
+    justify-content: center;
+}
+
 .hero-perks {
     display: flex;
     gap: 24px;
@@ -2044,6 +2156,9 @@ h1.hero-h1 em {
 }
 
 .cta-btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     height: 56px;
     padding: 0 26px;
     background: transparent;
@@ -2055,6 +2170,8 @@ h1.hero-h1 em {
     font-weight: 600;
     font-size: 14.5px;
     letter-spacing: -0.2px;
+    text-decoration: none;
+    box-sizing: border-box;
     transition: border-color .15s, background .15s;
 }
 
