@@ -27,29 +27,23 @@ document.querySelectorAll('.faq-q').forEach(q => {
     });
 });
 
-// Toggle Demo Interattiva (sezione #funzionalita)
-document.addEventListener('click', (e) => {
-    const btn = e.target.closest('.demo-toggle');
-    if (!btn) return;
-    const section = btn.closest('#funzionalita');
-    const isDemo = section.getAttribute('data-mode') === 'demo';
-    section.setAttribute('data-mode', isDemo ? 'normal' : 'demo');
-    btn.setAttribute('aria-pressed', String(!isDemo));
-});
-
-// Demo interattiva — menu categorie + risposte simulate in chat
+// Demo interattiva — flusso guidato automatico (CTA -> Invia -> typing -> risposta -> ripeti)
 (function () {
-    const cats = document.querySelector('.demo-cats');
+    const section = document.querySelector('#funzionalita');
     const phone = document.querySelector('#funzionalita .phone');
-    if (!cats || !phone) return;
+    if (!section || !phone) return;
 
+    const overlay = phone.querySelector('.demo-cta-overlay');
+    const ctaBtn = phone.querySelector('.demo-cta-btn');
     const welcome = phone.querySelector('.demo-welcome');
     const chat = phone.querySelector('.demo-chat');
+    const qSlot = phone.querySelector('.demo-q-slot');
+    const sendBtn = phone.querySelector('.send-btn');
     const REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const PLACEHOLDER = 'Scrivi a Balans...';
 
     const ANSWERS = {
         c1q1: '<div class="bub ai">Ad oggi hai fatturato <b>€45.000</b>. Puoi fatturare ancora <b>€40.000</b> prima di raggiungere la soglia limite di €85.000 per il regime forfettario.</div>',
-        c1q2: '<div class="bub ai">Il tuo fatturato totale aggiornato è di <b>€45.000</b> complessivi, generato da un totale di <b>12 fatture</b> saldate.</div>',
         c1q3: '<div class="bub ai">Ecco il trend dei tuoi incassi degli ultimi 3 mesi</div>'
             + '<div class="bub ai-card">'
             + '<div class="h"><img src="./assets/img/icons/vettoriale/balance.svg" alt="" style="width:11px; height:11px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);"> Incassi trimestre</div>'
@@ -67,13 +61,7 @@ document.addEventListener('click', (e) => {
             + '<button class="demo-invia" type="button">Invia fattura</button>'
             + '</div>'
             + '<div class="bub ai">Ho preparato la fattura per Studio Bianchi di €500,00 con causale «Consulenza». Clicca su <b>Invia</b> per inoltrarla.</div>',
-        c2q2: '<div class="bub ai">Nota di credito numero <b>12-A</b> generata per un importo di <b>€150,00</b>, stornata a favore del cliente. Pronta per l\'invio al Sistema di Interscambio.</div>',
-        c2q3: '<div class="bub ai">Sì: trattandosi di una fattura in regime forfettario (esente IVA) con un importo superiore a €77,47, l\'imposta di bollo virtuale da <b>€2,00</b> è obbligatoria. L\'ho già aggiunta automaticamente.</div>',
-        c3q1: '<div class="bub ai">Per la scadenza di giugno l\'acconto e saldo stimati ammontano a <b>€3.450</b> di Gestione Separata INPS e <b>€1.200</b> di Imposta Sostitutiva.</div>',
-        c3q2: '<div class="bub ai">Considerando il tuo coefficiente di redditività, ti consiglio di accantonare circa il <b>25%</b> dell\'incassato (quindi <b>€750</b>) per coprire comodamente tasse e contributi a saldo.</div>',
-        c3q3: '<div class="bub ai">I tuoi contributi previdenziali calcolati sul fatturato dell\'anno in corso ammontano a circa <b>€4.820</b>.</div>',
-        c4q1: '<div class="bub ai">Nel regime forfettario le spese reali non si scaricano analiticamente. Le tue spese sono già dedotte in modo forfettario tramite il tuo coefficiente di redditività (es. 67%), quindi non serve registrare la singola fattura del computer per scaricarla.</div>',
-        c4q2: '<div class="bub ai">Come per il computer, nel regime forfettario le spese di rappresentanza o pasto non modificano il calcolo delle tasse: la deduzione avviene a monte sulla base del tuo coefficiente.</div>'
+        c3q3: '<div class="bub ai">I tuoi contributi previdenziali calcolati sul fatturato dell\'anno in corso ammontano a circa <b>€4.820</b>.</div>'
     };
 
     function scrollBottom() {
@@ -100,45 +88,111 @@ document.addEventListener('click', (e) => {
         });
     }
 
-    // Accordion sulle pillole di categoria
-    cats.querySelectorAll('.cat-pill').forEach(pill => {
-        pill.addEventListener('click', () => {
-            const group = pill.closest('.cat-group');
-            const wasOpen = group.classList.contains('open');
-            cats.querySelectorAll('.cat-group').forEach(g => g.classList.remove('open'));
-            if (!wasOpen) group.classList.add('open');
-        });
+    // Sequenza fissa delle domande mostrate nella barra di testo del telefono
+    const QUESTIONS = [
+        ['c1q1', 'Quanto posso fatturare ancora prima di uscire dal forfettario?'],
+        ['c1q3', 'Mostrami il grafico degli incassi degli ultimi 3 mesi.'],
+        ['c2q1', 'Crea una fattura di 500€ per la prestazione di ieri a Studio Bianchi.'],
+        ['c3q3', 'A quanto ammontano i miei contributi INPS/Cassa quest\'anno?']
+    ];
+    const FLOW = QUESTIONS.map(([key, text]) => ({ key, text, answer: ANSWERS[key] }));
+
+    let idx = 0;
+
+    function setSendEnabled(enabled) {
+        sendBtn.disabled = !enabled;
+        sendBtn.classList.toggle('pulse', enabled);
+    }
+
+    // Scrive il testo carattere per carattere nello slot della domanda,
+    // simulando l'utente che digita (lo slot resta comunque sempre di sola lettura)
+    function typeInto(el, text, onDone) {
+        el.classList.add('filled', 'typing');
+        if (REDUCED) {
+            el.textContent = text;
+            el.classList.remove('typing');
+            onDone();
+            return;
+        }
+        el.textContent = '';
+        let i = 0;
+        const timer = setInterval(() => {
+            el.textContent = text.slice(0, ++i);
+            if (i >= text.length) {
+                clearInterval(timer);
+                el.classList.remove('typing');
+                onDone();
+            }
+        }, 26);
+    }
+
+    function activateDemo() {
+        section.setAttribute('data-mode', 'demo');
+        overlay.classList.add('hidden');
+        idx = 0;
+        qSlot.textContent = FLOW[0].text;
+        qSlot.classList.add('filled');
+        setSendEnabled(true);
+    }
+
+    function sendCurrent() {
+        if (sendBtn.disabled) return;
+        setSendEnabled(false);
+        welcome.classList.add('hidden');
+        chat.classList.add('active');
+
+        const bubble = document.createElement('div');
+        bubble.className = 'bub me';
+        bubble.textContent = FLOW[idx].text;
+        chat.appendChild(bubble);
+        popIn(bubble);
+        scrollBottom();
+        qSlot.textContent = PLACEHOLDER;
+        qSlot.classList.remove('filled');
+
+        const [typing] = appendHTML('<div class="typing-bub"><span></span><span></span><span></span></div>');
+        scrollBottom();
+
+        setTimeout(() => {
+            typing.remove();
+            const nodes = appendHTML(FLOW[idx].answer || '<div class="bub ai">…</div>');
+            nodes.forEach((n, i) => popIn(n, i * 90));
+            scrollBottom();
+            setTimeout(advance, REDUCED ? 0 : 500);
+        }, REDUCED ? 0 : 2000);
+    }
+
+    function advance() {
+        idx++;
+        if (idx < FLOW.length) {
+            typeInto(qSlot, FLOW[idx].text, () => setSendEnabled(true));
+        } else {
+            finishFlow();
+        }
+    }
+
+    function finishFlow() {
+        qSlot.textContent = PLACEHOLDER;
+        qSlot.classList.remove('filled');
+
+        setTimeout(() => {
+            const nodes = appendHTML('<div class="chat-sys-note">Questa era solo una simulazione: Balans può fare molto di più per te, ogni giorno</div>');
+            nodes.forEach(n => popIn(n));
+            scrollBottom();
+        }, REDUCED ? 0 : 2000);
+    }
+
+    // La "Invia fattura" dentro la card di risposta è generata dinamicamente,
+    // quindi il click va delegato sul contenitore della chat
+    chat.addEventListener('click', (e) => {
+        const invia = e.target.closest('.demo-invia');
+        if (!invia || invia.disabled) return;
+        invia.disabled = true;
+        invia.innerHTML = '<img src="./assets/img/icons/vettoriale/check.svg" alt="" style="width:14px; height:14px; display:inline-block; flex-shrink:0; filter:brightness(0) invert(1);">Inviato';
     });
 
-    // Invio di una domanda predefinita
-    let busy = false;
-    cats.querySelectorAll('.cat-q').forEach(q => {
-        q.addEventListener('click', () => {
-            if (busy) return;
-            busy = true;
-
-            welcome.classList.add('hidden');
-            chat.classList.add('active');
-
-            const bubble = document.createElement('div');
-            bubble.className = 'bub me';
-            bubble.textContent = q.textContent.trim();
-            chat.appendChild(bubble);
-            popIn(bubble);
-            scrollBottom();
-
-            const [typing] = appendHTML('<div class="typing-bub"><span></span><span></span><span></span></div>');
-            scrollBottom();
-
-            setTimeout(() => {
-                typing.remove();
-                const nodes = appendHTML(ANSWERS[q.dataset.key] || '<div class="bub ai">…</div>');
-                nodes.forEach((n, i) => popIn(n, i * 90));
-                scrollBottom();
-                busy = false;
-            }, REDUCED ? 0 : 550);
-        });
-    });
+    ctaBtn.addEventListener('click', activateDemo);
+    sendBtn.addEventListener('click', sendCurrent);
 })();
 
 // Waitlist / demo forms — submit via Web3Forms, confirmation modal, satellite buttons scroll to form

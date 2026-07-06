@@ -730,6 +730,20 @@ h1.hero-h1 em {
     margin-left: 1rem;
 }
 
+/* Nota di sistema nella chat demo: testo centrato fuori dalle bolle */
+.chat-sys-note {
+    align-self: center;
+    max-width: 90%;
+    margin-top: 6px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: var(--surface-alt);
+    color: var(--ink-3);
+    font-size: 11px;
+    line-height: 1.4;
+    text-align: center;
+}
+
 .ps-chat-comp {
     position: absolute;
     bottom: 18px;
@@ -750,15 +764,56 @@ h1.hero-h1 em {
     font-size: 13px;
 }
 
+.ps-chat-comp .ph.filled {
+    color: var(--ink);
+}
+
+.ps-chat-comp .ph.typing::after {
+    content: '|';
+    margin-left: 1px;
+    animation: caret-blink .8s steps(2) infinite;
+}
+
+@keyframes caret-blink {
+    50% {
+        opacity: 0;
+    }
+}
+
 .ps-chat-comp .send-btn {
     width: 34px;
     height: 34px;
     border-radius: 999px;
     background: var(--teal);
     color: #fff;
+    border: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    transition: opacity .15s;
+}
+
+.ps-chat-comp .send-btn.pulse {
+    animation: send-glow 1.4s ease-in-out infinite;
+}
+
+@keyframes send-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(25, 187, 157, 0.55);
+    }
+
+    50% {
+        box-shadow: 0 0 0 7px rgba(25, 187, 157, 0);
+    }
+}
+
+.ps-chat-comp .send-btn:disabled {
+    opacity: .35;
+    cursor: not-allowed;
+    animation: none;
 }
 
 .ps-chat-comp .send-btn .ic {
@@ -2247,58 +2302,76 @@ h1.hero-h1 em {
     animation: pulse 2s ease-in-out infinite;
 }
 
-/* Demo toggle switch (dentro .ps-chat-hdr) */
-.demo-toggle {
+/* CTA iniziale della demo (overlay sopra .phone) */
+.demo-cta-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3px;
-    background: none;
-    border: 0;
-    cursor: pointer;
-    padding: 0;
-    flex-shrink: 0;
+    justify-content: center;
+    gap: 10px;
+    background: rgba(20, 20, 20, 0.6);
+    backdrop-filter: blur(10px);
+    transition: opacity .35s ease, visibility 0s linear 0s;
 }
 
-.demo-switch {
-    width: 38px;
-    height: 22px;
-    border-radius: 999px;
-    background: var(--hairline-2);
+.demo-cta-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .35s ease, visibility 0s linear .35s;
+}
+
+.demo-cta-btn {
     position: relative;
-    transition: background .2s;
-}
-
-.demo-switch .knob {
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    width: 18px;
-    height: 18px;
+    padding: 12px 26px;
     border-radius: 999px;
-    background: #fff;
-    transition: transform .2s;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
-}
-
-.demo-toggle[aria-pressed="true"] .demo-switch {
-    background: var(--teal);
-}
-
-.demo-toggle[aria-pressed="true"] .demo-switch .knob {
-    transform: translateX(16px);
-}
-
-.demo-lbl {
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: var(--ink-3);
+    border: 0;
+    background: linear-gradient(to bottom, var(--teal-ink) 0%, var(--teal) 100%);
+    color: #fff;
     font-family: 'Libre Franklin', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    box-shadow: 0 6px 18px -4px rgba(14, 122, 102, 0.5);
 }
 
-.demo-toggle[aria-pressed="true"] .demo-lbl {
-    color: var(--teal-ink);
+.cta-icon {
+    font-size: 11px;
+}
+
+.cta-ring {
+    position: absolute;
+    inset: -6px;
+    border-radius: 999px;
+    border: 2px solid var(--teal);
+    opacity: .6;
+    animation: cta-ring-pulse 1.8s ease-out infinite;
+}
+
+@keyframes cta-ring-pulse {
+    0% {
+        transform: scale(1);
+        opacity: .6;
+    }
+
+    100% {
+        transform: scale(1.35);
+        opacity: 0;
+    }
+}
+
+.demo-cta-overlay .demo-cta-hint {
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: 'Libre Franklin', sans-serif;
+    margin: 16px;
 }
 
 /* Stage: contiene le tre viste del telefono (chat normale, welcome demo,
@@ -2307,6 +2380,17 @@ h1.hero-h1 em {
     position: relative;
     flex: 1;
     min-height: 0;
+}
+
+.phone-stage::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 70px;
+    background: linear-gradient(to bottom, transparent 0%, var(--bg) 100%);
+    pointer-events: none;
 }
 
 .phone-stage>.ps-chat-body,
@@ -2379,19 +2463,7 @@ h1.hero-h1 em {
     font-weight: 700;
 }
 
-/* Stato demo: alterna testo e contenuto phone */
-#funzionalita .feat-copy-demo {
-    display: none;
-}
-
-#funzionalita[data-mode="demo"] .feat-copy-normal {
-    display: none;
-}
-
-#funzionalita[data-mode="demo"] .feat-copy-demo {
-    display: block;
-}
-
+/* Stato demo: alterna solo il contenuto del phone, il testo a sinistra resta fisso */
 #funzionalita[data-mode="demo"] .ps-chat-body-normal {
     opacity: 0;
     visibility: hidden;
@@ -2408,10 +2480,6 @@ h1.hero-h1 em {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-}
-
-#funzionalita[data-mode="demo"] .feat-list.feat-copy-demo {
-    display: flex;
 }
 
 /* Demo chat — messaggi generati dalla domanda scelta nel menu categorie */
@@ -2489,105 +2557,18 @@ h1.hero-h1 em {
     font-weight: 600;
     font-size: 12.5px;
     cursor: pointer;
-}
-
-/* Menu categorie demo (a fianco del telefono) — appare con un'espansione
-   laterale animata quando si attiva la modalità demo (nessun display:none
-   così che max-width/margin/opacity possano transizionare) */
-.demo-cats {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 196px;
-    max-width: 0;
-    margin-left: 0;
-    flex-shrink: 0;
-    padding-top: 54px;
-    opacity: 0;
-    overflow: hidden;
-    pointer-events: none;
-    transform: translateX(-10px);
-}
-
-#funzionalita[data-mode="demo"] .demo-cats {
-    max-width: 196px;
-    margin-left: 20px;
-    opacity: 1;
-    pointer-events: auto;
-    transform: none;
-}
-
-.cat-pill {
-    width: 100%;
-    text-align: left;
-    padding: 11px 16px;
-    border-radius: 999px;
-    border: 0;
-    cursor: pointer;
-    font-family: 'Libre Franklin', sans-serif;
-    font-weight: 600;
-    font-size: 13px;
-    letter-spacing: -0.2px;
-    line-height: 1.2;
-    background: linear-gradient(to bottom, var(--teal-ink) 0%, var(--teal) 100%);
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    gap: 8px;
-    transition: filter .15s, transform .1s;
-    box-shadow: 0 4px 12px -3px rgba(14, 122, 102, 0.35);
-}
-
-.cat-pill:hover {
-    filter: brightness(1.06);
-}
-
-.cat-pill:active {
-    transform: translateY(1px);
-}
-
-.cat-pill .chev {
-    transition: transform .2s;
-}
-
-.cat-group.open .cat-pill .chev {
-    transform: rotate(180deg);
-}
-
-.cat-qs {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height .28s ease;
-    display: flex;
-    flex-direction: column;
+    justify-content: center;
     gap: 6px;
+    transition: opacity .15s;
 }
 
-.cat-group.open .cat-qs {
-    max-height: 420px;
-    padding: 8px 0 4px;
+.demo-invia:disabled {
+    opacity: .35;
+    cursor: not-allowed;
 }
 
-.cat-q {
-    text-align: left;
-    padding: 9px 13px;
-    border-radius: 12px;
-    border: 1px solid var(--hairline);
-    background: var(--surface);
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 12px;
-    line-height: 1.4;
-    color: var(--ink-2);
-    transition: border-color .15s, background .15s, color .15s;
-}
-
-.cat-q:hover {
-    border-color: var(--teal);
-    background: var(--teal-tint);
-    color: var(--ink);
-}
 
 
 .privacy-hero {
@@ -2974,21 +2955,6 @@ svg,
     .feat-phone-wrap {
         flex-direction: column;
         align-items: center;
-    }
-
-    .demo-cats {
-        width: 100%;
-        max-width: 0;
-        padding-top: 0;
-        margin-left: 0;
-        margin-top: 0;
-        transform: translateY(-10px);
-    }
-
-    #funzionalita[data-mode="demo"] .demo-cats {
-        max-width: 320px;
-        margin-top: 20px;
-        transform: none;
     }
 
     .feat h2 {

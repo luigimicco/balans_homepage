@@ -109,13 +109,15 @@ html { scroll-behavior: smooth; }
 
 /* ---------- Phone chat: sequential bubble reveal ---------- */
 .anim-ready .ps-chat-body .bub,
-.anim-ready .demo-chat .bub {
+.anim-ready .demo-chat .bub,
+.anim-ready .demo-chat .chat-sys-note {
   opacity: 0;
   transform: translateY(12px) scale(0.97);
   transition: opacity 0.45s var(--anim-ease), transform 0.45s var(--anim-spring);
 }
 .anim-ready .ps-chat-body .bub.pop,
-.anim-ready .demo-chat .bub.pop { opacity: 1; transform: none; }
+.anim-ready .demo-chat .bub.pop,
+.anim-ready .demo-chat .chat-sys-note.pop { opacity: 1; transform: none; }
 
 /* ---------- Demo interattiva: crossfade tra le viste del telefono ---------- */
 /* Le tre viste (chat statica, welcome, chat generata) sono sempre montate e
@@ -132,30 +134,6 @@ html { scroll-behavior: smooth; }
 #funzionalita[data-mode="demo"] .demo-chat.active {
   transition: opacity 0.35s var(--anim-ease), visibility 0s linear 0s;
 }
-
-/* Menu categorie: espansione laterale (o verso il basso su mobile) */
-.demo-cats {
-  transition:
-    max-width 0.45s var(--anim-ease),
-    margin-left 0.45s var(--anim-ease),
-    margin-top 0.45s var(--anim-ease),
-    transform 0.45s var(--anim-spring),
-    opacity 0.3s ease;
-}
-
-/* Domande della categoria aperta: comparsa scaglionata */
-.anim-ready .cat-q {
-  opacity: 0;
-  transform: translateY(-6px);
-  transition: opacity 0.3s var(--anim-ease), transform 0.3s var(--anim-ease);
-}
-.anim-ready .cat-group.open .cat-q {
-  opacity: 1;
-  transform: none;
-}
-.cat-group.open .cat-q:nth-child(1) { transition-delay: 0.03s; }
-.cat-group.open .cat-q:nth-child(2) { transition-delay: 0.07s; }
-.cat-group.open .cat-q:nth-child(3) { transition-delay: 0.11s; }
 
 /* typing indicator injected by JS */
 .typing-bub {
@@ -434,8 +412,7 @@ html { scroll-behavior: smooth; }
   .anim-ready .demo-chat .bub,
   .anim-ready .hword,
   .anim-ready .feat-card .ic-bg,
-  .anim-ready .compare-col .compare-li .mark,
-  .anim-ready .cat-q {
+  .anim-ready .compare-col .compare-li .mark {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
@@ -451,8 +428,7 @@ html { scroll-behavior: smooth; }
   .section-fx { opacity: 0.5; }
   .phone-stage > .ps-chat-body,
   .phone-stage > .demo-welcome,
-  .phone-stage > .demo-chat,
-  .demo-cats {
+  .phone-stage > .demo-chat {
     transition: none !important;
     transform: none !important;
   }
