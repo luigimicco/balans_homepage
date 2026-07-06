@@ -108,12 +108,54 @@ html { scroll-behavior: smooth; }
 }
 
 /* ---------- Phone chat: sequential bubble reveal ---------- */
-.anim-ready .ps-chat-body .bub {
+.anim-ready .ps-chat-body .bub,
+.anim-ready .demo-chat .bub {
   opacity: 0;
   transform: translateY(12px) scale(0.97);
   transition: opacity 0.45s var(--anim-ease), transform 0.45s var(--anim-spring);
 }
-.anim-ready .ps-chat-body .bub.pop { opacity: 1; transform: none; }
+.anim-ready .ps-chat-body .bub.pop,
+.anim-ready .demo-chat .bub.pop { opacity: 1; transform: none; }
+
+/* ---------- Demo interattiva: crossfade tra le viste del telefono ---------- */
+/* Le tre viste (chat statica, welcome, chat generata) sono sempre montate e
+   sovrapposte via .phone-stage (position:absolute); qui si anima solo
+   opacity/visibility, mai display, per un vero dissolvenza incrociata. */
+.phone-stage > .ps-chat-body,
+.phone-stage > .demo-welcome,
+.phone-stage > .demo-chat {
+  transition: opacity 0.35s var(--anim-ease), visibility 0s linear 0.35s;
+}
+/* stato "attivo": la visibilità scatta subito, l'opacità continua a dissolversi */
+#funzionalita:not([data-mode="demo"]) .ps-chat-body-normal,
+#funzionalita[data-mode="demo"] .demo-welcome,
+#funzionalita[data-mode="demo"] .demo-chat.active {
+  transition: opacity 0.35s var(--anim-ease), visibility 0s linear 0s;
+}
+
+/* Menu categorie: espansione laterale (o verso il basso su mobile) */
+.demo-cats {
+  transition:
+    max-width 0.45s var(--anim-ease),
+    margin-left 0.45s var(--anim-ease),
+    margin-top 0.45s var(--anim-ease),
+    transform 0.45s var(--anim-spring),
+    opacity 0.3s ease;
+}
+
+/* Domande della categoria aperta: comparsa scaglionata */
+.anim-ready .cat-q {
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.3s var(--anim-ease), transform 0.3s var(--anim-ease);
+}
+.anim-ready .cat-group.open .cat-q {
+  opacity: 1;
+  transform: none;
+}
+.cat-group.open .cat-q:nth-child(1) { transition-delay: 0.03s; }
+.cat-group.open .cat-q:nth-child(2) { transition-delay: 0.07s; }
+.cat-group.open .cat-q:nth-child(3) { transition-delay: 0.11s; }
 
 /* typing indicator injected by JS */
 .typing-bub {
@@ -389,9 +431,11 @@ html { scroll-behavior: smooth; }
   .anim-ready .hero-phone-wrap,
   .anim-ready .float-card,
   .anim-ready .ps-chat-body .bub,
+  .anim-ready .demo-chat .bub,
   .anim-ready .hword,
   .anim-ready .feat-card .ic-bg,
-  .anim-ready .compare-col .compare-li .mark {
+  .anim-ready .compare-col .compare-li .mark,
+  .anim-ready .cat-q {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
@@ -405,6 +449,13 @@ html { scroll-behavior: smooth; }
   }
   .section-fx .pfx { transform: none !important; }
   .section-fx { opacity: 0.5; }
+  .phone-stage > .ps-chat-body,
+  .phone-stage > .demo-welcome,
+  .phone-stage > .demo-chat,
+  .demo-cats {
+    transition: none !important;
+    transform: none !important;
+  }
   .feat-card:hover, .review:hover, .steps-3 > div:hover,
   .dash-cards > div:hover, .hero-btn:hover, .btn:hover {
     transform: none;

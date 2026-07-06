@@ -1128,7 +1128,6 @@ h1.hero-h1 em {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    gap: 20px;
     position: relative;
 }
 
@@ -2302,9 +2301,27 @@ h1.hero-h1 em {
     color: var(--teal-ink);
 }
 
-/* Demo welcome screen (dentro .phone-content) */
+/* Stage: contiene le tre viste del telefono (chat normale, welcome demo,
+   chat demo) sovrapposte, per permettere il crossfade tra stati */
+.phone-stage {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+}
+
+.phone-stage>.ps-chat-body,
+.phone-stage>.demo-welcome,
+.phone-stage>.demo-chat {
+    position: absolute;
+    inset: 0;
+}
+
+/* Demo welcome screen (dentro .phone-stage) */
 .demo-welcome {
-    display: none;
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
     flex: 1;
     min-height: 0;
     flex-direction: column;
@@ -2376,15 +2393,21 @@ h1.hero-h1 em {
 }
 
 #funzionalita[data-mode="demo"] .ps-chat-body-normal {
-    display: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 #funzionalita[data-mode="demo"] .demo-welcome {
-    display: flex;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
 #funzionalita[data-mode="demo"] .demo-welcome.hidden {
-    display: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 #funzionalita[data-mode="demo"] .feat-list.feat-copy-demo {
@@ -2393,7 +2416,10 @@ h1.hero-h1 em {
 
 /* Demo chat — messaggi generati dalla domanda scelta nel menu categorie */
 .demo-chat {
-    display: none;
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
     flex-direction: column;
     gap: 10px;
     padding: 14px 14px 80px;
@@ -2408,48 +2434,13 @@ h1.hero-h1 em {
 }
 
 #funzionalita[data-mode="demo"] .demo-chat.active {
-    display: flex;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
-.typing {
-    align-self: flex-start;
-    display: flex;
-    gap: 4px;
-    align-items: center;
-    padding: 13px 15px;
-    background: var(--surface);
-    border: 1px solid var(--hairline);
-    border-radius: 18px 18px 18px 4px;
-}
-
-.typing span {
-    width: 6px;
-    height: 6px;
-    border-radius: 999px;
-    background: var(--ink-4);
-    animation: dotblink 1.2s infinite;
-}
-
-.typing span:nth-child(2) {
-    animation-delay: .2s;
-}
-
-.typing span:nth-child(3) {
-    animation-delay: .4s;
-}
-
-@keyframes dotblink {
-
-    0%,
-    60%,
-    100% {
-        opacity: .25;
-    }
-
-    30% {
-        opacity: 1;
-    }
-}
+/* Indicatore di digitazione: riusa .typing-bub già definito in animations.css
+   (stessa struttura generata da makeTyping() per la chat statica) */
 
 /* Mini bar chart (usato nella risposta "grafico incassi") */
 .mini-chart {
@@ -2500,18 +2491,30 @@ h1.hero-h1 em {
     cursor: pointer;
 }
 
-/* Menu categorie demo (a fianco del telefono) */
+/* Menu categorie demo (a fianco del telefono) — appare con un'espansione
+   laterale animata quando si attiva la modalità demo (nessun display:none
+   così che max-width/margin/opacity possano transizionare) */
 .demo-cats {
-    display: none;
+    display: flex;
     flex-direction: column;
     gap: 10px;
     width: 196px;
+    max-width: 0;
+    margin-left: 0;
     flex-shrink: 0;
     padding-top: 54px;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transform: translateX(-10px);
 }
 
 #funzionalita[data-mode="demo"] .demo-cats {
-    display: flex;
+    max-width: 196px;
+    margin-left: 20px;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
 }
 
 .cat-pill {
@@ -2975,8 +2978,17 @@ svg,
 
     .demo-cats {
         width: 100%;
-        max-width: 320px;
+        max-width: 0;
         padding-top: 0;
+        margin-left: 0;
+        margin-top: 0;
+        transform: translateY(-10px);
+    }
+
+    #funzionalita[data-mode="demo"] .demo-cats {
+        max-width: 320px;
+        margin-top: 20px;
+        transform: none;
     }
 
     .feat h2 {

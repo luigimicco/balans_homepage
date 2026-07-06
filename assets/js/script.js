@@ -45,10 +45,11 @@ document.addEventListener('click', (e) => {
 
     const welcome = phone.querySelector('.demo-welcome');
     const chat = phone.querySelector('.demo-chat');
+    const REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const ANSWERS = {
         c1q1: '<div class="bub ai">Ad oggi hai fatturato <b>€45.000</b>. Puoi fatturare ancora <b>€40.000</b> prima di raggiungere la soglia limite di €85.000 per il regime forfettario.</div>',
-        c1q2: '<div class="bub ai">Il tuo fatturato totale aggiornato è di <b>€45.230</b> complessivi, generato da un totale di <b>12 fatture</b> saldate.</div>',
+        c1q2: '<div class="bub ai">Il tuo fatturato totale aggiornato è di <b>€45.000</b> complessivi, generato da un totale di <b>12 fatture</b> saldate.</div>',
         c1q3: '<div class="bub ai">Ecco il trend dei tuoi incassi degli ultimi 3 mesi</div>'
             + '<div class="bub ai-card">'
             + '<div class="h"><img src="./assets/img/icons/vettoriale/balance.svg" alt="" style="width:11px; height:11px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);"> Incassi trimestre</div>'
@@ -87,6 +88,18 @@ document.addEventListener('click', (e) => {
         return nodes;
     }
 
+    // Fa comparire una bolla con la stessa animazione "pop" usata dalla chat
+    // statica in animations.js (richiede un frame già dipinto con opacity:0
+    // prima di aggiungere .pop, altrimenti il browser salta la transizione)
+    function popIn(el, delay) {
+        if (REDUCED) { el.classList.add('pop'); return; }
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                setTimeout(() => el.classList.add('pop'), delay || 0);
+            });
+        });
+    }
+
     // Accordion sulle pillole di categoria
     cats.querySelectorAll('.cat-pill').forEach(pill => {
         pill.addEventListener('click', () => {
@@ -111,17 +124,19 @@ document.addEventListener('click', (e) => {
             bubble.className = 'bub me';
             bubble.textContent = q.textContent.trim();
             chat.appendChild(bubble);
+            popIn(bubble);
             scrollBottom();
 
-            const [typing] = appendHTML('<div class="typing"><span></span><span></span><span></span></div>');
+            const [typing] = appendHTML('<div class="typing-bub"><span></span><span></span><span></span></div>');
             scrollBottom();
 
             setTimeout(() => {
                 typing.remove();
-                appendHTML(ANSWERS[q.dataset.key] || '<div class="bub ai">…</div>');
+                const nodes = appendHTML(ANSWERS[q.dataset.key] || '<div class="bub ai">…</div>');
+                nodes.forEach((n, i) => popIn(n, i * 90));
                 scrollBottom();
                 busy = false;
-            }, 550);
+            }, REDUCED ? 0 : 550);
         });
     });
 })();
