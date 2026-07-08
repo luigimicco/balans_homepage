@@ -140,8 +140,8 @@
   <!-- ─────────────── HEADER ─────────────── -->
   <header class="hdr">
     <div class="container hdr-row">
-      <div style="display:flex; align-items:center; gap:14px;">
-        <a href="https://balansapp.it" title="Vai alla home page di Balans" style="text-decoration:none;">
+      <div class="hdr-brand">
+        <a href="https://balansapp.it" title="Vai alla home page di Balans">
           <span class="logo-wordmark"></span>
         </a>
       </div>
@@ -173,15 +173,13 @@
     <div class="hero-bg"></div>
     <div class="container hero-grid">
 
-      <div class="hero-text" style="max-width: 600px;">
-        <h1 class="hero-h1"
-          style="font-weight: 300; font-family: 'Libre Franklin'; font-size: 70px; max-width: 582px; padding: 1px; border-width: 0px; border-style: solid">
-          Meno tempo dietro le <span style="color: var(--fatture);">fatture</span>,
-          <span style="font-family: 'Galldis', serif; color: var(--teal-ink); font-weight: 300; font-size: 62px">più
-            tempo</span> per il tuo <b
-            style="font-family: 'Libre Franklin'; font-weight: 700; font-size: 70px">business</b>
+      <div class="hero-text hero-text--narrow">
+        <h1 class="hero-h1 hero-h1--light hero-h1--narrow">
+          Meno tempo dietro le <span class="hero-h1-fatture">fatture</span>,
+          <span class="hero-h1-accent">più
+            tempo</span> per il tuo <b>business</b>
         </h1>
-        <p class="hero-sub" style="font-size: 16px; max-width: 541px; margin: 28px 0px 48px">Con Balans gestisci fatture
+        <p class="hero-sub">Con Balans gestisci fatture
           e movimenti della tua partita IVA in pochissimo tempo.
           Quello che risparmi lo dedichi alla tua azienda — e a far crescere i tuoi guadagni.</p>
 
@@ -218,10 +216,10 @@
 
       <div class="hero-phone-wrap">
         <!-- Floating preview cards -->
-        <div class="float-card float-1" style="top: 96px; left: -40px;">
+        <div class="float-card float-1">
           <div class="ic-bg">
             <img src="./assets/img/icons/vettoriale/up.svg" alt=""
-              style="width:20px; height:20px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(50%) sepia(20%) saturate(1400%) hue-rotate(120deg) brightness(115%);">
+              class="icon-img icon-20 icon-teal">
           </div>
           <div>
             <div class="label">Fattura creata!</div>
@@ -229,10 +227,10 @@
           </div>
         </div>
 
-        <div class="float-card float-2" style="bottom: 64px; right: -52px;">
-          <div class="ic-bg" style="background-color: rgb(248, 245, 238)">
+        <div class="float-card float-2">
+          <div class="ic-bg ic-bg--orange">
             <img src="./assets/img/icons/vettoriale/time.svg" alt=""
-              style="width:20px; height:20px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(50%) sepia(20%) saturate(1700%) hue-rotate(355deg) brightness(115%);">
+              class="icon-img icon-20 icon-orange">
           </div>
           <div>
             <div class="label">Tempo risparmiato</div>
@@ -261,11 +259,11 @@
               </span>
             </div>
             <div class="ps-chat-hdr">
-              <div class="av" style="opacity: 1"><img src="./assets/img/icons/vettoriale/menu.svg" alt=""
-                  style="width:20px; height:20px; display:inline-block; flex-shrink:0;">
+              <div class="av"><img src="./assets/img/icons/vettoriale/menu.svg" alt=""
+                  class="icon-img icon-20">
               </div>
-              <div style="flex:1;">
-                <div class="nm">Balans Assistant</div>
+              <div class="flex-1">
+                <div class="nm">Balans</div>
                 <div class="st">&#9679; Online</div>
               </div>
             </div>
@@ -274,9 +272,9 @@
               <div class="bub ai">Perfetto! Ho
                 trovato Mario Rossi nei tuoi contatti. Per cosa era la prestazione?</div>
               <div class="bub me">Consulenza del 15 maggio</div>
-              <div class="bub ai-card" style="border-color: rgb(94, 238, 191)">
+              <div class="bub ai-card accent-a">
                 <div class="h"><img src="./assets/img/icons/vettoriale/doc.svg" alt=""
-                    style="width:11px; height:11px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);">
+                    class="icon-img icon-11 icon-teal-ink">
                   Ecco
                   la tua
                   fattura
@@ -284,19 +282,17 @@
                 <div class="row"><span class="k">Cliente</span><span class="v">Mario Rossi</span></div>
                 <div class="row"><span class="k">Importo</span><span class="v">€ 500,00</span></div>
                 <div class="row"><span class="k">Data</span><span class="v">15/05/2026</span></div>
-                <button
-                  style="margin-top:10px; width:100%; height:34px; border:0; border-radius:9px; background:linear-gradient(to bottom, var(--teal-ink) 0%, var(--teal) 100%); color:#fff; font-family:inherit; font-weight:600; font-size:12.5px; cursor:pointer;">
+                <button class="ai-card-send-btn">
                   Invia Fattura
                 </button>
               </div>
             </div>
-            <div class="ps-chat-comp" style="border-width: 2px; border-color: rgb(25, 187, 157); border-radius: 14px">
-              <span class="ph">Scrivi a Balans...</span>
-              <div class="send-btn" style="color: rgb(26, 188, 157); background-color: rgba(26, 191, 160, 0)"><img
-                  src="./assets/img/icons/vettoriale/send.svg" alt=""
-                  style="width:16px; height:16px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(65%) sepia(20%) saturate(1400%) hue-rotate(120deg) brightness(85%);">
+              <div class="ps-chat-comp">
+                <span class="ph">Scrivi a Balans...</span>
+                <div class="send-btn"><img src="./assets/img/icons/vettoriale/up.svg" alt=""
+                    class="icon-img icon-16 icon-white">
+                </div>
               </div>
-            </div>
           </div>
         </div>
       </div>
@@ -320,38 +316,38 @@
           <div class="compare-li">
             <span class="mark">✕</span>
             Passi ore ogni mese a organizzare scontrini e fatture
-            <span class="emo" style="margin-left:4px;">😓</span>
+            <span class="emo">😓</span>
           </div>
           <div class="compare-li">
             <span class="mark">✕</span>
             Software complicati che richiedono corsi per essere usati
-            <span class="emo" style="margin-left:4px;">😵‍💫</span>
+            <span class="emo">😵‍💫</span>
           </div>
           <div class="compare-li">
             <span class="mark">✕</span>
             Ansia da scadenze e paura di dimenticare qualcosa
-            <span class="emo" style="margin-left:4px;">😰</span>
+            <span class="emo">😰</span>
           </div>
         </div>
         <div class="compare-col good">
           <h3>Con Balans <span class="emo">😊</span></h3>
           <div class="compare-li">
             <span class="mark"><img src="./assets/img/icons/vettoriale/check.svg" alt=""
-                style="width:13px; height:13px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);"></span>
+                class="icon-img icon-13 icon-teal-ink"></span>
             Crei fatture in 20 secondi parlando naturalmente
-            <span class="emo" style="margin-left:4px;">⏳</span>
+            <span class="emo">⏳</span>
           </div>
           <div class="compare-li">
             <span class="mark"><img src="./assets/img/icons/vettoriale/check.svg" alt=""
-                style="width:13px; height:13px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);"></span>
+                class="icon-img icon-13 icon-teal-ink"></span>
             Semplice come scrivere un messaggio su WhatsApp
-            <span class="emo" style="margin-left:4px;">💬</span>
+            <span class="emo">💬</span>
           </div>
           <div class="compare-li">
             <span class="mark"><img src="./assets/img/icons/vettoriale/check.svg" alt=""
-                style="width:13px; height:13px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);"></span>
+                class="icon-img icon-13 icon-teal-ink"></span>
             Meno ansia: le scadenze te le ricorda Balans, tu puoi dedicarti al tuo lavoro
-            <span class="emo" style="margin-left:4px;">😌</span>
+            <span class="emo">😌</span>
           </div>
         </div>
       </div>
@@ -360,68 +356,49 @@
   </section>
 
   <!-- ─────────────── COME FUNZIONA — 3 step ─────────────── -->
-  <section class="how" id="come-funziona" style="padding: 100px 0; background: var(--surface-alt);">
+  <section class="how" id="come-funziona">
     <div class="container">
       <div class="feats-head">
         <h2>Inizia in <em>3 passi</em></h2>
         <p>Dalla registrazione alla prima fattura in pochi minuti — senza perdere tempo.</p>
       </div>
-      <div class="steps-3"
-        style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px; max-width:1040px; margin:0 auto;">
+      <div class="steps-3 steps-3--centered">
 
-        <div
-          style="position:relative; background:var(--surface); border:1px solid var(--hairline); border-radius:20px; padding:32px 28px;">
-          <div style="display:flex; align-items:center; gap:14px; margin-bottom:20px;">
-            <div
-              style="width:42px; height:42px; border-radius:999px; background:var(--ink); color:var(--surface); display:flex; align-items:center; justify-content:center; font-family:'Libre Franklin',sans-serif; font-weight:700; font-size:17px;">
-              1</div>
-            <div
-              style="width:42px; height:42px; border-radius:12px; background:var(--teal-soft); color:var(--teal-ink); display:flex; align-items:center; justify-content:center;">
+        <div class="step-card">
+          <div class="step-card-head">
+            <div class="step-number">1</div>
+            <div class="step-icon">
               <img src="./assets/img/icons/png/download.png" alt=""
-                style="width:22px; height:22px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);">
+                class="icon-img icon-22 icon-teal-ink">
             </div>
           </div>
-          <h4
-            style="margin:0 0 8px; font-family:'Libre Franklin',sans-serif; font-size:21px; font-weight:600; letter-spacing:-0.4px; color:var(--ink);">
-            Scarichi l'app</h4>
-          <p style="margin:0; font-size:16px; line-height:1.5; color:var(--ink-2);">Disponibile per iPhone e Android.
+          <h5>Scarichi l'app</h5>
+          <p>Disponibile per iPhone e Android.
             Bastano pochi secondi per installarla e iniziare.</p>
         </div>
 
-        <div
-          style="position:relative; background:var(--surface); border:1px solid var(--hairline); border-radius:20px; padding:32px 28px;">
-          <div style="display:flex; align-items:center; gap:14px; margin-bottom:20px;">
-            <div
-              style="width:42px; height:42px; border-radius:999px; background:var(--ink); color:var(--surface); display:flex; align-items:center; justify-content:center; font-family:'Libre Franklin',sans-serif; font-weight:700; font-size:17px;">
-              2</div>
-            <div
-              style="width:42px; height:42px; border-radius:12px; background:var(--teal-soft); color:var(--teal-ink); display:flex; align-items:center; justify-content:center;">
+        <div class="step-card">
+          <div class="step-card-head">
+            <div class="step-number">2</div>
+            <div class="step-icon">
               <img src="./assets/img/icons/vettoriale/user.svg" alt=""
-                style="width:22px; height:22px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);">
+                class="icon-img icon-22 icon-teal-ink">
             </div>
           </div>
-          <h4
-            style="margin:0 0 8px; font-family:'Libre Franklin',sans-serif; font-size:21px; font-weight:600; letter-spacing:-0.4px; color:var(--ink);">
-            Ti registri con la tua P.IVA</h4>
-          <p style="margin:0; font-size:16px; line-height:1.5; color:var(--ink-2);">Inserisci la partita IVA: Balans
+          <h5>Ti registri con la tua P.IVA</h5>
+          <p>Inserisci la partita IVA: Balans
             configura in automatico regime fiscale e scadenze.</p>
         </div>
-        <div
-          style="position:relative; background:var(--surface); border:1px solid var(--hairline); border-radius:20px; padding:32px 28px;">
-          <div style="display:flex; align-items:center; gap:14px; margin-bottom:20px;">
-            <div
-              style="width:42px; height:42px; border-radius:999px; background:var(--teal); color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Libre Franklin',sans-serif; font-weight:700; font-size:17px;">
-              3</div>
-            <div
-              style="width:42px; height:42px; border-radius:12px; background:var(--teal-soft); color:var(--teal-ink); display:flex; align-items:center; justify-content:center;">
+        <div class="step-card">
+          <div class="step-card-head">
+            <div class="step-number step-number--accent">3</div>
+            <div class="step-icon">
               <img src="./assets/img/icons/vettoriale/up.svg" alt=""
-                style="width:22px; height:22px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);">
+                class="icon-img icon-22 icon-teal-ink">
             </div>
           </div>
-          <h4
-            style="margin:0 0 8px; font-family:'Libre Franklin',sans-serif; font-size:21px; font-weight:600; letter-spacing:-0.4px; color:var(--ink);">
-            Emetti la prima fattura</h4>
-          <p style="margin:0; font-size:16px; line-height:1.5; color:var(--ink-2);">In meno di 30 secondi, parlando
+          <h5>Emetti la prima fattura</h5>
+          <p>In meno di 30 secondi, parlando
             in italiano. La invii allo SDI senza pensieri.</p>
         </div>
 
@@ -433,28 +410,18 @@
   </section>
 
   <!-- ─────────────── PURPOSE ─────────────── -->
-  <section class="purpose" id="purpose"
-    style="padding: 120px 0; background: linear-gradient(to bottom, var(--teal-soft) 0%, var(--teal-tint) 55%, var(--surface-alt) 100%); border-top: 1px solid var(--teal-soft); border-bottom: 1px solid var(--teal-soft); position: relative; overflow: hidden;">
-    <div style="
-      position: absolute; inset: 0; pointer-events: none;
-      background:
-        radial-gradient(circle at 18% 22%, rgba(26,191,160,0.10) 0%, transparent 42%),
-        radial-gradient(circle at 84% 80%, rgba(14,17,48,0.04) 0%, transparent 44%);"></div>
+  <section class="purpose" id="purpose">
+    <div class="purpose-glow"></div>
 
-    <div class="container-narrow" style="position: relative; text-align: center; max-width: 880px; margin: 0 auto;">
-      <h2 style="
-        margin: 0; font-family: 'Libre Franklin', sans-serif;
-        font-size: 46px; line-height: 1.18; font-weight: 500;
-        letter-spacing: -1.4px; color: var(--ink); text-wrap: balance;">
-        Rendiamo <span
-          style="font-family: 'Galldis', serif; font-weight: 400; color: var(--teal-ink); letter-spacing: -0.8px; font-size: 60px;">semplice</span>
+    <div class="container-narrow">
+      <h2>
+        Rendiamo <span>semplice</span>
         la gestione
         della tua
-        <strong style="font-weight: 700;">partita IVA</strong>.
+        <strong>partita IVA</strong>.
       </h2>
 
-      <p
-        style="margin: 32px auto 0; max-width: 620px; font-family: 'Libre Franklin', sans-serif; font-size: 16px; line-height: 1.6; font-weight: 400; color: var(--ink-2); text-align: center; text-wrap: balance;">
+      <p>
         Fatture, scadenze e documenti non devono più rubarti tempo ed energie. Balans tiene in ordine la burocrazia al
         posto tuo, così puoi pensare a far crescere la tua attività.</p>
     </div>
@@ -466,7 +433,7 @@
       <div class="feat-grid">
         <div class="feat-text">
           <span class="feat-eyebrow">Sempre in contatto</span>
-          <h2 style="font-weight: 300; font-size: 70px;"><strong style="font-weight: 700;">Comunica</strong>
+          <h2 class="feat-h2--light"><strong>Comunica</strong>
             meglio con il tuo
             <em>commercialista</em>
           </h2>
@@ -477,17 +444,17 @@
           <div class="feat-list">
             <div class="feat-li">
               <img src="./assets/img/icons/vettoriale/check.svg" alt=""
-                style="width:22px; height:22px; display:inline-block; flex-shrink:0; margin-top:1px; filter:brightness(0) saturate(100%) invert(50%) sepia(20%) saturate(1400%) hue-rotate(120deg) brightness(115%);">
+                class="icon-img icon-22 icon-teal">
               Storico dei tuoi documenti ordinato
             </div>
             <div class="feat-li">
               <img src="./assets/img/icons/vettoriale/check.svg" alt=""
-                style="width:22px; height:22px; display:inline-block; flex-shrink:0; margin-top:1px; filter:brightness(0) saturate(100%) invert(50%) sepia(20%) saturate(1400%) hue-rotate(120deg) brightness(115%);">
+                class="icon-img icon-22 icon-teal">
               Importa scontrini fotografandoli, niente più digitazione
             </div>
             <div class="feat-li">
               <img src="./assets/img/icons/vettoriale/check.svg" alt=""
-                style="width:22px; height:22px; display:inline-block; flex-shrink:0; margin-top:1px; filter:brightness(0) saturate(100%) invert(50%) sepia(20%) saturate(1400%) hue-rotate(120deg) brightness(115%);">
+                class="icon-img icon-22 icon-teal">
               Scrivi al tuo studio direttamente in app, quando vuoi
             </div>
           </div>
@@ -516,10 +483,10 @@
               </div>
               <div class="ps-chat-hdr">
                 <div class="av"><img src="./assets/img/icons/vettoriale/menu.svg" alt=""
-                    style="width:20px; height:20px; display:inline-block; flex-shrink:0;">
+                    class="icon-img icon-20">
                 </div>
-                <div style="flex:1;">
-                  <div class="nm">Balans Assistant</div>
+                <div class="flex-1">
+                  <div class="nm">Balans</div>
                   <div class="st">&#9679; Online</div>
                 </div>
               </div>
@@ -528,9 +495,9 @@
                 <div class="bub ai">A maggio hai
                   fatturato € 4.230 con 7 fatture. Sei al 22% del tuo limite forfettario annuale.</div>
                 <div class="bub me">Crea una fattura per Studio Bianchi, €800, consulenza marketing</div>
-                <div class="bub ai-card" style="border-color: rgb(158, 232, 207)">
+                <div class="bub ai-card accent-b">
                   <div class="h"><img src="./assets/img/icons/vettoriale/doc.svg" alt=""
-                      style="width:11px; height:11px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);">
+                      class="icon-img icon-11 icon-teal-ink">
                     Fattura
                     pronta
                   </div>
@@ -544,7 +511,7 @@
               <div class="ps-chat-comp">
                 <span class="ph">Scrivi a Balans...</span>
                 <div class="send-btn"><img src="./assets/img/icons/vettoriale/up.svg" alt=""
-                    style="width:16px; height:16px; display:inline-block; flex-shrink:0; filter:brightness(0) invert(1);">
+                    class="icon-img icon-16 icon-white">
                 </div>
               </div>
             </div>
@@ -582,16 +549,16 @@
         <div class="feat-card">
           <div class="ic-bg">
             <img src="./assets/img/icons/vettoriale/chat.svg" alt=""
-              style="width:24px; height:24px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);">
+              class="icon-img icon-24 icon-teal-ink">
           </div>
           <h4>Interfaccia Conversazionale</h4>
           <p>Parla naturalmente, come faresti con un amico. Niente moduli complicati da compilare.</p>
         </div>
 
         <div class="feat-card">
-          <div class="ic-bg" style="color: rgb(232, 141, 21); background-color: rgb(248, 245, 238)">
+          <div class="ic-bg ic-bg--orange">
             <img src="./assets/img/icons/vettoriale/up.svg" alt=""
-              style="width:24px; height:24px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(50%) sepia(20%) saturate(1700%) hue-rotate(355deg) brightness(115%);">
+              class="icon-img icon-24 icon-orange">
           </div>
           <h4>Veloce come un Lampo</h4>
           <p>Crea fatture in 30 secondi. Importa scontrini con una foto. Tutto automatizzato.</p>
@@ -600,16 +567,16 @@
         <div class="feat-card">
           <div class="ic-bg">
             <img src="./assets/img/icons/png/lock.png" alt=""
-              style="width:24px; height:24px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);">
+              class="icon-img icon-24 icon-teal-ink">
           </div>
           <h4>Sempre in regola</h4>
           <p>Controlli automatici per evitare errori. Aggiornato alle ultime normative fiscali.</p>
         </div>
 
         <div class="feat-card">
-          <div class="ic-bg" style="color: rgb(232, 141, 21); background-color: rgb(248, 245, 238)">
+          <div class="ic-bg ic-bg--orange">
             <img src="./assets/img/icons/vettoriale/time.svg" alt=""
-              style="width:24px; height:24px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(50%) sepia(20%) saturate(1700%) hue-rotate(355deg) brightness(115%);">
+              class="icon-img icon-24 icon-orange">
           </div>
           <h4>Risparmi Tempo</h4>
           <p>In media 15 ore al mese risparmiate. Più tempo per far crescere il tuo business.</p>
@@ -618,16 +585,16 @@
         <div class="feat-card">
           <div class="ic-bg">
             <img src="./assets/img/icons/vettoriale/ai.svg" alt=""
-              style="width:24px; height:24px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);">
+              class="icon-img icon-24 icon-teal-ink">
           </div>
           <h4>Categorizzazione Intelligente</h4>
           <p>L'AI riconosce automaticamente le spese e le categorizza correttamente.</p>
         </div>
 
         <div class="feat-card">
-          <div class="ic-bg" style="background-color: rgb(248, 245, 238); color: rgb(232, 141, 21)">
+          <div class="ic-bg ic-bg--orange">
             <img src="./assets/img/icons/vettoriale/user.svg" alt=""
-              style="width:24px; height:24px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(50%) sepia(20%) saturate(1700%) hue-rotate(355deg) brightness(115%);">
+              class="icon-img icon-24 icon-orange">
           </div>
           <h4>Supporto Umano</h4>
           <p>Team italiano sempre disponibile. Risposte in minuti, non giorni.</p>
@@ -642,43 +609,38 @@
   <section class="reviews" id="testimonianze">
     <div class="container">
       <div class="reviews-head">
-        <h2>Cosa dicono gli <strong style="font-weight: 700;">imprenditori</strong> <em>come te</em></h2>
+        <h2>Cosa dicono gli <strong>imprenditori</strong> <em>come te</em></h2>
         <p>Opinioni di chi ha già usato il nostro servizio.</p>
       </div>
 
-      <div style="display:flex; justify-content:center; gap:56px; flex-wrap:wrap; margin:0 auto 48px; max-width:760px;">
-        <div style="text-align:center;">
-          <div
-            style="font-family:'Libre Franklin',sans-serif; font-size:42px; font-weight:700; letter-spacing:-1.6px; color:var(--ink); line-height:1;"
-            data-count="200" data-suffix="+">200+</div>
-          <div style="font-size:13px; color:var(--ink-2); margin-top:6px;">imprenditori in lista d'attesa</div>
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="stat-value" data-count="200" data-suffix="+">200+</div>
+          <div class="stat-label">imprenditori in lista d'attesa</div>
         </div>
-        <div style="text-align:center;">
-          <div
-            style="font-family:'Libre Franklin',sans-serif; font-size:42px; font-weight:700; letter-spacing:-1.6px; color:var(--ink); line-height:1;">
-            <span data-count="4.9" data-decimals="1">4,9</span><span
-              style="font-size:22px; color:var(--ink-2);">/5</span>
+        <div class="stat-item">
+          <div class="stat-value">
+            <span data-count="4.9" data-decimals="1">4,9</span><span class="unit">/5</span>
           </div>
-          <div style="font-size:13px; color:var(--ink-2); margin-top:6px;">voto medio dai beta tester</div>
+          <div class="stat-label">voto medio dai beta tester</div>
         </div>
-        <div style="text-align:center;">
-          <div
-            style="font-family:'Libre Franklin',sans-serif; font-size:42px; font-weight:700; letter-spacing:-1.6px; color:var(--ink); line-height:1;">
-            <span data-count="12" data-prefix="~">~12</span><span style="font-size:22px; color:var(--ink-2);">h</span>
+        <div class="stat-item">
+          <div class="stat-value">
+            <span data-count="12" data-prefix="~">~12</span><span class="unit">h</span>
           </div>
-          <div style="font-size:13px; color:var(--ink-2); margin-top:6px;">risparmiate ogni mese</div>
+          <div class="stat-label">risparmiate ogni mese</div>
         </div>
       </div>
       <div class="reviews-grid">
 
         <div class="review">
-          <div class="stars" style="font-size:18px;">★★★★★</div>
+          <div class="stars">★★★★★</div>
           <p class="review-text">
             "Finalmente un software che capisco! Prima ci mettevo mezza giornata
             per le fatture, ora 10 minuti. E ho 58 anni, se ce la faccio io..."
           </p>
           <div class="review-author">
-            <div class="avatar" style="background:#E8DCC4; color:#503a1a;">GF</div>
+            <div class="avatar c1">GF</div>
             <div class="name-block">
               <div class="nm">Giuseppe Ferri</div>
               <div class="role">Idraulico</div>
@@ -687,13 +649,13 @@
         </div>
 
         <div class="review">
-          <div class="stars" style="font-size:18px;">★★★★★</div>
+          <div class="stars">★★★★★</div>
           <p class="review-text">
             "Ho recuperato ore preziose ogni settimana.
             Il supporto è fantastico, rispondono sempre in pochi minuti."
           </p>
           <div class="review-author">
-            <div class="avatar" style="background:#D5E8DC; color:#0c4440;">AC</div>
+            <div class="avatar c2">AC</div>
             <div class="name-block">
               <div class="nm">Alessia Conti</div>
               <div class="role">Consulente Marketing</div>
@@ -702,13 +664,13 @@
         </div>
 
         <div class="review">
-          <div class="stars" style="font-size:18px;">★★★★★</div>
+          <div class="stars">★★★★★</div>
           <p class="review-text">
             "Gestiamo tutto dal telefono mentre serviamo i clienti.
             Foto allo scontrino e fatto! È una magia."
           </p>
           <div class="review-author">
-            <div class="avatar" style="background:#F3D8C4; color:#502915;">MB</div>
+            <div class="avatar c3">MB</div>
             <div class="name-block">
               <div class="nm">Marco &amp; Sofia Bianchi</div>
               <div class="role">Caffetteria "Da Noi"</div>
@@ -737,8 +699,7 @@
         <div class="faq-item open">
           <button class="faq-q" type="button">
             Devo essere bravo con i computer per usare Balans?
-            <img src="./assets/img/icons/png/chevronDown.png" alt="" class="chev"
-              style="display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(70%) sepia(20%) saturate(250%) hue-rotate(190deg) brightness(60%);">
+            <img src="./assets/img/icons/png/chevronDown.png" alt="" class="chev">
 
           </button>
           <div class="faq-a">
@@ -750,8 +711,7 @@
         <div class="faq-item">
           <button class="faq-q" type="button">
             Come funziona la lista d'attesa?
-            <img src="./assets/img/icons/png/chevronDown.png" alt="" class="chev"
-              style="display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(70%) sepia(20%) saturate(250%) hue-rotate(190deg) brightness(60%);">
+            <img src="./assets/img/icons/png/chevronDown.png" alt="" class="chev">
 
           </button>
           <div class="faq-a">
@@ -764,8 +724,7 @@
         <div class="faq-item">
           <button class="faq-q" type="button">
             È conforme alle leggi italiane sulla fatturazione?
-            <img src="./assets/img/icons/png/chevronDown.png" alt="" class="chev"
-              style="display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(70%) sepia(20%) saturate(250%) hue-rotate(190deg) brightness(60%);">
+            <img src="./assets/img/icons/png/chevronDown.png" alt="" class="chev">
 
           </button>
           <div class="faq-a">
@@ -778,8 +737,7 @@
         <div class="faq-item">
           <button class="faq-q" type="button">
             Cosa succede se ho bisogno di aiuto?
-            <img src="./assets/img/icons/png/chevronDown.png" alt="" class="chev"
-              style="display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(70%) sepia(20%) saturate(250%) hue-rotate(190deg) brightness(60%);">
+            <img src="./assets/img/icons/png/chevronDown.png" alt="" class="chev">
 
           </button>
           <div class="faq-a">
@@ -791,8 +749,7 @@
         <div class="faq-item">
           <button class="faq-q" type="button">
             Per quali partite IVA è pensato Balans?
-            <img src="./assets/img/icons/png/chevronDown.png" alt="" class="chev"
-              style="display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(70%) sepia(20%) saturate(250%) hue-rotate(190deg) brightness(60%);">
+            <img src="./assets/img/icons/png/chevronDown.png" alt="" class="chev">
 
           </button>
           <div class="faq-a">
@@ -804,8 +761,7 @@
         <div class="faq-item">
           <button class="faq-q" type="button">
             I miei dati sono al sicuro?
-            <img src="./assets/img/icons/png/chevronDown.png" alt="" class="chev"
-              style="display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(70%) sepia(20%) saturate(250%) hue-rotate(190deg) brightness(60%);">
+            <img src="./assets/img/icons/png/chevronDown.png" alt="" class="chev">
 
           </button>
           <div class="faq-a">
@@ -815,124 +771,107 @@
         </div>
 
       </div>
-      <div class="faq-foot" style="text-align:center; margin-top:40px; font-size:14px; color:var(--ink-2);">Ancora
+      <div class="faq-foot">Ancora
         dubbi? Le trovi tutte qui sopra — oppure scrivici.</div>
     </div>
   </section>
 
 
-  <section id="business"
-    style="background: var(--navy, #0E1130); color:#fff; padding: 110px 0; position: relative; overflow: hidden;">
-    <div
-      style="position:absolute; inset:0; pointer-events:none; background: radial-gradient(circle at 16% 22%, rgba(26,191,160,0.16) 0%, transparent 42%), radial-gradient(circle at 86% 84%, rgba(26,191,160,0.08) 0%, transparent 46%);">
-    </div>
-    <div class="container" style="position:relative;">
-      <div style="display:grid; grid-template-columns: 1.05fr 0.95fr; gap: 72px; align-items:center;">
+  <section id="business" class="dark-glow-section">
+    <div class="dark-glow-bg"></div>
+    <div class="container">
+      <div class="business-top">
 
         <!-- Left: pitch -->
         <div>
-          <span class="feat-eyebrow" style="background: rgba(26,191,160,0.16); color:#7FE6CE;">Balans Business · Per
+          <span class="feat-eyebrow business-eyebrow">Balans Business · Per
             studi e commercialisti</span>
-          <h2
-            style="color:#fff; margin-top:4px; font-family:'Libre Franklin',sans-serif; font-size:56px; line-height:1.0; font-weight:600; letter-spacing:-2px;">
-            Il tuo studio, <em style="color:#7FE6CE;">moltiplicato.</em></h2>
-          <p style="color: rgba(255,255,255,0.72); max-width: 480px; font-size: 16px; line-height: 1.5;">
+          <h2 class="business-title">
+            Il tuo studio, <em>moltiplicato.</em></h2>
+          <p class="business-desc">
             Balans Business è il servizio pensato per i commercialisti: gestisci i tuoi
             clienti sull'app, resti il loro punto di riferimento e gestisci tutto da
             un'unica regia. Loro guadagnano tempo per la gestione della loro attività, tu risparmi tempo nella gestione
             dei tuoi clienti.
           </p>
 
-          <div style="display:flex; flex-direction:column; gap:18px; margin: 32px 0 36px;">
-            <div style="display:flex; gap:16px; align-items:flex-start;">
-              <div
-                style="width:40px; height:40px; border-radius:11px; background:rgba(26,191,160,0.16); color:#7FE6CE; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-family:'Libre Franklin',sans-serif; font-weight:700; font-size:15px;">
-                1</div>
+          <div class="business-numbered-list">
+            <div class="business-numbered-item">
+              <div class="business-numbered-badge">1</div>
               <div>
-                <div style="font-weight:700; font-size:16px; letter-spacing:-0.2px;">Acquisti
+                <div class="business-numbered-title">Acquisti
                   un pacchetto di licenze</div>
-                <div style="color:rgba(255,255,255,0.62); font-size:14.5px; line-height:1.5; margin-top:3px;">Scegli un
+                <div class="business-numbered-desc">Scegli un
                   numero di licenze a un prezzo dedicato ai professionisti.</div>
               </div>
             </div>
-            <div style="display:flex; gap:16px; align-items:flex-start;">
-              <div
-                style="width:40px; height:40px; border-radius:11px; background:rgba(26,191,160,0.16); color:#7FE6CE; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-family:'Libre Franklin',sans-serif; font-weight:700; font-size:15px;">
-                2</div>
+            <div class="business-numbered-item">
+              <div class="business-numbered-badge">2</div>
               <div>
-                <div style="font-weight:700; font-size:16px; letter-spacing:-0.2px;">Affili i
+                <div class="business-numbered-title">Affili i
                   tuoi clienti</div>
-                <div style="color:rgba(255,255,255,0.62); font-size:14.5px; line-height:1.5; margin-top:3px;">Invitali
+                <div class="business-numbered-desc">Invitali
                   semplicemente con un link: loro scaricano l'app e vengono collegati
                   al tuo studio.</div>
               </div>
             </div>
-            <div style="display:flex; gap:16px; align-items:flex-start;">
-              <div
-                style="width:40px; height:40px; border-radius:11px; background:rgba(26,191,160,0.16); color:#7FE6CE; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-family:'Libre Franklin',sans-serif; font-weight:700; font-size:15px;">
-                3</div>
+            <div class="business-numbered-item">
+              <div class="business-numbered-badge">3</div>
               <div>
-                <div style="font-weight:700; font-size:16px; letter-spacing:-0.2px;">Tutto
+                <div class="business-numbered-title">Tutto
                   tramite app</div>
-                <div style="color:rgba(255,255,255,0.62); font-size:14.5px; line-height:1.5; margin-top:3px;">Documenti,
+                <div class="business-numbered-desc">Documenti,
                   fatture e messaggi viaggiano tra cliente e studio in un solo
                   canale, ordinato e tracciato.</div>
               </div>
             </div>
           </div>
 
-          <div style="display:flex; align-items:center; gap:18px; flex-wrap:wrap;">
-            <button type="button"
-              style="height:54px; padding:0 26px; background:var(--teal); color:#06231D; border:0; border-radius:14px; font-family:'Libre Franklin',sans-serif; font-weight:700; font-size:15px; letter-spacing:-0.2px; cursor:pointer;">
+          <div class="business-actions">
+            <button type="button" class="business-cta-btn">
               <a href="https://balansapp.it/business"
-                title="Contattaci per il servizio Balans Business dedicato a commercialisti e studi"
-                style="text-decoration: none; color: inherit;">Contattaci per
+                title="Contattaci per il servizio Balans Business dedicato a commercialisti e studi">Contattaci per
                 Balans Business</a>
             </button>
-            <span style="font-size:13.5px; color:rgba(255,255,255,0.6);">Onboarding e formazione inclusi</span>
+            <span class="business-note">Onboarding e formazione inclusi</span>
           </div>
         </div>
 
         <!-- Right: stat panel -->
-        <div
-          style="background: rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.10); border-radius:24px; padding:36px;">
-          <div
-            style="font-family:'Libre Franklin',sans-serif; font-size:11.5px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:#7FE6CE; margin-bottom:24px;">
+        <div class="stat-panel">
+          <div class="stat-panel-label">
             Pacchetto studio · esempio</div>
 
-          <div style="display:flex; align-items:baseline; gap:10px; margin-bottom:6px;">
-            <span
-              style="font-family:'Libre Franklin',sans-serif; font-size:64px; font-weight:700; letter-spacing:-2.5px; line-height:1;"
-              data-slot="70">70</span>
-            <span style="font-size:17px; color:rgba(255,255,255,0.7); font-weight:600;">licenze cliente</span>
+          <div class="stat-panel-figure">
+            <span class="stat-panel-number" data-slot="70">70</span>
+            <span class="stat-panel-unit">licenze cliente</span>
           </div>
-          <div style="font-size:14.5px; color:rgba(255,255,255,0.6); margin-bottom:28px;">
+          <div class="stat-panel-caption">
             attivabili in pochi minuti, gestite da un'unica dashboard.</div>
 
-          <div
-            style="border-top:1px solid rgba(255,255,255,0.10); padding-top:22px; display:flex; flex-direction:column; gap:16px;">
-            <div style="display:flex; align-items:center; gap:12px;">
+          <div class="stat-panel-list">
+            <div class="stat-panel-item">
               <img src="./assets/img/icons/vettoriale/user.svg" alt=""
-                style="width:20px; height:20px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(70%) sepia(70%) saturate(200%) hue-rotate(115deg) brightness(100%);">
-              <span style="font-size:15px; color:rgba(255,255,255,0.88);">Tutti i clienti
+                class="icon-img icon-20 icon-mint">
+              <span>Tutti i clienti
                 dello studio in un'unica vista</span>
             </div>
-            <div style="display:flex; align-items:center; gap:12px;">
+            <div class="stat-panel-item">
               <img src="./assets/img/icons/vettoriale/chat.svg" alt=""
-                style="width:20px; height:20px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(70%) sepia(70%) saturate(200%) hue-rotate(115deg) brightness(100%);">
-              <span style="font-size:15px; color:rgba(255,255,255,0.88);">Canale di
+                class="icon-img icon-20 icon-mint">
+              <span>Canale di
                 comunicazione studio ↔ cliente</span>
             </div>
-            <div style="display:flex; align-items:center; gap:12px;">
+            <div class="stat-panel-item">
               <img src="./assets/img/icons/vettoriale/doc.svg" alt=""
-                style="width:20px; height:20px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(70%) sepia(70%) saturate(200%) hue-rotate(115deg) brightness(100%);">
-              <span style="font-size:15px; color:rgba(255,255,255,0.88);">Documenti e fatture
+                class="icon-img icon-20 icon-mint">
+              <span>Documenti e fatture
                 sempre sincronizzati</span>
             </div>
-            <div style="display:flex; align-items:center; gap:12px;">
+            <div class="stat-panel-item">
               <img src="./assets/img/icons/vettoriale/balance.svg" alt=""
-                style="width:20px; height:20px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(70%) sepia(70%) saturate(200%) hue-rotate(115deg) brightness(100%);">
-              <span style="font-size:15px; color:rgba(255,255,255,0.88);">Lo studio resta il
+                class="icon-img icon-20 icon-mint">
+              <span>Lo studio resta il
                 punto di riferimento</span>
             </div>
           </div>
@@ -941,69 +880,57 @@
       </div>
 
       <!-- Dashboard commercialista: come funziona + vantaggi -->
-      <div style="position:relative; margin-top:64px; padding-top:56px; border-top:1px solid rgba(255,255,255,0.10);">
-        <div style="text-align:center; max-width:640px; margin:0 auto 44px;">
-          <span class="feat-eyebrow" style="background: rgba(26,191,160,0.16); color:#7FE6CE;">La dashboard dello
+      <div class="business-dashboard">
+        <div class="business-dashboard-head">
+          <span class="feat-eyebrow business-eyebrow">La dashboard dello
             studio</span>
-          <h3
-            style="color:#fff; font-family:'Libre Franklin',sans-serif; font-size:33px; font-weight:600; letter-spacing:-1px; margin:14px 0 0;">
-            Una regia per tutte le pratiche dei tuoi clienti.</h3>
-          <p style="color:rgba(255,255,255,0.66); font-size:16px; line-height:1.5; margin:16px 0 0;">
+          <h3>Una regia per tutte le pratiche dei tuoi clienti.</h3>
+          <p>
             Dal pannello del commercialista tieni sotto controllo scadenze, adempimenti e documenti
             di ogni cliente — senza rincorrere email, messaggi e file sparsi.
           </p>
         </div>
 
-        <div class="dash-cards" style="display:grid; gap:20px;">
-          <div
-            style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.10); border-radius:18px; padding:24px;">
-            <div
-              style="width:42px; height:42px; border-radius:12px; background:rgba(26,191,160,0.16); display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+        <div class="dash-cards">
+          <div class="dash-card">
+            <div class="dash-card-icon">
               <img src="./assets/img/icons/vettoriale/time.svg" alt=""
-                style="width:22px; height:22px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(70%) sepia(70%) saturate(200%) hue-rotate(115deg) brightness(100%);">
+                class="icon-img icon-22 icon-mint">
             </div>
-            <div
-              style="font-family:'Libre Franklin',sans-serif; font-weight:700; font-size:17px; letter-spacing:-0.3px; margin-bottom:6px;">
+            <div class="dash-card-title">
               Scadenze sotto controllo</div>
-            <div style="color:rgba(255,255,255,0.62); font-size:14.5px; line-height:1.55;">
+            <div class="dash-card-text">
               Vedi le scadenze fiscali di tutti i clienti su un calendario unico, con promemoria automatici.</div>
           </div>
-          <div
-            style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.10); border-radius:18px; padding:24px;">
-            <div
-              style="width:42px; height:42px; border-radius:12px; background:rgba(26,191,160,0.16); display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+          <div class="dash-card">
+            <div class="dash-card-icon">
               <img src="./assets/img/icons/vettoriale/doc.svg" alt=""
-                style="width:22px; height:22px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(70%) sepia(70%) saturate(200%) hue-rotate(115deg) brightness(100%);">
+                class="icon-img icon-22 icon-mint">
             </div>
-            <div
-              style="font-family:'Libre Franklin',sans-serif; font-weight:700; font-size:17px; letter-spacing:-0.3px; margin-bottom:6px;">
+            <div class="dash-card-title">
               Pratiche per cliente</div>
-            <div style="color:rgba(255,255,255,0.62); font-size:14.5px; line-height:1.55;">
+            <div class="dash-card-text">
               Ogni cliente ha la sua scheda: fatture, documenti e stato delle pratiche sempre aggiornati.</div>
           </div>
-          <div
-            style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.10); border-radius:18px; padding:24px;">
-            <div
-              style="width:42px; height:42px; border-radius:12px; background:rgba(26,191,160,0.16); display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+          <div class="dash-card">
+            <div class="dash-card-icon">
               <img src="./assets/img/icons/vettoriale/balance.svg" alt=""
-                style="width:22px; height:22px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(70%) sepia(70%) saturate(200%) hue-rotate(115deg) brightness(100%);">
+                class="icon-img icon-22 icon-mint">
             </div>
-            <div
-              style="font-family:'Libre Franklin',sans-serif; font-weight:700; font-size:17px; letter-spacing:-0.3px; margin-bottom:6px;">
+            <div class="dash-card-title">
               Mai più documenti sparsi</div>
-            <div style="color:rgba(255,255,255,0.62); font-size:14.5px; line-height:1.55;">
+            <div class="dash-card-text">
               Tutto organizzato in un solo posto: meno tempo nei processi per cliente, più tempo per la consulenza.
             </div>
           </div>
         </div>
 
         <!-- Reassurance: non sostituisce il gestionale -->
-        <div
-          style="margin-top:24px; display:flex; gap:16px; align-items:flex-start; background:rgba(127,230,206,0.08); border:1px solid rgba(127,230,206,0.22); border-radius:16px; padding:20px 24px;">
+        <div class="reassurance-box reassurance-box--dark">
           <img src="./assets/img/icons/vettoriale/check.svg" alt=""
-            style="width:22px; height:22px; display:inline-block; flex-shrink:0; margin-top:2px; filter:brightness(0) saturate(100%) invert(70%) sepia(70%) saturate(200%) hue-rotate(115deg) brightness(100%);">
-          <div style="font-size:15.5px; line-height:1.55; color:rgba(255,255,255,0.82);">
-            <strong style="color:#fff; font-weight:700;">Balans non sostituisce il gestionale
+            class="icon-img icon-22 icon-mint">
+          <div class="reassurance-box-text">
+            <strong>Balans non sostituisce il gestionale
               del tuo studio.</strong>
             Ci lavora accanto: fa risparmiare tempo nei processi per ogni cliente e tiene tutto organizzato,
             senza stravolgere i tuoi strumenti.
@@ -1014,42 +941,38 @@
   </section>
 
   <!-- ─────────────── CTA — Riprendi il controllo ─────────────── -->
-  <section class="cta"
-    style="background:linear-gradient(to bottom, #073D33 0%, #0C6957 100%); color:#fff; padding: 100px 0;">
-    <div class="container-narrow" style="position:relative;">
-      <h2 style="color:#fff;">Riprendi il controllo del tuo <em style="color: rgb(255, 255, 255)">tempo</em></h2>
+  <section class="cta cta--dark">
+    <div class="container-narrow">
+      <h2>Riprendi il controllo del tuo <em style="color: #fff;">tempo</em></h2>
 
-      <div class="cta-actions" style="margin-top: 36px;">
-        <button class="cta-btn-white" type="button" data-waitlist-scroll
-          style="color: #0E7A66;; background: #fff; box-shadow: 0 1px 0 rgba(255,255,255,0.4) inset, 0 8px 22px -6px rgba(0,0,0,0.35);">
+      <div class="cta-actions">
+        <button class="cta-btn-white cta-btn-white--accent" type="button" data-waitlist-scroll>
           Iscriviti alla waiting list
         </button>
-        <a class="cta-btn-outline" href="mailto:info@balansapp.it" style="text-decoration: none; color:inherit">
+        <a class="cta-btn-outline" href="mailto:info@balansapp.it">
           Parla con il Nostro Team
         </a>
       </div>
 
-      <div class="cta-perks" style="margin-top:20px;">
-        <div class="cta-perk" style="color:rgba(255,255,255,0.85);">
+      <div class="cta-perks">
+        <div class="cta-perk">
           <img src="./assets/img/icons/vettoriale/check.svg" alt=""
-            style="width:16px; height:16px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(65%) sepia(40%) saturate(200%) hue-rotate(115deg) brightness(120%);">
+            class="icon-img icon-16 icon-mint-bright">
           Nessun impegno
         </div>
-        <div class="cta-perk" style="color:rgba(255,255,255,0.85);">
+        <div class="cta-perk">
           <img src="./assets/img/icons/vettoriale/check.svg" alt=""
-            style="width:16px; height:16px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(65%) sepia(40%) saturate(200%) hue-rotate(115deg) brightness(120%);">
+            class="icon-img icon-16 icon-mint-bright">
           Ti avvisiamo noi al lancio
         </div>
-        <div class="cta-perk" style="color:rgba(255,255,255,0.85);">
+        <div class="cta-perk">
           <img src="./assets/img/icons/vettoriale/check.svg" alt=""
-            style="width:16px; height:16px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(65%) sepia(40%) saturate(200%) hue-rotate(115deg) brightness(120%);">
+            class="icon-img icon-16 icon-mint-bright">
           Supporto in italiano
         </div>
       </div>
-      <div
-        style="margin-top:28px; padding-top:24px; border-top:1px solid rgba(255,255,255,0.14); font-size:15px; color:rgba(255,255,255,0.7);">
-        Hai già un commercialista? <a href="#business" title="Vai alla sezione dedicata ai commercialisti"
-          style="color:#fff; font-weight:600; text-decoration:underline; text-underline-offset:3px;">Parlane al tuo
+      <div class="cta-footnote">
+        Hai già un commercialista? <a href="#business" title="Vai alla sezione dedicata ai commercialisti">Parlane al tuo
           studio</a> — Balans lavora insieme a lui.
       </div>
     </div>
@@ -1060,27 +983,27 @@
     <div class="container">
       <div class="ftr-top">
         <div>
-          <span class="logo-wordmark light" style="height:30px;"></span>
-          <p class="ftr-tagline" style="color: #ffffffb9;">
+          <span class="logo-wordmark light"></span>
+          <p class="ftr-tagline">
             La fatturazione semplice per chi ha di meglio da fare.
           </p>
         </div>
         <div>
-          <h5 style="color: #ffffffb9;">Prodotto</h5>
+          <h6>Prodotto</h6>
           <a href="https://balansapp.it/#" title="Scopri le funzionalità di Balans">Funzionalità</a>
           <a href="https://balansapp.it/#" title="Scopri i prezzi di Balans">Prezzi</a>
           <a href="https://balansapp.it/#" title="Leggi le testimonianze">Testimonianze</a>
           <a href="https://balansapp.it/#" title="Scopri la roadmap di Balans">Roadmap</a>
         </div>
         <div>
-          <h5 style="color: #ffffffb9;">Risorse</h5>
+          <h6>Risorse</h6>
           <a href="https://balansapp.it/#" title="Consulta le guide di Balans">Guide</a>
           <a href="https://balansapp.it/#" title="Guarda i video tutorial di Balans">Video Tutorial</a>
           <a href="https://balansapp.it/#" title="Leggi il blog di Balans">Blog</a>
           <a href="https://balansapp.it/#" title="Consulta le domande frequenti">FAQ</a>
         </div>
         <div>
-          <h5 style="color: #ffffffb9;">Azienda</h5>
+          <h6>Azienda</h6>
           <a href="https://balansapp.it/#" title="Scopri chi siamo">Chi Siamo</a>
           <a href="mailto:info@balansapp.it" title="Scrivici una email">Contatti</a>
           <a href="https://balansapp.it/privacy" target="_blank"
@@ -1089,7 +1012,7 @@
         </div>
       </div>
       <div class="ftr-bottom">
-        <div class="ftr-legal" style="color: #ffffffb9;">
+        <div class="ftr-legal">
           © 2026 Balans · NETTA AI S.R.L. · P.IVA 07368320821<br>
         </div>
         <div class="ftr-social">
@@ -1132,7 +1055,7 @@
       </button>
       <div class="wl-modal-icon">
         <img src="./assets/img/icons/vettoriale/check.svg" alt=""
-          style="width:26px; height:26px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);">
+          class="icon-img icon-26 icon-teal-ink">
       </div>
       <h3 id="waitlist-modal-title">Sei in lista!</h3>
       <p>Grazie per esserti iscritto alla waiting list. Ti scriveremo appena Balans sarà pronto per te.</p>
