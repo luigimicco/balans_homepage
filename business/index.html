@@ -1,4 +1,4 @@
-<html lang="en" data-theme="light" style="">
+<html lang="en" data-theme="light">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -29,9 +29,8 @@
     <!-- ─────────────── HEADER ─────────────── -->
     <header class="hdr">
         <div class="container hdr-row">
-            <div style="display:flex; align-items:center; gap:14px;">
-                <a href="https://balansapp.it"
-                    style="display:flex; align-items:center; gap:14px; text-decoration:none;">
+            <div class="hdr-brand">
+                <a href="https://balansapp.it" class="hdr-brand-link">
                     <span class="logo-wordmark"></span>
                 </a>
             </div>
@@ -59,7 +58,7 @@
     </header>
 
     <!-- ─────────────── HERO ─────────────── -->
-    <section class="hero" style="padding: 80px 0 92px;">
+    <section class="hero hero--business">
         <div class="hero-bg"></div>
         <div class="container hero-grid">
             <div class="hero-text">
@@ -67,12 +66,12 @@
                     <span class="dot">B2B</span>
                     Balans Business · per studi e commercialisti
                 </div>
-                <h1 class="hero-h1" style="font-size:70px; font-weight:300; letter-spacing:-2.6px;">
-                    Porta la gestione del tuo <b style="font-weight:700;">studio</b>
-                    <span style="font-family:'Galldis',serif; color:var(--teal-ink); font-weight:400;">a un livello
+                <h1 class="hero-h1 hero-h1--light">
+                    Porta la gestione del tuo <b>studio</b>
+                    <span class="hero-h1-highlight">a un livello
                         successivo</span>
                 </h1>
-                <p class="hero-sub" style="font-size:19px;">
+                <p class="hero-sub hero-sub--lg">
                     Con Balans Business diventi partner: i tuoi clienti gestiscono fatture e movimenti
                     dall’app, tu segui tutto da un’unica dashboard e comunichi con loro in una chat privata.
                     Un solo canale, zero documenti sparsi — e tanto tempo risparmiato su ogni cliente.
@@ -92,102 +91,85 @@
                 </form>
                 <div class="hero-perks">
                     <span class="perk"><img src="../assets/img/icons/vettoriale/check.svg" alt=""
-                            style="width:14px; height:14px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(50%) sepia(20%) saturate(1400%) hue-rotate(120deg) brightness(115%);">
+                            class="icon-img icon-14 icon-teal">
 
                         Onboarding e formazione inclusi</span>
                     <span class="perk"><img src="../assets/img/icons/vettoriale/check.svg" alt=""
-                            style="width:14px; height:14px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(50%) sepia(20%) saturate(1400%) hue-rotate(120deg) brightness(115%);">
+                            class="icon-img icon-14 icon-teal">
 
                         Prezzo dedicato ai professionisti</span>
                 </div>
             </div>
 
-            <div style="position:relative;" data-reveal="right">
-                <div
-                    style="background:var(--surface); border:1px solid var(--hairline); border-radius:24px; padding:22px; box-shadow:0 30px 70px -30px rgba(14,17,48,0.28);">
-                    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:18px;">
-                        <div style="display:flex; align-items:center; gap:10px;">
-                            <span class="logo-mark" style="height:26px;"></span>
-                            <span
-                                style="font-family:'Libre Franklin'; font-weight:700; font-size:15px; color:var(--ink);">Studio
+            <div class="reveal-wrap" data-reveal="right">
+                <div class="mock-dashboard">
+                    <div class="mock-dashboard-head">
+                        <div class="mock-dashboard-brand">
+                            <span class="logo-mark"></span>
+                            <span class="mock-dashboard-brand-name">Studio
                                 Verardi · Dashboard</span>
                         </div>
-                        <span
-                            style="font-size:11px; font-weight:700; color:var(--teal-ink); background:var(--teal-soft); padding:4px 10px; border-radius:999px;">42
+                        <span class="mock-dashboard-badge">42
                             clienti</span>
                     </div>
-                    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:14px;">
+                    <div class="mock-stats">
 
-                        <div
-                            style="background:var(--surface-alt); border:1px solid var(--hairline); border-radius:14px; padding:14px;">
+                        <div class="mock-stat-card">
                             <img src="../assets/img/icons/vettoriale/time.svg" alt=""
-                                style="width:18px; height:18px; display:block; flex-shrink:0; margin-bottom:10px; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);">
+                                class="mock-stat-icon icon-teal-ink">
 
-                            <div
-                                style="font-family:'Libre Franklin'; font-weight:700; font-size:24px; color:var(--ink); letter-spacing:-1px;">
+                            <div class="mock-stat-value">
                                 7</div>
-                            <div style="font-size:12px; color:var(--ink-3); margin-top:2px;">
+                            <div class="mock-stat-label">
                                 Scadenze oggi</div>
                         </div>
-                        <div
-                            style="background:var(--surface-alt); border:1px solid var(--hairline); border-radius:14px; padding:14px;">
+                        <div class="mock-stat-card">
                             <img src="../assets/img/icons/vettoriale/doc.svg" alt=""
-                                style="width:18px; height:18px; display:block; flex-shrink:0; margin-bottom:10px; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);">
+                                class="mock-stat-icon icon-teal-ink">
 
-                            <div
-                                style="font-family:'Libre Franklin'; font-weight:700; font-size:24px; color:var(--ink); letter-spacing:-1px;">
+                            <div class="mock-stat-value">
                                 12</div>
-                            <div style="font-size:12px; color:var(--ink-3); margin-top:2px;">Da
+                            <div class="mock-stat-label">Da
                                 revisionare</div>
                         </div>
-                        <div
-                            style="background:var(--surface-alt); border:1px solid var(--hairline); border-radius:14px; padding:14px;">
+                        <div class="mock-stat-card">
                             <img src="../assets/img/icons/vettoriale/check.svg" alt=""
-                                style="width:18px; height:18px; display:block; flex-shrink:0; margin-bottom:10px; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);">
+                                class="mock-stat-icon icon-teal-ink">
 
-                            <div
-                                style="font-family:'Libre Franklin'; font-weight:700; font-size:24px; color:var(--ink); letter-spacing:-1px;">
+                            <div class="mock-stat-value">
                                 38</div>
-                            <div style="font-size:12px; color:var(--ink-3); margin-top:2px;">In
+                            <div class="mock-stat-label">In
                                 regola</div>
                         </div>
                     </div>
-                    <div style="border:1px solid var(--hairline); border-radius:14px; overflow:hidden;">
+                    <div class="mock-client-list">
 
-                        <div
-                            style="display:flex; align-items:center; gap:12px; padding:12px 14px; border-bottom:1px solid var(--hairline);">
-                            <span
-                                style="width:32px; height:32px; border-radius:999px; background:var(--teal-soft); color:var(--teal-ink); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:12px; flex-shrink:0;">MR</span>
-                            <div style="flex:1; min-width:0;">
-                                <div style="font-weight:600; font-size:13.5px; color:var(--ink);">Marco Rossi</div>
-                                <div style="font-size:11.5px; color:var(--ink-3);">F24 in
+                        <div class="mock-client-row">
+                            <span class="mock-client-avatar">MR</span>
+                            <div class="mock-client-info">
+                                <div class="mock-client-name">Marco Rossi</div>
+                                <div class="mock-client-detail">F24 in
                                     scadenza · 4 giorni</div>
                             </div>
-                            <span
-                                style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.3px; padding:3px 8px; border-radius:999px; background:var(--surface-alt); color:#8e3f09;">Azione</span>
+                            <span class="mock-client-tag">Azione</span>
                         </div>
-                        <div
-                            style="display:flex; align-items:center; gap:12px; padding:12px 14px; border-bottom:1px solid var(--hairline);">
-                            <span
-                                style="width:32px; height:32px; border-radius:999px; background:var(--teal-soft); color:var(--teal-ink); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:12px; flex-shrink:0;">LF</span>
-                            <div style="flex:1; min-width:0;">
-                                <div style="font-weight:600; font-size:13.5px; color:var(--ink);">Lucia Ferri</div>
-                                <div style="font-size:11.5px; color:var(--ink-3);">Fattura da
+                        <div class="mock-client-row">
+                            <span class="mock-client-avatar">LF</span>
+                            <div class="mock-client-info">
+                                <div class="mock-client-name">Lucia Ferri</div>
+                                <div class="mock-client-detail">Fattura da
                                     approvare</div>
                             </div>
-                            <span
-                                style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.3px; padding:3px 8px; border-radius:999px; background:var(--surface-alt); color:#8e3f09;">Azione</span>
+                            <span class="mock-client-tag">Azione</span>
                         </div>
-                        <div style="display:flex; align-items:center; gap:12px; padding:12px 14px; ">
-                            <span
-                                style="width:32px; height:32px; border-radius:999px; background:var(--teal-soft); color:var(--teal-ink); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:12px; flex-shrink:0;">AB</span>
-                            <div style="flex:1; min-width:0;">
-                                <div style="font-weight:600; font-size:13.5px; color:var(--ink);">Andrea Bianchi</div>
-                                <div style="font-size:11.5px; color:var(--ink-3);">Tutto in
+                        <div class="mock-client-row">
+                            <span class="mock-client-avatar">AB</span>
+                            <div class="mock-client-info">
+                                <div class="mock-client-name">Andrea Bianchi</div>
+                                <div class="mock-client-detail">Tutto in
                                     regola</div>
                             </div>
-                            <span
-                                style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.3px; padding:3px 8px; border-radius:999px; background:var(--teal-soft); color:var(--teal-ink);">In
+                            <span class="mock-client-tag mock-client-tag--ok">In
                                 regola</span>
                         </div>
                     </div>
@@ -197,83 +179,64 @@
     </section>
 
     <!-- ─────────────── COME FUNZIONA ─────────────── -->
-    <section id="come-funziona"
-        style="padding:100px 0; background:var(--surface-alt); border-top:1px solid var(--hairline); border-bottom:1px solid var(--hairline);">
+    <section id="come-funziona" class="section-tinted-bordered">
         <div class="container">
-            <div style="text-align:center; max-width:680px; margin:0 auto 56px;" data-reveal>
+            <div class="section-head" data-reveal>
                 <span class="feat-eyebrow">Come si diventa partner</span>
-                <h2
-                    style="font-family:'Libre Franklin'; font-size:48px; font-weight:600; letter-spacing:-1.6px; color:var(--ink); margin:14px 0 0;">
-                    <em>Quattro passi</em> per portare lo studio su Balans.</h2>
-                <p style="font-size:17px; color:var(--ink-3); line-height:1.55; margin:16px 0 0;">Un processo lineare,
+                <h2><em>Quattro passi</em> per portare lo studio su Balans.</h2>
+                <p>Un processo lineare,
                     pensato per non stravolgere il modo in cui già lavori.
                 </p>
             </div>
-            <div class="steps-4" style="display:grid; grid-template-columns:repeat(4,1fr); gap:20px;">
+            <div class="steps-4">
 
-                <div
-                    style="background:var(--surface); border:1px solid var(--hairline); border-radius:20px; padding:26px; position:relative;">
-                    <span
-                        style="position:absolute; top:26px; right:26px; font-family:'Libre Franklin'; font-weight:700; font-size:13px; letter-spacing:0.3px; color:var(--bg); background:var(--ink); padding:4px 10px; border-radius:999px;">01</span>
-                    <div
-                        style="width:46px; height:46px; border-radius:13px; background:var(--teal-soft); display:flex; align-items:center; justify-content:center; margin-bottom:18px;">
+                <div class="step-card step-card--compact">
+                    <span class="step-badge">01</span>
+                    <div class="step-icon step-icon--lg">
                         <img src="../assets/img/icons/vettoriale/euro.svg" alt=""
-                            style="width:24px; height:24px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);">
+                            class="icon-img icon-24 icon-teal-ink">
 
                     </div>
-                    <div
-                        style="font-family:'Libre Franklin'; font-weight:700; font-size:18px; letter-spacing:-0.4px; color:var(--ink); margin-bottom:8px;">
+                    <div class="step-card-title">
                         Acquisti le licenze</div>
-                    <div style="font-size:14.5px; color:var(--ink-3); line-height:1.55;">Scegli
+                    <div class="step-card-text">Scegli
                         un pacchetto di licenze per i tuoi clienti, a un prezzo dedicato ai professionisti.</div>
                 </div>
-                <div
-                    style="background:var(--surface); border:1px solid var(--hairline); border-radius:20px; padding:26px; position:relative;">
-                    <span
-                        style="position:absolute; top:26px; right:26px; font-family:'Libre Franklin'; font-weight:700; font-size:13px; letter-spacing:0.3px; color:var(--bg); background:var(--ink); padding:4px 10px; border-radius:999px;">02</span>
-                    <div
-                        style="width:46px; height:46px; border-radius:13px; background:var(--teal-soft); display:flex; align-items:center; justify-content:center; margin-bottom:18px;">
+                <div class="step-card step-card--compact">
+                    <span class="step-badge">02</span>
+                    <div class="step-icon step-icon--lg">
                         <img src="../assets/img/icons/vettoriale/user.svg" alt=""
-                            style="width:24px; height:24px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);">
+                            class="icon-img icon-24 icon-teal-ink">
 
                     </div>
-                    <div
-                        style="font-family:'Libre Franklin'; font-weight:700; font-size:18px; letter-spacing:-0.4px; color:var(--ink); margin-bottom:8px;">
+                    <div class="step-card-title">
                         Affili i tuoi clienti</div>
-                    <div style="font-size:14.5px; color:var(--ink-3); line-height:1.55;">Li
+                    <div class="step-card-text">Li
                         inviti con un semplice link: scaricano l’app e vengono collegati automaticamente al tuo studio.
                     </div>
                 </div>
-                <div
-                    style="background:var(--surface); border:1px solid var(--hairline); border-radius:20px; padding:26px; position:relative;">
-                    <span
-                        style="position:absolute; top:26px; right:26px; font-family:'Libre Franklin'; font-weight:700; font-size:13px; letter-spacing:0.3px; color:var(--bg); background:var(--ink); padding:4px 10px; border-radius:999px;">03</span>
-                    <div
-                        style="width:46px; height:46px; border-radius:13px; background:var(--teal-soft); display:flex; align-items:center; justify-content:center; margin-bottom:18px;">
+                <div class="step-card step-card--compact">
+                    <span class="step-badge">03</span>
+                    <div class="step-icon step-icon--lg">
                         <img src="../assets/img/icons/vettoriale/doc.svg" alt=""
-                            style="width:24px; height:24px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);">
+                            class="icon-img icon-24 icon-teal-ink">
 
                     </div>
-                    <div
-                        style="font-family:'Libre Franklin'; font-weight:700; font-size:18px; letter-spacing:-0.4px; color:var(--ink); margin-bottom:8px;">
+                    <div class="step-card-title">
                         Autonomia dei clienti</div>
-                    <div style="font-size:14.5px; color:var(--ink-3); line-height:1.55;">I
+                    <div class="step-card-text">I
                         clienti gestiscono fatture e movimenti in autonomia. I dati arrivano ordinati a te.</div>
                 </div>
-                <div
-                    style="background:var(--surface); border:1px solid var(--hairline); border-radius:20px; padding:26px; position:relative;">
-                    <span
-                        style="position:absolute; top:26px; right:26px; font-family:'Libre Franklin'; font-weight:700; font-size:13px; letter-spacing:0.3px; color:var(--bg); background:var(--ink); padding:4px 10px; border-radius:999px;">04</span>
-                    <div
-                        style="width:46px; height:46px; border-radius:13px; background:var(--teal-soft); display:flex; align-items:center; justify-content:center; margin-bottom:18px;">
+                <div class="step-card step-card--compact">
+                    <span class="step-badge">04</span>
+                    <div class="step-icon step-icon--lg">
                         <img src="../assets/img/icons/vettoriale/balance.svg" alt=""
-                            style="width:24px; height:24px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);">
+                            class="icon-img icon-24 icon-teal-ink">
 
                     </div>
-                    <div
-                        style="font-family:'Libre Franklin'; font-weight:700; font-size:18px; letter-spacing:-0.4px; color:var(--ink); margin-bottom:8px;">
+                    <div class="step-card-title">
                         Tu gestisci dalla dashboard</div>
-                    <div style="font-size:14.5px; color:var(--ink-3); line-height:1.55;">Segui
+                    <div class="step-card-text">Segui
                         scadenze e pratiche di tutti, e comunichi con ognuno dalla chat privata dell’app.</div>
                 </div>
             </div>
@@ -281,55 +244,51 @@
     </section>
 
     <!-- ─────────────── DASHBOARD ─────────────── -->
-    <section id="dashboard" style="padding:110px 0;">
+    <section id="dashboard" class="section-plain">
         <div class="container">
-            <div class="dash-2col" style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;">
-                <div data-reveal>
+            <div class="dash-2col">
+                <div class="feature-copy" data-reveal>
                     <span class="feat-eyebrow">La dashboard dello studio</span>
-                    <h2
-                        style="font-family:'Libre Franklin'; font-size:50px; font-weight:600; letter-spacing:-1.8px; color:var(--ink); margin:14px 0 0;">
-                        Tutte le pratiche dei tuoi clienti, <span
-                            style="font-family:'Galldis',serif; font-weight:400; color:var(--teal-ink);">in un colpo
+                    <h2>Tutte le pratiche dei tuoi clienti, <span>in un colpo
                             d’occhio</span></h2>
-                    <p
-                        style="font-size:17.5px; color:var(--ink-3); line-height:1.6; margin:22px 0 30px; max-width:480px;">
+                    <p>
                         Niente più email perse e cartelle sparse. Dal pannello dello studio vedi
                         scadenze, documenti e stato di ogni cliente, sempre aggiornati in tempo reale.
                     </p>
-                    <div style="display:flex; flex-direction:column; gap:16px;">
+                    <div class="feature-copy-list">
 
-                        <div style="display:flex; gap:14px; align-items:flex-start;">
+                        <div class="feature-copy-item">
                             <img src="../assets/img/icons/vettoriale/check.svg" alt=""
-                                style="width:22px; height:22px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(50%) sepia(20%) saturate(1400%) hue-rotate(120deg) brightness(115%);">
+                                class="icon-img icon-22 icon-teal">
 
                             <div>
-                                <div style="font-weight:700; font-size:16px; color:var(--ink); letter-spacing:-0.2px;">
+                                <div class="feature-copy-item-title">
                                     Calendario scadenze unico</div>
-                                <div style="font-size:14.5px; color:var(--ink-3); line-height:1.5; margin-top:3px;">
+                                <div class="feature-copy-item-desc">
                                     Tutte le scadenze fiscali dei clienti in un solo posto,
                                     con promemoria automatici.</div>
                             </div>
                         </div>
-                        <div style="display:flex; gap:14px; align-items:flex-start;">
+                        <div class="feature-copy-item">
                             <img src="../assets/img/icons/vettoriale/check.svg" alt=""
-                                style="width:22px; height:22px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(50%) sepia(20%) saturate(1400%) hue-rotate(120deg) brightness(115%);">
+                                class="icon-img icon-22 icon-teal">
 
                             <div>
-                                <div style="font-weight:700; font-size:16px; color:var(--ink); letter-spacing:-0.2px;">
+                                <div class="feature-copy-item-title">
                                     Scheda per ogni cliente</div>
-                                <div style="font-size:14.5px; color:var(--ink-3); line-height:1.5; margin-top:3px;">
+                                <div class="feature-copy-item-desc">
                                     Fatture, documenti e stato delle pratiche raccolti in un
                                     fascicolo ordinato.</div>
                             </div>
                         </div>
-                        <div style="display:flex; gap:14px; align-items:flex-start;">
+                        <div class="feature-copy-item">
                             <img src="../assets/img/icons/vettoriale/check.svg" alt=""
-                                style="width:22px; height:22px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(50%) sepia(20%) saturate(1400%) hue-rotate(120deg) brightness(115%);">
+                                class="icon-img icon-22 icon-teal">
 
                             <div>
-                                <div style="font-weight:700; font-size:16px; color:var(--ink); letter-spacing:-0.2px;">
+                                <div class="feature-copy-item-title">
                                     Avvisi intelligenti</div>
-                                <div style="font-size:14.5px; color:var(--ink-3); line-height:1.5; margin-top:3px;">Sai
+                                <div class="feature-copy-item-desc">Sai
                                     subito chi richiede un’azione e cosa manca, prima che
                                     diventi un problema.</div>
                             </div>
@@ -337,66 +296,51 @@
                     </div>
                 </div>
                 <div data-reveal="right">
-                    <div
-                        style="background:var(--surface); border-radius:24px; border: 1px solid var(--hairline); padding:26px; position:relative; overflow:hidden;">
-                        <div
-                            style="position:absolute; inset:0; pointer-events:none; background:radial-gradient(circle at 80% 10%, #fff 0%, transparent 45%);">
-                        </div>
-                        <div style="position:relative;">
-                            <div
-                                style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px;">
-                                <span
-                                    style="color:var(--ink); font-family:'Libre Franklin'; letter-spacing: 0.25px; font-weight:700; font-size:15px;">CALENDARIO
+                    <div class="calendar-card">
+                        <div class="calendar-card-glow"></div>
+                        <div class="calendar-card-inner">
+                            <div class="calendar-card-head">
+                                <span class="calendar-card-head-title">CALENDARIO
                                     SCADENZE</span>
-                                <span
-                                    style="font-size:11px; color:var(--teal-ink); background:var(--teal-soft); padding:4px 10px; border-radius:999px; font-weight:700;">Maggio
+                                <span class="calendar-card-head-badge">Maggio
                                     2026</span>
                             </div>
 
-                            <div
-                                style="display:flex; align-items:center; gap:14px; padding:14px 0; border-bottom:1px solid var(--hairline);">
-                                <div
-                                    style="width:54px; flex-shrink:0; color:var(--teal-ink); font-family:'Libre Franklin'; letter-spacing: 0.25px; font-weight:700; font-size:14px;">
+                            <div class="calendar-row">
+                                <div class="calendar-row-date">
                                     16 mag</div>
-                                <div style="flex:1;">
-                                    <div
-                                        style="color:var(--ink); font-weight:500; letter-spacing: 0.25px; font-size:14px;">
+                                <div class="flex-1">
+                                    <div class="calendar-row-label">
                                         Liquidazione IVA</div>
                                 </div>
-                                <div style="color:var(--ink-3); font-size:12px;">9
+                                <div class="calendar-row-count">9
                                     clienti</div>
                             </div>
-                            <div
-                                style="display:flex; align-items:center; gap:14px; padding:14px 0; border-bottom:1px solid var(--hairline);">
-                                <div
-                                    style="width:54px; flex-shrink:0; color:#8e3f09; font-family:'Libre Franklin'; letter-spacing: 0.25px; font-weight:700; font-size:14px;">
+                            <div class="calendar-row">
+                                <div class="calendar-row-date calendar-row-date--urgent">
                                     31 mag</div>
-                                <div style="flex:1;">
-                                    <div
-                                        style="color:var(--ink); font-weight:500; letter-spacing: 0.25px; font-size:14px;">
+                                <div class="flex-1">
+                                    <div class="calendar-row-label">
                                         Versamento F24</div>
                                 </div>
-                                <div style="color:var(--ink-3); font-size:12px;">14
+                                <div class="calendar-row-count">14
                                     clienti</div>
                             </div>
-                            <div style="display:flex; align-items:center; gap:14px; padding:14px 0; ">
-                                <div
-                                    style="width:54px; flex-shrink:0; color:var(--ink-2); font-family:'Libre Franklin'; letter-spacing: 0.25px; font-weight:700; font-size:14px;">
+                            <div class="calendar-row calendar-row--last">
+                                <div class="calendar-row-date calendar-row-date--muted">
                                     16 giu</div>
-                                <div style="flex:1;">
-                                    <div
-                                        style="color:var(--ink); font-weight:500; letter-spacing: 0.25px; font-size:14px;">
+                                <div class="flex-1">
+                                    <div class="calendar-row-label">
                                         Diritto camerale</div>
                                 </div>
-                                <div style="color:var(--ink-3); font-size:12px;">6
+                                <div class="calendar-row-count">6
                                     clienti</div>
                             </div>
-                            <div
-                                style="margin-top:18px; background:var(--surface-alt); border:1px solid var(--hairline); border-radius:14px; padding:14px 16px; display:flex; align-items:center; gap:12px;">
+                            <div class="calendar-reminder">
                                 <img src="../assets/img/icons/vettoriale/check.svg" alt=""
-                                    style="width:20px; height:20px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(70%) sepia(70%) saturate(200%) hue-rotate(115deg) brightness(100%);">
+                                    class="icon-img icon-20 icon-mint">
 
-                                <span style="color:var(--ink); font-size:13.5px; line-height:1.45;">Promemoria
+                                <span>Promemoria
                                     inviati automaticamente ai clienti
                                     coinvolti.</span>
                             </div>
@@ -408,12 +352,10 @@
     </section>
 
     <!-- ─────────────── CHAT PRIVATA ─────────────── -->
-    <section
-        style="padding:110px 0; background:var(--surface-alt); border-top:1px solid var(--hairline); border-bottom:1px solid var(--hairline);">
+    <section class="section-tinted-bordered">
         <div class="container">
-            <div class="dash-2col"
-                style="display:grid; grid-template-columns:0.95fr 1.05fr; gap:80px; align-items:center;">
-                <div style="display:flex; justify-content:center;" data-reveal="left">
+            <div class="dash-2col dash-2col--reverse">
+                <div class="phone-center" data-reveal="left">
                     <div class="phone">
                         <div class="phone-island"></div>
                         <div class="phone-content">
@@ -439,9 +381,9 @@
                             </div>
                             <div class="ps-chat-hdr">
                                 <div class="av"><img src="../assets/img/icons/vettoriale/menu.svg" alt=""
-                                        style="width:20px; height:20px; display:inline-block; flex-shrink:0;"></div>
+                                        class="icon-img icon-20"></div>
 
-                                <div style="flex:1;">
+                                <div class="flex-1">
                                     <div class="nm">Studio Verardi</div>
                                     <div class="st">&#9679; Il tuo commercialista</div>
                                 </div>
@@ -455,7 +397,7 @@
                                     qui appena è pronto.</div>
                                 <div class="bub ai-card">
                                     <div class="h"><img src="../assets/img/icons/vettoriale/doc.svg" alt=""
-                                            style="width:11px; height:11px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);">
+                                            class="icon-img icon-11 icon-teal-ink">
                                         Documento condiviso</div>
                                     <div class="row"><span class="k">F24 maggio 2026</span><span class="v">Pronto</span>
                                     </div>
@@ -465,59 +407,55 @@
                             <div class="ps-chat-comp">
                                 <span class="ph">Scrivi allo studio...</span>
                                 <div class="send-btn"><img src="../assets/img/icons/vettoriale/up.svg" alt=""
-                                        style="width:16px; height:16px; display:inline-block; flex-shrink:0; filter:brightness(0) invert(1);">
+                                        class="icon-img icon-16 icon-white">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div data-reveal>
+                <div class="feature-copy" data-reveal>
                     <span class="feat-eyebrow">Un canale unico</span>
-                    <h2
-                        style="font-family:'Libre Franklin'; font-size:50px; font-weight:600; letter-spacing:-1.8px; color:var(--ink); margin:14px 0 0;">
-                        Una chat per ogni cliente, <span
-                            style="font-family:'Galldis',serif; font-weight:400; color:var(--teal-ink);">dentro la tua
+                    <h2>Una chat per ogni cliente, <span>dentro la tua
                             app</span></h2>
-                    <p
-                        style="font-size:17.5px; color:var(--ink-3); line-height:1.6; margin:22px 0 30px; max-width:480px;">
+                    <p>
                         Ogni cliente comunica con lo studio da una chat privata nell’app: domande, richieste
                         e documenti restano in un unico filo, collegato alle sue pratiche. Niente più
                         messaggi e allegati persi tra mail, WhatsApp e telefonate.
                     </p>
-                    <div style="display:flex; flex-direction:column; gap:16px;">
+                    <div class="feature-copy-list">
 
-                        <div style="display:flex; gap:14px; align-items:flex-start;">
+                        <div class="feature-copy-item">
                             <img src="../assets/img/icons/vettoriale/check.svg" alt=""
-                                style="width:22px; height:22px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(50%) sepia(20%) saturate(1400%) hue-rotate(120deg) brightness(115%);">
+                                class="icon-img icon-22 icon-teal">
 
                             <div>
-                                <div style="font-weight:700; font-size:16px; color:var(--ink); letter-spacing:-0.2px;">
+                                <div class="feature-copy-item-title">
                                     Conversazioni per cliente</div>
-                                <div style="font-size:14.5px; color:var(--ink-3); line-height:1.5; margin-top:3px;">Ogni
+                                <div class="feature-copy-item-desc">Ogni
                                     dialogo collegato al cliente e alle sue pratiche.
                                 </div>
                             </div>
                         </div>
-                        <div style="display:flex; gap:14px; align-items:flex-start;">
+                        <div class="feature-copy-item">
                             <img src="../assets/img/icons/vettoriale/check.svg" alt=""
-                                style="width:22px; height:22px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(50%) sepia(20%) saturate(1400%) hue-rotate(120deg) brightness(115%);">
+                                class="icon-img icon-22 icon-teal">
 
                             <div>
-                                <div style="font-weight:700; font-size:16px; color:var(--ink); letter-spacing:-0.2px;">
+                                <div class="feature-copy-item-title">
                                     Documenti nel contesto</div>
-                                <div style="font-size:14.5px; color:var(--ink-3); line-height:1.5; margin-top:3px;">
+                                <div class="feature-copy-item-desc">
                                     Condividi e ricevi file direttamente nella chat, già
                                     archiviati.</div>
                             </div>
                         </div>
-                        <div style="display:flex; gap:14px; align-items:flex-start;">
+                        <div class="feature-copy-item">
                             <img src="../assets/img/icons/vettoriale/check.svg" alt=""
-                                style="width:22px; height:22px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(50%) sepia(20%) saturate(1400%) hue-rotate(120deg) brightness(115%);">
+                                class="icon-img icon-22 icon-teal">
 
                             <div>
-                                <div style="font-weight:700; font-size:16px; color:var(--ink); letter-spacing:-0.2px;">
+                                <div class="feature-copy-item-title">
                                     Storico sempre disponibile</div>
-                                <div style="font-size:14.5px; color:var(--ink-3); line-height:1.5; margin-top:3px;">
+                                <div class="feature-copy-item-desc">
                                     Ritrovi in pochi secondi cosa è stato detto e quando.
                                 </div>
                             </div>
@@ -529,108 +467,87 @@
     </section>
 
     <!-- ─────────────── VANTAGGI ─────────────── -->
-    <section id="vantaggi" style="padding:110px 0;">
+    <section id="vantaggi" class="section-plain">
         <div class="container">
-            <div style="text-align:center; max-width:680px; margin:0 auto 56px;" data-reveal>
+            <div class="section-head" data-reveal>
                 <span class="feat-eyebrow">Perché conviene allo studio</span>
-                <h2
-                    style="font-family:'Libre Franklin'; font-size:48px; font-weight:600; letter-spacing:-1.6px; color:var(--ink); margin:14px 0 0;">
-                    Più tempo per la consulenza, meno per la gestione.</h2>
+                <h2>Più tempo per la consulenza, meno per la gestione.</h2>
             </div>
-            <div class="steps-3" style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+            <div class="steps-3">
 
-                <div
-                    style="background:var(--surface); border:1px solid var(--hairline); border-radius:18px; padding:26px;">
-                    <div
-                        style="width:44px; height:44px; border-radius:12px; background:var(--teal-soft); display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+                <div class="step-card step-card--compact">
+                    <div class="step-icon step-icon--md">
                         <img src="../assets/img/icons/vettoriale/time.svg" alt=""
-                            style="width:22px; height:22px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);">
+                            class="icon-img icon-22 icon-teal-ink">
 
                     </div>
-                    <div
-                        style="font-family:'Libre Franklin'; font-weight:700; font-size:17.5px; letter-spacing:-0.3px; color:var(--ink); margin-bottom:8px;">
+                    <div class="step-card-title step-card-title--sm">
                         Risparmi tempo per cliente</div>
-                    <div style="font-size:14.5px; color:var(--ink-3); line-height:1.55;">Meno
+                    <div class="step-card-text">Meno
                         raccolta documenti e data entry: i dati arrivano già ordinati dall’app.</div>
                 </div>
-                <div
-                    style="background:var(--surface); border:1px solid var(--hairline); border-radius:18px; padding:26px;">
-                    <div
-                        style="width:44px; height:44px; border-radius:12px; background:var(--teal-soft); display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+                <div class="step-card step-card--compact">
+                    <div class="step-icon step-icon--md">
                         <img src="../assets/img/icons/vettoriale/doc.svg" alt=""
-                            style="width:22px; height:22px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);">
+                            class="icon-img icon-22 icon-teal-ink">
 
                     </div>
-                    <div
-                        style="font-family:'Libre Franklin'; font-weight:700; font-size:17.5px; letter-spacing:-0.3px; color:var(--ink); margin-bottom:8px;">
+                    <div class="step-card-title step-card-title--sm">
                         Tutto organizzato</div>
-                    <div style="font-size:14.5px; color:var(--ink-3); line-height:1.55;">Un
+                    <div class="step-card-text">Un
                         solo posto per pratiche, documenti e comunicazioni. Mai più file sparsi.</div>
                 </div>
-                <div
-                    style="background:var(--surface); border:1px solid var(--hairline); border-radius:18px; padding:26px;">
-                    <div
-                        style="width:44px; height:44px; border-radius:12px; background:var(--teal-soft); display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+                <div class="step-card step-card--compact">
+                    <div class="step-icon step-icon--md">
                         <img src="../assets/img/icons/vettoriale/user.svg" alt=""
-                            style="width:22px; height:22px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);">
+                            class="icon-img icon-22 icon-teal-ink">
 
                     </div>
-                    <div
-                        style="font-family:'Libre Franklin'; font-weight:700; font-size:17.5px; letter-spacing:-0.3px; color:var(--ink); margin-bottom:8px;">
+                    <div class="step-card-title step-card-title--sm">
                         Relazione più forte</div>
-                    <div style="font-size:14.5px; color:var(--ink-3); line-height:1.55;">Resti
+                    <div class="step-card-text">Resti
                         il punto di riferimento del cliente, con un’esperienza moderna a tuo nome.</div>
                 </div>
-                <div
-                    style="background:var(--surface); border:1px solid var(--hairline); border-radius:18px; padding:26px;">
-                    <div
-                        style="width:44px; height:44px; border-radius:12px; background:var(--teal-soft); display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+                <div class="step-card step-card--compact">
+                    <div class="step-icon step-icon--md">
                         <img src="../assets/img/icons/vettoriale/check.svg" alt=""
-                            style="width:22px; height:22px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);">
+                            class="icon-img icon-22 icon-teal-ink">
 
                     </div>
-                    <div
-                        style="font-family:'Libre Franklin'; font-weight:700; font-size:17.5px; letter-spacing:-0.3px; color:var(--ink); margin-bottom:8px;">
+                    <div class="step-card-title step-card-title--sm">
                         Clienti più autonomi</div>
-                    <div style="font-size:14.5px; color:var(--ink-3); line-height:1.55;">
+                    <div class="step-card-text">
                         Fatturano e registrano movimenti da soli, con meno errori da correggere.</div>
                 </div>
-                <div
-                    style="background:var(--surface); border:1px solid var(--hairline); border-radius:18px; padding:26px;">
-                    <div
-                        style="width:44px; height:44px; border-radius:12px; background:var(--teal-soft); display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+                <div class="step-card step-card--compact">
+                    <div class="step-icon step-icon--md">
                         <img src="../assets/img/icons/vettoriale/balance.svg" alt=""
-                            style="width:22px; height:22px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);">
+                            class="icon-img icon-22 icon-teal-ink">
 
                     </div>
-                    <div
-                        style="font-family:'Libre Franklin'; font-weight:700; font-size:17.5px; letter-spacing:-0.3px; color:var(--ink); margin-bottom:8px;">
+                    <div class="step-card-title step-card-title--sm">
                         Crescita dello studio</div>
-                    <div style="font-size:14.5px; color:var(--ink-3); line-height:1.55;">
+                    <div class="step-card-text">
                         Gestisci più clienti con la stessa struttura, senza aumentare il carico.</div>
                 </div>
-                <div
-                    style="background:var(--surface); border:1px solid var(--hairline); border-radius:18px; padding:26px;">
-                    <div
-                        style="width:44px; height:44px; border-radius:12px; background:var(--teal-soft); display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+                <div class="step-card step-card--compact">
+                    <div class="step-icon step-icon--md">
                         <img src="../assets/img/icons/vettoriale/hub.svg" alt=""
-                            style="width:22px; height:22px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);">
+                            class="icon-img icon-22 icon-teal-ink">
 
                     </div>
-                    <div
-                        style="font-family:'Libre Franklin'; font-weight:700; font-size:17.5px; letter-spacing:-0.3px; color:var(--ink); margin-bottom:8px;">
+                    <div class="step-card-title step-card-title--sm">
                         Affianca i tuoi strumenti</div>
-                    <div style="font-size:14.5px; color:var(--ink-3); line-height:1.55;">
+                    <div class="step-card-text">
                         Balans non sostituisce il gestionale del tuo studio: ci lavora accanto.</div>
                 </div>
             </div>
-            <div data-reveal="scale"
-                style="margin-top:24px; display:flex; gap:16px; align-items:flex-start; background:var(--teal-tint); border:1px solid var(--teal-soft); border-radius:16px; padding:22px 26px;">
+            <div class="reassurance-box" data-reveal="scale">
                 <img src="../assets/img/icons/vettoriale/check.svg" alt=""
-                    style="width:24px; height:24px; display:inline-block; flex-shrink:0; margin-top:2px; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);">
+                    class="icon-img icon-24 icon-teal-ink">
 
-                <div style="font-size:16px; line-height:1.55; color:var(--ink-2);">
-                    <strong style="color:var(--ink); font-weight:700;">Balans non sostituisce
+                <div class="reassurance-box-text">
+                    <strong>Balans non sostituisce
                         il gestionale del tuo studio.</strong>
                     Ci lavora accanto: fa risparmiare tempo nei processi per ogni cliente e tiene tutto organizzato,
                     senza stravolgere i tuoi strumenti.
@@ -640,74 +557,65 @@
     </section>
 
     <!-- ─────────────── PACCHETTO ─────────────── -->
-    <section style="padding:110px 0; background:var(--navy); color:#fff; position:relative; overflow:hidden;">
-        <div
-            style="position:absolute; inset:0; pointer-events:none; background:radial-gradient(circle at 16% 22%, rgba(26,191,160,0.16) 0%, transparent 42%), radial-gradient(circle at 86% 84%, rgba(26,191,160,0.08) 0%, transparent 46%);">
+    <section class="dark-glow-section">
+        <div class="dark-glow-bg">
         </div>
-        <div class="container" style="position:relative;">
-            <div class="dash-2col" style="display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:center;">
-                <div data-reveal>
-                    <span class="feat-eyebrow" style="background:rgba(26,191,160,0.16); color:#7FE6CE;">Il pacchetto
+        <div class="container">
+            <div class="dash-2col dash-2col--tight">
+                <div class="feature-copy feature-copy--dark" data-reveal>
+                    <span class="feat-eyebrow business-eyebrow">Il pacchetto
                         licenze</span>
-                    <h2
-                        style="color:#fff; font-family:'Libre Franklin'; font-size:50px; font-weight:600; letter-spacing:-1.8px; margin:14px 0 0;">
-                        Un prezzo pensato per i professionisti.</h2>
-                    <p
-                        style="color:rgba(255,255,255,0.72); font-size:17.5px; line-height:1.6; margin:22px 0 0; max-width:460px;">
+                    <h2>Un prezzo pensato per i professionisti.</h2>
+                    <p>
                         Scegli quante licenze attivare in base al tuo parco clienti. Le gestisci tutte da
                         un’unica dashboard e le assegni in pochi minuti. Onboarding e formazione del team inclusi.
                     </p>
-                    <div style="display:flex; align-items:center; gap:18px; flex-wrap:wrap; margin-top:34px;">
-                        <button type="button" data-demo-scroll class="hero-btn"
-                            style="height:54px; padding:0 26px; background:var(--teal); color:#06231D; border:0; border-radius:14px; font-family:'Libre Franklin'; font-weight:700; font-size:15px; letter-spacing:-0.2px; cursor:pointer;">
+                    <div class="business-actions business-actions--spaced">
+                        <button type="button" data-demo-scroll class="hero-btn business-cta-btn">
                             Contattaci per Balans Business
                         </button>
-                        <span style="font-size:13.5px; color:rgba(255,255,255,0.6);">Ti
+                        <span class="business-note">Ti
                             rispondiamo entro 24h</span>
                     </div>
                 </div>
-                <div data-reveal="scale"
-                    style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.10); border-radius:24px; padding:36px;">
-                    <div
-                        style="font-family:'Libre Franklin'; font-size:11.5px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:#7FE6CE; margin-bottom:24px;">
+                <div class="stat-panel" data-reveal="scale">
+                    <div class="stat-panel-label">
                         Pacchetto studio · esempio</div>
-                    <div style="display:flex; align-items:baseline; gap:10px; margin-bottom:6px;">
-                        <span
-                            style="font-family:'Libre Franklin'; font-size:64px; font-weight:700; letter-spacing:-2.5px; line-height:1;" data-slot="70">70</span>
-                        <span style="font-size:17px; color:rgba(255,255,255,0.7); font-weight:600;">licenze
+                    <div class="stat-panel-figure">
+                        <span class="stat-panel-number" data-slot="70">70</span>
+                        <span class="stat-panel-unit">licenze
                             cliente</span>
                     </div>
-                    <div style="font-size:14.5px; color:rgba(255,255,255,0.6); margin-bottom:28px;">attivabili in pochi
+                    <div class="stat-panel-caption">attivabili in pochi
                         minuti, gestite da un’unica dashboard.</div>
-                    <div
-                        style="border-top:1px solid rgba(255,255,255,0.10); padding-top:22px; display:flex; flex-direction:column; gap:16px;">
+                    <div class="stat-panel-list">
 
-                        <div style="display:flex; align-items:center; gap:12px;">
+                        <div class="stat-panel-item">
                             <img src="../assets/img/icons/vettoriale/user.svg" alt=""
-                                style="width:20px; height:20px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(70%) sepia(70%) saturate(200%) hue-rotate(115deg) brightness(100%);">
+                                class="icon-img icon-20 icon-mint">
 
-                            <span style="font-size:15px; color:rgba(255,255,255,0.88);">Tutti
+                            <span>Tutti
                                 i clienti dello studio in un’unica vista</span>
                         </div>
-                        <div style="display:flex; align-items:center; gap:12px;">
+                        <div class="stat-panel-item">
                             <img src="../assets/img/icons/vettoriale/chat.svg" alt=""
-                                style="width:20px; height:20px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(70%) sepia(70%) saturate(200%) hue-rotate(115deg) brightness(100%);">
+                                class="icon-img icon-20 icon-mint">
 
-                            <span style="font-size:15px; color:rgba(255,255,255,0.88);">Chat
+                            <span>Chat
                                 privata studio ↔ cliente per ognuno</span>
                         </div>
-                        <div style="display:flex; align-items:center; gap:12px;">
+                        <div class="stat-panel-item">
                             <img src="../assets/img/icons/vettoriale/doc.svg" alt=""
-                                style="width:20px; height:20px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(70%) sepia(70%) saturate(200%) hue-rotate(115deg) brightness(100%);">
+                                class="icon-img icon-20 icon-mint">
 
-                            <span style="font-size:15px; color:rgba(255,255,255,0.88);">Documenti e fatture sempre
+                            <span>Documenti e fatture sempre
                                 sincronizzati</span>
                         </div>
-                        <div style="display:flex; align-items:center; gap:12px;">
+                        <div class="stat-panel-item">
                             <img src="../assets/img/icons/vettoriale/balance.svg" alt=""
-                                style="width:20px; height:20px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(70%) sepia(70%) saturate(200%) hue-rotate(115deg) brightness(100%);">
+                                class="icon-img icon-20 icon-mint">
 
-                            <span style="font-size:15px; color:rgba(255,255,255,0.88);">Lo
+                            <span>Lo
                                 studio resta il punto di riferimento</span>
                         </div>
                     </div>
@@ -717,13 +625,11 @@
     </section>
 
     <!-- ─────────────── FAQ ─────────────── -->
-    <section id="faq" style="padding:100px 0;">
-        <div class="container" style="max-width:820px;">
-            <div style="text-align:center; margin-bottom:48px;" data-reveal>
+    <section id="faq" class="section-faq">
+        <div class="container container--820">
+            <div class="section-head section-head--wide" data-reveal>
                 <span class="feat-eyebrow">Domande frequenti</span>
-                <h2
-                    style="font-family:'Libre Franklin'; font-size:46px; font-weight:600; letter-spacing:-1.6px; color:var(--ink); margin:14px 0 0;">
-                    Tutto quello che gli studi ci chiedono.</h2>
+                <h2>Tutto quello che gli studi ci chiedono.</h2>
             </div>
             <div class="faq-list">
 
@@ -731,8 +637,7 @@
                     <button class="faq-q" type="button">
                         <span>Balans sostituisce il mio gestionale?</span>
                         <span class="faq-icon" aria-hidden="true"></span>
-                        <img src="../assets/img/icons/png/chevronDown.png" alt="" class="chev"
-                            style="display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(70%) sepia(20%) saturate(250%) hue-rotate(190deg) brightness(60%);">
+                        <img src="../assets/img/icons/png/chevronDown.png" alt="" class="chev">
                     </button>
                     <div class="faq-a">
                         No. Balans affianca il gestionale dello studio: serve a snellire la
@@ -744,8 +649,7 @@
                     <button class="faq-q" type="button">
                         <span>Come vengono assegnate le licenze ai clienti?</span>
                         <span class="faq-icon" aria-hidden="true"></span>
-                        <img src="../assets/img/icons/png/chevronDown.png" alt="" class="chev"
-                            style="display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(70%) sepia(20%) saturate(250%) hue-rotate(190deg) brightness(60%);">
+                        <img src="../assets/img/icons/png/chevronDown.png" alt="" class="chev">
                     </button>
                     <div class="faq-a">
                         Acquisti un pacchetto e inviti i tuoi clienti con un link. Loro
@@ -757,8 +661,7 @@
                     <button class="faq-q" type="button">
                         <span>I miei clienti devono essere esperti di tecnologia?</span>
                         <span class="faq-icon" aria-hidden="true"></span>
-                        <img src="../assets/img/icons/png/chevronDown.png" alt="" class="chev"
-                            style="display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(70%) sepia(20%) saturate(250%) hue-rotate(190deg) brightness(60%);">
+                        <img src="../assets/img/icons/png/chevronDown.png" alt="" class="chev">
                     </button>
                     <div class="faq-a">
                         No. L’app è pensata per essere semplice come scrivere un messaggio.
@@ -770,8 +673,7 @@
                     <button class="faq-q" type="button">
                         <span>I dati dei clienti sono al sicuro?</span>
                         <span class="faq-icon" aria-hidden="true"></span>
-                        <img src="../assets/img/icons/png/chevronDown.png" alt="" class="chev"
-                            style="display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(70%) sepia(20%) saturate(250%) hue-rotate(190deg) brightness(60%);">
+                        <img src="../assets/img/icons/png/chevronDown.png" alt="" class="chev">
                     </button>
                     <div class="faq-a">
                         Sì. I dati sono protetti, ospitati in Europa e trattati nel
@@ -782,8 +684,7 @@
                     <button class="faq-q" type="button">
                         <span>Posso provare Balans Business prima di acquistare?</span>
                         <span class="faq-icon" aria-hidden="true"></span>
-                        <img src="../assets/img/icons/png/chevronDown.png" alt="" class="chev"
-                            style="display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(70%) sepia(20%) saturate(250%) hue-rotate(190deg) brightness(60%);">
+                        <img src="../assets/img/icons/png/chevronDown.png" alt="" class="chev">
                     </button>
                     <div class="faq-a">
                         Certo. Ti mostriamo la dashboard in una demo dedicata e definiamo
@@ -795,36 +696,31 @@
     </section>
 
     <!-- ─────────────── CTA finale ─────────────── -->
-    <section class="cta"
-        style="background:linear-gradient(to bottom, #073D33 0%, #0C6957 100%); color:#fff; padding:100px 0;">
-        <div class="container" style="text-align:center; max-width:760px;" data-reveal>
-            <h2
-                style="font-family:'Libre Franklin'; font-size:54px; font-weight:600; letter-spacing:-2px; color:#fff; margin:0 auto; max-width:600px;">
+    <section class="cta cta--dark">
+        <div class="container container--760-centered" data-reveal>
+            <h2 class="cta-title--lg">
                 Fai crescere il tuo studio con Balans</h2>
-            <p
-                style="font-size:19px; color:rgba(255,255,255,0.82); line-height:1.55; margin:22px auto 36px; max-width:560px;">
+            <p class="cta-final-desc">
                 Prenota una demo: ti mostriamo la dashboard, rispondiamo alle tue domande e
                 costruiamo insieme il pacchetto su misura per il tuo parco clienti.
             </p>
-            <button class="cta-btn-white" type="button" data-demo-scroll
-                style="height:56px; padding:0 30px; color:var(--teal-ink); background:#fff; border:0; border-radius:14px; font-family:'Libre Franklin'; font-weight:700; font-size:15.5px; cursor:pointer; box-shadow:0 1px 0 rgba(255,255,255,0.4) inset, 0 8px 22px -6px rgba(0,0,0,0.35);">
+            <button class="cta-btn-white cta-btn-white--accent cta-btn-white--lg" type="button" data-demo-scroll>
                 Diventa partner
             </button>
-            <div
-                style="margin-top:28px; display:flex; gap:28px; justify-content:center; flex-wrap:wrap; color:rgba(255,255,255,0.8); font-size:14px;">
-                <span style="display:flex; align-items:center; gap:8px;"><img
+            <div class="cta-final-perks">
+                <span class="cta-final-perk"><img
                         src="../assets/img/icons/vettoriale/check.svg" alt=""
-                        style="width:16px; height:16px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(65%) sepia(40%) saturate(200%) hue-rotate(115deg) brightness(120%);">
+                        class="icon-img icon-16 icon-mint-bright">
 
                     Onboarding incluso</span>
-                <span style="display:flex; align-items:center; gap:8px;"><img
+                <span class="cta-final-perk"><img
                         src="../assets/img/icons/vettoriale/check.svg" alt=""
-                        style="width:16px; height:16px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(65%) sepia(40%) saturate(200%) hue-rotate(115deg) brightness(120%);">
+                        class="icon-img icon-16 icon-mint-bright">
 
                     Formazione del team</span>
-                <span style="display:flex; align-items:center; gap:8px;"><img
+                <span class="cta-final-perk"><img
                         src="../assets/img/icons/vettoriale/check.svg" alt=""
-                        style="width:16px; height:16px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(65%) sepia(40%) saturate(200%) hue-rotate(115deg) brightness(120%);">
+                        class="icon-img icon-16 icon-mint-bright">
 
                     Risposta entro 24h</span>
             </div>
@@ -836,27 +732,27 @@
         <div class="container">
             <div class="ftr-top">
                 <div>
-                    <span class="logo-wordmark light" style="height:30px;"></span>
-                    <p class="ftr-tagline" style="color: #ffffffb9;">
+                    <span class="logo-wordmark light"></span>
+                    <p class="ftr-tagline">
                         La fatturazione semplice per chi ha di meglio da fare.
                     </p>
                 </div>
                 <div>
-                    <h5 style="color: #ffffffb9;">Prodotto</h5>
+                    <h5>Prodotto</h5>
                     <a href="https://balansapp.it/#">Funzionalità</a>
                     <a href="https://balansapp.it/#">Prezzi</a>
                     <a href="https://balansapp.it/#">Testimonianze</a>
                     <a href="https://balansapp.it/#">Roadmap</a>
                 </div>
                 <div>
-                    <h5 style="color: #ffffffb9;">Risorse</h5>
+                    <h5>Risorse</h5>
                     <a href="https://balansapp.it/#">Guide</a>
                     <a href="https://balansapp.it/#">Video Tutorial</a>
                     <a href="https://balansapp.it/#">Blog</a>
                     <a href="https://balansapp.it/#">FAQ</a>
                 </div>
                 <div>
-                    <h5 style="color: #ffffffb9;">Azienda</h5>
+                    <h5>Azienda</h5>
                     <a href="https://balansapp.it/#">Chi Siamo</a>
                     <a href="mailto:info@balansapp.it">Contatti</a>
                     <a href="https://balansapp.it/privacy" target="_blank">Privacy</a>
@@ -864,7 +760,7 @@
                 </div>
             </div>
             <div class="ftr-bottom">
-                <div class="ftr-legal" style="color: #ffffffb9;">
+                <div class="ftr-legal">
                     © 2026 Balans · NETTA AI S.R.L. · P.IVA 07368320821<br>
                 </div>
                 <div class="ftr-social">
@@ -906,7 +802,7 @@
             </button>
             <div class="wl-modal-icon">
                 <img src="../assets/img/icons/vettoriale/check.svg" alt=""
-                    style="width:26px; height:26px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);">
+                    class="icon-img icon-26 icon-teal-ink">
             </div>
             <h3 id="demo-modal-title">Richiesta ricevuta!</h3>
             <p>Grazie per l'interesse verso Balans Business. Ti contatteremo entro 24h per fissare la demo.</p>
