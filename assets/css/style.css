@@ -2557,6 +2557,100 @@ svg,
     }
 }
 
+/* Hero: viewport bassi a larghezza desktop (es. MacBook, finestre non massimizzate) */
+@media (max-height: 860px) and (min-width: 921px) {
+
+    .hero {
+        padding: 56px 0 64px !important;
+    }
+
+    .hero-eyebrow {
+        margin-bottom: 20px;
+    }
+
+    h1.hero-h1 {
+        font-size: 58px !important;
+        letter-spacing: -2px;
+    }
+
+    h1.hero-h1 span {
+        font-size: 51px !important;
+    }
+
+    h1.hero-h1 b {
+        font-size: 58px !important;
+    }
+
+    .hero-sub {
+        margin: 16px 0 24px !important;
+    }
+
+    .hero-phone-wrap {
+        min-height: 460px;
+    }
+
+    .hero-phone-wrap .phone.lg {
+        width: 280px;
+    }
+
+    .hero-phone-wrap .float-1 {
+        top: 74px !important;
+        left: -31px !important;
+    }
+
+    .hero-phone-wrap .float-2 {
+        bottom: 50px !important;
+        right: -40px !important;
+    }
+}
+
+@media (max-height: 700px) and (min-width: 921px) {
+
+    .hero {
+        padding: 32px 0 40px !important;
+    }
+
+    .hero-eyebrow {
+        margin-bottom: 14px;
+    }
+
+    h1.hero-h1 {
+        font-size: 46px !important;
+        letter-spacing: -1.6px;
+    }
+
+    h1.hero-h1 span {
+        font-size: 40px !important;
+    }
+
+    h1.hero-h1 b {
+        font-size: 46px !important;
+    }
+
+    .hero-sub {
+        margin: 12px 0 18px !important;
+        font-size: 16px !important;
+    }
+
+    .hero-phone-wrap {
+        min-height: 340px;
+    }
+
+    .hero-phone-wrap .phone.lg {
+        width: 230px;
+    }
+
+    .hero-phone-wrap .float-1 {
+        top: 61px !important;
+        left: -26px !important;
+    }
+
+    .hero-phone-wrap .float-2 {
+        bottom: 41px !important;
+        right: -33px !important;
+    }
+}
+
 /* ── Telefono ── */
 @media (max-width: 600px) {
 
