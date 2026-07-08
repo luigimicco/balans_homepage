@@ -387,8 +387,8 @@ h1.hero-h1 em {
 }
 
 .hero-sub {
-    margin: 28px 0 36px;
-    font-size: 19.5px;
+    margin: 28px 0 48px;
+    font-size: 16px;
     line-height: 1.5;
     color: var(--ink-2);
     max-width: 540px;
@@ -1101,7 +1101,7 @@ h1.hero-h1 em {
 
 .feat-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 96px;
     align-items: center;
 }
@@ -1141,12 +1141,13 @@ h1.hero-h1 em {
     font-weight: 400;
     color: var(--teal-ink);
     letter-spacing: -0.8px;
+    font-size: 0.89em;
 }
 
 .feat p {
-    margin: 24px 0 32px;
-    font-size: 18px;
-    line-height: 1.55;
+    margin: 24px 0 48px;
+    font-size: 16px;
+    line-height: 1.5;
     color: var(--ink-2);
     max-width: 460px;
     text-wrap: pretty;
@@ -1162,7 +1163,8 @@ h1.hero-h1 em {
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    font-size: 15px;
+    font-size: 16px;
+    line-height: 1.5;
     color: var(--ink-2);
     font-weight: 500;
     letter-spacing: -0.1px;
@@ -1213,10 +1215,10 @@ h1.hero-h1 em {
 .manifesto blockquote {
     margin: 0 auto;
     max-width: 920px;
-    font-size: 54px;
+    font-size: 48px;
     line-height: 1.18;
     font-weight: 500;
-    letter-spacing: -1.5px;
+    letter-spacing: -1.3px;
     text-wrap: balance;
     font-family: 'Libre Franklin', sans-serif;
 }
@@ -1245,11 +1247,12 @@ h1.hero-h1 em {
 }
 
 .cta h2 {
-    margin: 0;
-    font-size: 64px;
+    margin: 0 auto;
+    max-width: 480px;
+    font-size: 53px;
     line-height: 1.05;
     font-weight: 500;
-    letter-spacing: -2px;
+    letter-spacing: -1.6px;
     color: var(--ink);
     text-wrap: balance;
     font-family: 'Libre Franklin', sans-serif;
@@ -1264,8 +1267,8 @@ h1.hero-h1 em {
 }
 
 .cta p {
-    margin: 28px auto 40px;
-    font-size: 19.5px;
+    margin: 28px auto 48px;
+    font-size: 16px;
     line-height: 1.5;
     color: var(--ink-2);
     max-width: 600px;
@@ -1397,17 +1400,17 @@ h1.hero-h1 em {
 
 .compare-head h2 {
     margin: 0;
-    font-size: 48px;
+    font-size: 43px;
     line-height: 1.1;
     font-weight: 500;
-    letter-spacing: -1.5px;
+    letter-spacing: -1.3px;
     color: var(--ink);
     font-family: 'Libre Franklin', sans-serif;
 }
 
 .compare-head p {
     margin: 20px auto 0;
-    font-size: 18px;
+    font-size: 16px;
     color: var(--ink-2);
     line-height: 1.5;
     max-width: 580px;
@@ -1437,7 +1440,7 @@ h1.hero-h1 em {
 
 .compare-col h3 {
     margin: 0 0 24px;
-    font-size: 22px;
+    font-size: 23px;
     font-weight: 700;
     letter-spacing: -0.5px;
     color: var(--ink);
@@ -1456,7 +1459,7 @@ h1.hero-h1 em {
     align-items: flex-start;
     gap: 14px;
     padding: 10px 0;
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.5;
     color: var(--ink-2);
     font-weight: 400;
@@ -1503,17 +1506,17 @@ h1.hero-h1 em {
 
 .video-head h2 {
     margin: 0;
-    font-size: 48px;
+    font-size: 43px;
     line-height: 1.1;
     font-weight: 500;
-    letter-spacing: -1.5px;
+    letter-spacing: -1.3px;
     color: var(--ink);
     font-family: 'Libre Franklin', sans-serif;
 }
 
 .video-head p {
     margin: 16px auto 0;
-    font-size: 18px;
+    font-size: 16px;
     color: var(--ink-2);
     line-height: 1.5;
     max-width: 540px;
@@ -1574,17 +1577,18 @@ h1.hero-h1 em {
 
 .reviews-head h2 {
     margin: 0;
-    font-size: 48px;
+    font-size: 45px;
     line-height: 1.1;
     font-weight: 500;
-    letter-spacing: -1.5px;
+    letter-spacing: -1.4px;
     color: var(--ink);
     font-family: 'Libre Franklin', sans-serif;
 }
 
 .reviews-head p {
     margin: 14px auto 0;
-    font-size: 17px;
+    font-size: 16px;
+    line-height: 1.5;
     color: var(--ink-2);
 }
 
@@ -1604,6 +1608,8 @@ h1.hero-h1 em {
     border-radius: 20px;
     padding: 28px 26px;
     box-shadow: 0 4px 24px -8px rgba(14, 17, 48, 0.06);
+    display: flex;
+    flex-direction: column;
 }
 
 .review .stars {
@@ -1614,11 +1620,12 @@ h1.hero-h1 em {
 }
 
 .review-text {
-    font-size: 15px;
-    line-height: 1.55;
+    font-size: 16px;
+    line-height: 1.5;
     color: var(--ink-2);
     margin: 0 0 24px;
     font-weight: 400;
+    flex: 1;
 }
 
 .review-author {
@@ -1705,17 +1712,18 @@ h1.hero-h1 em {
 
 .feats-head h2 {
     margin: 0;
-    font-size: 48px;
+    font-size: 45px;
     line-height: 1.1;
     font-weight: 500;
-    letter-spacing: -1.5px;
+    letter-spacing: -1.4px;
     color: var(--ink);
     font-family: 'Libre Franklin', sans-serif;
 }
 
 .feats-head p {
     margin: 14px auto 0;
-    font-size: 17px;
+    font-size: 16px;
+    line-height: 1.5;
     color: var(--ink-2);
 }
 
@@ -1752,7 +1760,7 @@ h1.hero-h1 em {
 
 .feat-card h4 {
     margin: 0 0 8px;
-    font-size: 19px;
+    font-size: 21px;
     font-weight: 700;
     letter-spacing: -0.4px;
     color: var(--ink);
@@ -1761,8 +1769,8 @@ h1.hero-h1 em {
 
 .feat-card p {
     margin: 0;
-    font-size: 14.5px;
-    line-height: 1.55;
+    font-size: 16px;
+    line-height: 1.5;
     color: var(--ink-2);
 }
 
@@ -1779,17 +1787,18 @@ h1.hero-h1 em {
 
 .faq-head h2 {
     margin: 0;
-    font-size: 48px;
+    font-size: 45px;
     line-height: 1.1;
     font-weight: 500;
-    letter-spacing: -1.5px;
+    letter-spacing: -1.4px;
     color: var(--ink);
     font-family: 'Libre Franklin', sans-serif;
 }
 
 .faq-head p {
     margin: 14px auto 0;
-    font-size: 17px;
+    font-size: 16px;
+    line-height: 1.5;
     color: var(--ink-2);
 }
 
@@ -1843,8 +1852,8 @@ h1.hero-h1 em {
     overflow: hidden;
     transition: max-height .25s ease, padding .25s ease;
     padding: 0 24px;
-    font-size: 14.5px;
-    line-height: 1.55;
+    font-size: 16px;
+    line-height: 1.5;
     color: var(--ink-2);
 }
 
@@ -2700,6 +2709,56 @@ svg,
     max-width: 100%;
 }
 
+/* ── Piccolo desktop / laptop stretto (gap tra layout 2 colonne pieno e stack tablet) ──
+   Il titolo "Comunica meglio..." vive in un grid a 2 colonne affiancato al telefono: a questa
+   larghezza il valore desktop (64px, vedi sotto) non ci starebbe. Il titolo hero viene ridotto
+   di pari passo così i due titoli restano sempre della stessa dimensione. */
+@media (max-width: 1200px) and (min-width: 921px) {
+
+    h1.hero-h1 {
+        font-size: clamp(44px, 7.17vw - 22px, 64px) !important;
+        letter-spacing: -1.4px;
+    }
+
+    h1.hero-h1 span {
+        font-size: clamp(39px, 6.35vw - 19.5px, 57px) !important;
+    }
+
+    h1.hero-h1 b {
+        font-size: clamp(44px, 7.17vw - 22px, 64px) !important;
+    }
+
+    .feat h2 {
+        font-size: clamp(44px, 7.17vw - 22px, 64px) !important;
+        letter-spacing: -1.4px;
+    }
+}
+
+/* ── Desktop pieno: margine di sicurezza per il titolo di #funzionalita ──
+   A larghezza intera (container al max-width di 1240px) il valore 70px del titolo hero
+   farebbe toccare "commercialista" al telefono nel grid a 2 colonne di #funzionalita.
+   64px lascia un margine reale (~80px) mantenendo i due titoli della stessa dimensione. */
+@media (min-width: 1201px) {
+
+    h1.hero-h1 {
+        font-size: 64px !important;
+        letter-spacing: -2.2px;
+    }
+
+    h1.hero-h1 span {
+        font-size: 57px !important;
+    }
+
+    h1.hero-h1 b {
+        font-size: 64px !important;
+    }
+
+    .feat h2 {
+        font-size: 64px !important;
+        letter-spacing: -1.5px;
+    }
+}
+
 /* ── Tablet / piccoli laptop ── */
 @media (max-width: 920px) {
 
@@ -2764,7 +2823,7 @@ svg,
     }
 
     .feat h2 {
-        font-size: 40px;
+        font-size: 40px !important;
         letter-spacing: -1.2px;
     }
 
@@ -2878,6 +2937,110 @@ svg,
 
     #business .container>div:first-child {
         grid-template-columns: 1fr !important;
+    }
+}
+
+/* Hero: viewport bassi a larghezza desktop (es. MacBook, finestre non massimizzate) */
+@media (max-height: 860px) and (min-width: 921px) {
+
+    .hero {
+        padding: 56px 0 64px !important;
+    }
+
+    .hero-eyebrow {
+        margin-bottom: 20px;
+    }
+
+    h1.hero-h1 {
+        font-size: 58px !important;
+        letter-spacing: -2px;
+    }
+
+    h1.hero-h1 span {
+        font-size: 51px !important;
+    }
+
+    h1.hero-h1 b {
+        font-size: 58px !important;
+    }
+
+    .feat h2 {
+        font-size: 58px !important;
+        letter-spacing: -1.4px;
+    }
+
+    .hero-sub {
+        margin: 16px 0 24px !important;
+    }
+
+    .hero-phone-wrap {
+        min-height: 460px;
+    }
+
+    .hero-phone-wrap .phone.lg {
+        width: 280px;
+    }
+
+    .hero-phone-wrap .float-1 {
+        top: 74px !important;
+        left: -31px !important;
+    }
+
+    .hero-phone-wrap .float-2 {
+        bottom: 50px !important;
+        right: -40px !important;
+    }
+}
+
+@media (max-height: 700px) and (min-width: 921px) {
+
+    .hero {
+        padding: 32px 0 40px !important;
+    }
+
+    .hero-eyebrow {
+        margin-bottom: 14px;
+    }
+
+    h1.hero-h1 {
+        font-size: 46px !important;
+        letter-spacing: -1.6px;
+    }
+
+    h1.hero-h1 span {
+        font-size: 40px !important;
+    }
+
+    h1.hero-h1 b {
+        font-size: 46px !important;
+    }
+
+    .feat h2 {
+        font-size: 46px !important;
+        letter-spacing: -1.3px;
+    }
+
+    .hero-sub {
+        margin: 12px 0 18px !important;
+        font-size: 16px !important;
+    }
+
+    .hero-phone-wrap {
+        min-height: 340px;
+    }
+
+    .hero-phone-wrap .phone.lg {
+        width: 230px;
+    }
+
+    .hero-phone-wrap .float-1 {
+        top: 61px !important;
+        left: -26px !important;
+    }
+
+    .hero-phone-wrap .float-2 {
+        bottom: 41px !important;
+        right: -33px !important;
     }
 }
 
