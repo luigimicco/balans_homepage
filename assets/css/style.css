@@ -1046,7 +1046,7 @@ h1.hero-h1 em {
 
 .feat-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 96px;
     align-items: center;
 }
@@ -2376,6 +2376,56 @@ svg,
     max-width: 100%;
 }
 
+/* ── Piccolo desktop / laptop stretto (gap tra layout 2 colonne pieno e stack tablet) ──
+   Il titolo "Comunica meglio..." vive in un grid a 2 colonne affiancato al telefono: a questa
+   larghezza il valore desktop (64px, vedi sotto) non ci starebbe. Il titolo hero viene ridotto
+   di pari passo così i due titoli restano sempre della stessa dimensione. */
+@media (max-width: 1200px) and (min-width: 921px) {
+
+    h1.hero-h1 {
+        font-size: clamp(44px, 7.17vw - 22px, 64px) !important;
+        letter-spacing: -1.4px;
+    }
+
+    h1.hero-h1 span {
+        font-size: clamp(39px, 6.35vw - 19.5px, 57px) !important;
+    }
+
+    h1.hero-h1 b {
+        font-size: clamp(44px, 7.17vw - 22px, 64px) !important;
+    }
+
+    .feat h2 {
+        font-size: clamp(44px, 7.17vw - 22px, 64px) !important;
+        letter-spacing: -1.4px;
+    }
+}
+
+/* ── Desktop pieno: margine di sicurezza per il titolo di #funzionalita ──
+   A larghezza intera (container al max-width di 1240px) il valore 70px del titolo hero
+   farebbe toccare "commercialista" al telefono nel grid a 2 colonne di #funzionalita.
+   64px lascia un margine reale (~80px) mantenendo i due titoli della stessa dimensione. */
+@media (min-width: 1201px) {
+
+    h1.hero-h1 {
+        font-size: 64px !important;
+        letter-spacing: -2.2px;
+    }
+
+    h1.hero-h1 span {
+        font-size: 57px !important;
+    }
+
+    h1.hero-h1 b {
+        font-size: 64px !important;
+    }
+
+    .feat h2 {
+        font-size: 64px !important;
+        letter-spacing: -1.5px;
+    }
+}
+
 /* ── Tablet / piccoli laptop ── */
 @media (max-width: 920px) {
 
@@ -2440,7 +2490,7 @@ svg,
     }
 
     .feat h2 {
-        font-size: 40px;
+        font-size: 40px !important;
         letter-spacing: -1.2px;
     }
 
