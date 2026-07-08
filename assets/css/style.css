@@ -2540,6 +2540,10 @@ svg,
         letter-spacing: -1px !important;
     }
 
+    .purpose h2 span {
+        font-size: 44px !important;
+    }
+
     /* new sections */
     .compare-head h2,
     .video-head h2,
@@ -2841,6 +2845,10 @@ svg,
 
     .purpose h2 {
         font-size: 27px !important;
+    }
+
+    .purpose h2 span {
+        font-size: 35px !important;
     }
 
     .ftr {
