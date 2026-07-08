@@ -2640,6 +2640,11 @@ svg,
         font-size: 58px !important;
     }
 
+    .feat h2 {
+        font-size: 58px !important;
+        letter-spacing: -1.4px;
+    }
+
     .hero-sub {
         margin: 16px 0 24px !important;
     }
@@ -2684,6 +2689,11 @@ svg,
 
     h1.hero-h1 b {
         font-size: 46px !important;
+    }
+
+    .feat h2 {
+        font-size: 46px !important;
+        letter-spacing: -1.3px;
     }
 
     .hero-sub {
