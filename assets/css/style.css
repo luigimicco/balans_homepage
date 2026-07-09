@@ -3658,6 +3658,15 @@ svg,
         letter-spacing: -1.4px;
     }
 
+    .section-head h2,
+    .feature-copy h2 {
+        font-size: clamp(38px, 3.58vw + 5px, 48px) !important;
+    }
+
+    .cta h2 {
+        font-size: clamp(40px, 5.74vw - 12.8px, 56px) !important;
+    }
+
     .hero-phone-wrap .phone.lg {
         width: clamp(280px, 28.7vw + 16px, 360px);
     }
@@ -3758,6 +3767,11 @@ svg,
     .feat h2 {
         font-size: 40px !important;
         letter-spacing: -1.2px;
+    }
+
+    .section-head h2,
+    .feature-copy h2 {
+        font-size: 40px !important;
     }
 
     .manifesto blockquote {
@@ -4057,6 +4071,11 @@ svg,
         letter-spacing: -1px;
     }
 
+    .section-head h2,
+    .feature-copy h2 {
+        font-size: 32px !important;
+    }
+
     .feat p {
         font-size: 16px;
     }
@@ -4140,6 +4159,15 @@ svg,
 
     h1.hero-h1 b {
         font-size: 34px !important;
+    }
+
+    .section-head h2,
+    .feature-copy h2 {
+        font-size: 28px !important;
+    }
+
+    .cta h2 {
+        font-size: 30px !important;
     }
 
     .hero-sub {
