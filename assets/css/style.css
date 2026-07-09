@@ -1472,7 +1472,7 @@ h1.hero-h1 b {
     font-size: 19px;
     color: rgba(255, 255, 255, 0.82);
     line-height: 1.55;
-    margin: 22px auto 36px;
+    margin: 24px auto 32px !important;
     max-width: 560px;
 }
 
@@ -3260,6 +3260,7 @@ h1.hero-h1 b {
     font-weight: 700;
     letter-spacing: -0.4px;
     color: var(--ink);
+    margin-top: 16px;
     margin-bottom: 8px;
     font-size: 18px;
 }
@@ -4048,6 +4049,15 @@ svg,
         letter-spacing: -1.4px;
     }
 
+    .section-head h2,
+    .feature-copy h2 {
+        font-size: clamp(38px, 3.58vw + 5px, 48px) !important;
+    }
+
+    .cta h2 {
+        font-size: clamp(40px, 5.74vw - 12.8px, 56px) !important;
+    }
+
     .hero-phone-wrap .phone.lg {
         width: clamp(280px, 28.7vw + 16px, 360px);
     }
@@ -4148,6 +4158,11 @@ svg,
     .feat h2 {
         font-size: 40px !important;
         letter-spacing: -1.2px;
+    }
+
+    .section-head h2,
+    .feature-copy h2 {
+        font-size: 40px !important;
     }
 
     .manifesto blockquote {
@@ -4452,6 +4467,11 @@ svg,
         letter-spacing: -1px;
     }
 
+    .section-head h2,
+    .feature-copy h2 {
+        font-size: 32px !important;
+    }
+
     .feat p {
         font-size: 16px;
     }
@@ -4535,6 +4555,15 @@ svg,
 
     h1.hero-h1 b {
         font-size: 34px !important;
+    }
+
+    .section-head h2,
+    .feature-copy h2 {
+        font-size: 28px !important;
+    }
+
+    .cta h2 {
+        font-size: 30px !important;
     }
 
     .hero-sub {
