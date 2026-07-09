@@ -27,7 +27,7 @@ document.querySelectorAll('.faq-q').forEach(q => {
     });
 });
 
-// Demo interattiva — flusso guidato automatico (CTA -> Invia -> typing -> risposta -> ripeti)
+// Demo interattiva - flusso guidato automatico (CTA -> Invia -> typing -> risposta -> ripeti)
 (function () {
     const phone = document.querySelector('.hero-phone');
     if (!phone) return;
@@ -35,6 +35,7 @@ document.querySelectorAll('.faq-q').forEach(q => {
     const wrap = phone.closest('.hero-phone-wrap');
     const floatCards = wrap ? wrap.querySelectorAll('.float-card') : [];
     const newChatBtn = phone.querySelector('.new-chat-btn');
+    const chatLockOverlay = phone.querySelector('.chat-lock-overlay');
     const welcome = phone.querySelector('.demo-welcome');
     const chat = phone.querySelector('.demo-chat');
     const qSlot = phone.querySelector('.demo-q-slot');
@@ -119,6 +120,7 @@ document.querySelectorAll('.faq-q').forEach(q => {
     function activateDemo() {
         phone.setAttribute('data-mode', 'demo');
         newChatBtn.classList.remove('show');
+        chatLockOverlay.classList.remove('show');
         floatCards.forEach(c => c.classList.add('is-hidden'));
         idx = 0;
         qSlot.textContent = '';
@@ -182,8 +184,12 @@ document.querySelectorAll('.faq-q').forEach(q => {
     });
 
     // Il bottone "Nuova chat" compare quando la chat simulata del telefono
-    // hero finisce di animarsi (evento emesso da animations.js)
-    document.addEventListener('hero-chat-done', () => newChatBtn.classList.add('show'));
+    // hero finisce di animarsi (evento emesso da animations.js); insieme
+    // compare anche l'overlay che blocca lo scroll della chat sottostante
+    document.addEventListener('hero-chat-done', () => {
+        newChatBtn.classList.add('show');
+        chatLockOverlay.classList.add('show');
+    });
 
     newChatBtn.addEventListener('click', activateDemo);
     sendBtn.addEventListener('click', sendCurrent);

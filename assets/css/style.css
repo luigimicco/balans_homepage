@@ -48,6 +48,8 @@
     --hairline: #E8E1CE;
     --hairline-2: #D6CCB1;
 
+    --chat-lock-overlay: rgba(248, 244, 236, 0.467);
+
     --business-radial-1-light: rgba(0, 255, 208, 0.052);
     --business-radial-2-light: rgba(0, 21, 255, 0.016);
 
@@ -74,6 +76,8 @@
     --surface-alt: #181D33;
     --hairline: #232943;
     --hairline-2: #2D3454;
+
+    --chat-lock-overlay: rgba(10, 13, 20, 0.82);
 
     --teal-soft: rgba(26, 191, 160, 0.18);
     --teal-tint: rgba(26, 191, 160, 0.10);
@@ -2590,6 +2594,10 @@ h1.hero-h1 b {
    sotto) sono tenuti su due elementi separati: un'animation e una transition
    che agiscono sulla stessa proprietà transform dello stesso elemento si
    scavalcano a vicenda, impedendo alla transition di uscita di attivarsi. */
+.hero-phone .ps-chat-body {
+    padding-bottom: 140px;
+}
+
 .new-chat-btn {
     position: absolute;
     left: 50%;
@@ -2614,13 +2622,19 @@ h1.hero-h1 b {
     transition: transform .45s cubic-bezier(.34, 1.56, .64, 1), opacity .45s ease;
 }
 
-/* Aspetto visivo del bottone (pillola) */
+/* Aspetto visivo del bottone (pillola).
+   white-space: nowrap evita che il testo vada a capo: essendo il bottone
+   assolutamente posizionato con solo "left" (niente "right"), su schermi
+   stretti il browser calcola la larghezza shrink-to-fit su uno spazio
+   disponibile ridotto (metà del contenitore) e senza questa regola il
+   testo si spezzerebbe su due righe. */
 .new-chat-btn-shape {
     display: flex;
     align-items: center;
     gap: 8px;
     padding: 10px 22px;
     border-radius: 999px;
+    white-space: nowrap;
     background: linear-gradient(to bottom, var(--teal-ink) 0%, var(--teal) 100%);
     color: #fff;
     font-family: 'Libre Franklin', sans-serif;
@@ -2688,6 +2702,28 @@ h1.hero-h1 b {
 .phone-stage>.demo-chat {
     position: absolute;
     inset: 0;
+}
+
+/* Overlay che compare in dissolvenza sulla chat insieme al bottone "Nuova
+   chat": segnala che la conversazione è finita e ne blocca lo scroll finché
+   non si riparte. Colore legato al tema (chiaro/scuro) via --chat-lock-overlay. */
+.chat-lock-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    background: var(--chat-lock-overlay);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    touch-action: none;
+    transition: opacity .4s ease, visibility 0s linear .4s;
+}
+
+.chat-lock-overlay.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity .4s ease, visibility 0s linear 0s;
 }
 
 /* Demo welcome screen (dentro .phone-stage) */
@@ -2779,7 +2815,11 @@ h1.hero-h1 b {
     transform: translateY(12px) scale(0.97);
 }
 
-/* Demo chat — messaggi generati dalla domanda scelta nel menu categorie */
+/* Demo chat — messaggi generati dalla domanda scelta nel menu categorie.
+   Il bottone "Nuova chat" non ricompare mai sopra questa chat (si mostra
+   una sola volta, sopra la chat statica iniziale), quindi qui basta il
+   normale margine sopra il composer: niente padding maggiorato altrimenti
+   resta uno spazio vuoto sotto l'ultimo messaggio. */
 .demo-chat {
     display: flex;
     opacity: 0;

@@ -300,10 +300,12 @@
 
     var i = 0;
     var toBottom = function (el) {
-      // offsetTop non è affidabile: .ps-chat-body non è positioned, quindi
-      // offsetTop risalirebbe a .phone-content includendo l'header del telefono
+      // Il margine è letto dal padding-bottom del contenitore (definito in CSS)
+      // invece che da un numero fisso, così nel telefono hero, che riserva più
+      // spazio per il bottone "Nuova chat", l'ultimo messaggio non ci finisce sotto.
       var elBottom = el.getBoundingClientRect().bottom - body.getBoundingClientRect().top + body.scrollTop;
-      var target = elBottom - body.clientHeight + 80; // 80 = margine sopra il composer
+      var margin = parseFloat(getComputedStyle(body).paddingBottom) || 80;
+      var target = elBottom - body.clientHeight + margin;
       body.scrollTop = Math.max(0, target);
     };
 
