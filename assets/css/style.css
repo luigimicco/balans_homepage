@@ -2736,19 +2736,19 @@ h1.hero-h1 b {
 }
 
 /* Stato demo: alterna solo il contenuto del phone, il testo a sinistra resta fisso */
-#funzionalita[data-mode="demo"] .ps-chat-body-normal {
+.hero[data-mode="demo"] .ps-chat-body-normal {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
 }
 
-#funzionalita[data-mode="demo"] .demo-welcome {
+.hero[data-mode="demo"] .demo-welcome {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
 }
 
-#funzionalita[data-mode="demo"] .demo-welcome.hidden {
+.hero[data-mode="demo"] .demo-welcome.hidden {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -2773,7 +2773,7 @@ h1.hero-h1 b {
     display: none;
 }
 
-#funzionalita[data-mode="demo"] .demo-chat.active {
+.hero[data-mode="demo"] .demo-chat.active {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
