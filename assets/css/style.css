@@ -3569,7 +3569,7 @@ h1.hero-h1 b {
     font-weight: 400;
     color: var(--teal-ink);
     letter-spacing: -0.8px;
-    font-size: 56px;
+    font-size: 48px;
 }
 
 .purpose h2 strong {
@@ -4183,12 +4183,12 @@ svg,
     }
 
     .purpose h2 {
-        font-size: 34px !important;
+        font-size: 32px !important;
         letter-spacing: -1px !important;
     }
 
     .purpose h2 span {
-        font-size: 44px !important;
+        font-size: 32px !important;
     }
 
     /* new sections */
@@ -4496,11 +4496,11 @@ svg,
     }
 
     .purpose h2 {
-        font-size: 27px !important;
+        font-size: 32px !important;
     }
 
     .purpose h2 span {
-        font-size: 35px !important;
+        font-size: 32px !important;
     }
 
     .ftr {
