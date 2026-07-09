@@ -641,7 +641,7 @@ h1.hero-h1 b {
 
 /* Orange badge variant, used for feat-card / float-card icon backgrounds */
 .ic-bg--orange {
-    background-color: rgb(248, 245, 238);
+    background-color: rgb(248, 245, 238) !important;
     color: rgb(232, 141, 21);
 }
 
@@ -2574,76 +2574,94 @@ h1.hero-h1 b {
     animation: pulse 2s ease-in-out infinite;
 }
 
-/* CTA iniziale della demo (overlay sopra .phone) */
-.demo-cta-overlay {
-    position: absolute;
-    inset: 0;
-    z-index: 5;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    background: rgba(20, 20, 20, 0.6);
-    backdrop-filter: blur(10px);
-    transition: opacity .35s ease, visibility 0s linear 0s;
-}
-
-.demo-cta-overlay.hidden {
+/* Le card fluttuanti spariscono quando parte la demo */
+.float-card.is-hidden {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity .35s ease, visibility 0s linear .35s;
+    transform: translateY(-8px) scale(0.94);
+    transition: opacity .35s ease, transform .35s ease;
 }
 
-.demo-cta-btn {
-    position: relative;
-    padding: 12px 26px;
-    border-radius: 999px;
+/* Bottone "Nuova chat": compare a fine chat simulata, scorrendo verso l'alto
+   da sotto il composer (.ps-chat-comp); al click scorre via verso il basso
+   con dissolvenza in contemporanea e riparte la demo.
+   Il posizionamento (questo elemento) e il wobble periodico (.new-chat-btn-shape,
+   sotto) sono tenuti su due elementi separati: un'animation e una transition
+   che agiscono sulla stessa proprietà transform dello stesso elemento si
+   scavalcano a vicenda, impedendo alla transition di uscita di attivarsi. */
+.new-chat-btn {
+    position: absolute;
+    left: 50%;
+    bottom: 84px;
+    z-index: 6;
     border: 0;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, 220px);
+    /* usata all'uscita (rimozione di .show): scorrimento più lento, senza rimbalzo, con dissolvenza in parallelo */
+    transition: transform .9s var(--anim-ease), opacity .9s var(--anim-ease);
+}
+
+.new-chat-btn.show {
+    pointer-events: auto;
+    opacity: 1;
+    transform: translate(-50%, 0);
+    /* usata all'ingresso: più rapida, con un lieve rimbalzo finale */
+    transition: transform .45s cubic-bezier(.34, 1.56, .64, 1), opacity .45s ease;
+}
+
+/* Aspetto visivo del bottone (pillola) */
+.new-chat-btn-shape {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    border-radius: 999px;
     background: linear-gradient(to bottom, var(--teal-ink) 0%, var(--teal) 100%);
     color: #fff;
     font-family: 'Libre Franklin', sans-serif;
     font-weight: 700;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    box-shadow: 0 6px 18px -4px rgba(14, 122, 102, 0.5);
+    font-size: 13px;
+    box-shadow: 0 10px 24px -8px rgba(14, 122, 102, 0.5);
 }
 
-.cta-icon {
-    font-size: 11px;
+/* Wobble periodico e discreto sull'intero bottone per attirare l'attenzione;
+   il ritardo iniziale lascia concludere l'ingresso (slide-up) prima di partire */
+.new-chat-btn.show .new-chat-btn-shape {
+    animation: new-chat-shake 3.4s ease-in-out 1s infinite;
 }
 
-.cta-ring {
-    position: absolute;
-    inset: -6px;
-    border-radius: 999px;
-    border: 2px solid var(--teal);
-    opacity: .6;
-    animation: cta-ring-pulse 1.8s ease-out infinite;
-}
+@keyframes new-chat-shake {
 
-@keyframes cta-ring-pulse {
-    0% {
-        transform: scale(1);
-        opacity: .6;
-    }
-
+    0%,
+    32%,
     100% {
-        transform: scale(1.35);
-        opacity: 0;
+        transform: rotate(0deg);
     }
-}
 
-.demo-cta-overlay .demo-cta-hint {
-    color: #fff;
-    font-size: 14px;
-    font-weight: bold;
-    font-family: 'Libre Franklin', sans-serif;
-    margin: 16px;
+    6% {
+        transform: rotate(-4deg);
+    }
+
+    12% {
+        transform: rotate(3deg);
+    }
+
+    18% {
+        transform: rotate(-3deg);
+    }
+
+    24% {
+        transform: rotate(2deg);
+    }
+
+    28% {
+        transform: rotate(-1deg);
+    }
 }
 
 /* Stage: contiene le tre viste del telefono (chat normale, welcome demo,
@@ -2678,6 +2696,7 @@ h1.hero-h1 b {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+    transform: translateY(12px) scale(0.97);
     flex: 1;
     min-height: 0;
     flex-direction: column;
@@ -2735,23 +2754,29 @@ h1.hero-h1 b {
     font-weight: 700;
 }
 
-/* Stato demo: alterna solo il contenuto del phone, il testo a sinistra resta fisso */
-#funzionalita[data-mode="demo"] .ps-chat-body-normal {
+/* Stato demo: alterna solo il contenuto del phone hero, il resto resta fisso.
+   Transizione "pop" (opacity + translateY/scale), coerente con la comparsa
+   delle bolle di chat — mai una semplice dissolvenza. Regole di transform
+   in animations.css, qui solo lo stato finale. */
+.hero-phone[data-mode="demo"] .ps-chat-body-normal {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+    transform: translateY(12px) scale(0.97);
 }
 
-#funzionalita[data-mode="demo"] .demo-welcome {
+.hero-phone[data-mode="demo"] .demo-welcome {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
+    transform: none;
 }
 
-#funzionalita[data-mode="demo"] .demo-welcome.hidden {
+.hero-phone[data-mode="demo"] .demo-welcome.hidden {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+    transform: translateY(12px) scale(0.97);
 }
 
 /* Demo chat — messaggi generati dalla domanda scelta nel menu categorie */
@@ -2760,6 +2785,7 @@ h1.hero-h1 b {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+    transform: translateY(12px) scale(0.97);
     flex-direction: column;
     gap: 10px;
     padding: 14px 14px 80px;
@@ -2773,10 +2799,11 @@ h1.hero-h1 b {
     display: none;
 }
 
-#funzionalita[data-mode="demo"] .demo-chat.active {
+.hero-phone[data-mode="demo"] .demo-chat.active {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
+    transform: none;
 }
 
 /* Indicatore di digitazione: riusa .typing-bub già definito in animations.css

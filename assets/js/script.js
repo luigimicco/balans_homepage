@@ -29,12 +29,12 @@ document.querySelectorAll('.faq-q').forEach(q => {
 
 // Demo interattiva — flusso guidato automatico (CTA -> Invia -> typing -> risposta -> ripeti)
 (function () {
-    const section = document.querySelector('#funzionalita');
-    const phone = document.querySelector('#funzionalita .phone');
-    if (!section || !phone) return;
+    const phone = document.querySelector('.hero-phone');
+    if (!phone) return;
 
-    const overlay = phone.querySelector('.demo-cta-overlay');
-    const ctaBtn = phone.querySelector('.demo-cta-btn');
+    const wrap = phone.closest('.hero-phone-wrap');
+    const floatCards = wrap ? wrap.querySelectorAll('.float-card') : [];
+    const newChatBtn = phone.querySelector('.new-chat-btn');
     const welcome = phone.querySelector('.demo-welcome');
     const chat = phone.querySelector('.demo-chat');
     const qSlot = phone.querySelector('.demo-q-slot');
@@ -43,16 +43,6 @@ document.querySelectorAll('.faq-q').forEach(q => {
     const PLACEHOLDER = 'Scrivi a Balans...';
 
     const ANSWERS = {
-        c1q1: '<div class="bub ai">Ad oggi hai fatturato <b>€45.000</b>. Puoi fatturare ancora <b>€40.000</b> prima di raggiungere la soglia limite di €85.000 per il regime forfettario.</div>',
-        c1q3: '<div class="bub ai">Ecco il trend dei tuoi incassi degli ultimi 3 mesi</div>'
-            + '<div class="bub ai-card">'
-            + '<div class="h"><img src="./assets/img/icons/vettoriale/balance.svg" alt="" style="width:11px; height:11px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);"> Incassi trimestre</div>'
-            + '<div class="mini-chart">'
-            + '<div class="mc-bar"><span class="mc-v">€4.230</span><span class="mc-fill" style="height:48px"></span><span class="mc-x">Apr</span></div>'
-            + '<div class="mc-bar"><span class="mc-v">€5.100</span><span class="mc-fill" style="height:58px"></span><span class="mc-x">Mag</span></div>'
-            + '<div class="mc-bar"><span class="mc-v">€6.400</span><span class="mc-fill" style="height:72px"></span><span class="mc-x">Giu</span></div>'
-            + '</div>'
-            + '</div>',
         c2q1: '<div class="bub ai-card" style="max-width:88%">'
             + '<div class="h"><img src="./assets/img/icons/vettoriale/doc.svg" alt="" style="width:11px; height:11px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);"> Fattura pronta</div>'
             + '<div class="row"><span class="k">Cliente</span><span class="v">Studio Bianchi</span></div>'
@@ -61,7 +51,8 @@ document.querySelectorAll('.faq-q').forEach(q => {
             + '<button class="demo-invia" type="button">Invia fattura</button>'
             + '</div>'
             + '<div class="bub ai">Ho preparato la fattura per Studio Bianchi di €500,00 con causale «Consulenza». Clicca su <b>Invia</b> per inoltrarla.</div>',
-        c3q3: '<div class="bub ai">I tuoi contributi previdenziali calcolati sul fatturato dell\'anno in corso ammontano a circa <b>€4.820</b>.</div>'
+        qBestClient: '<div class="bub ai">Il tuo miglior cliente è <b>Verdi Consulting Srl</b>: quest\'anno ha generato un fatturato totale di <b>€12.300</b>, il 27% del tuo fatturato complessivo.</div>',
+        qMonthRevenue: '<div class="bub ai">Questo mese hai fatturato <b>€4.230</b> con 7 fatture. Sei al 22% del tuo limite forfettario annuale.</div>'
     };
 
     function scrollBottom() {
@@ -90,10 +81,9 @@ document.querySelectorAll('.faq-q').forEach(q => {
 
     // Sequenza fissa delle domande mostrate nella barra di testo del telefono
     const QUESTIONS = [
-        ['c1q1', 'Quanto posso fatturare ancora prima di uscire dal forfettario?'],
-        ['c1q3', 'Mostrami il grafico degli incassi degli ultimi 3 mesi.'],
         ['c2q1', 'Crea una fattura di 500€ per la prestazione di ieri a Studio Bianchi.'],
-        ['c3q3', 'A quanto ammontano i miei contributi INPS/Cassa quest\'anno?']
+        ['qBestClient', 'Chi è il mio miglior cliente?'],
+        ['qMonthRevenue', 'Quanto ho fatturato questo mese?']
     ];
     const FLOW = QUESTIONS.map(([key, text]) => ({ key, text, answer: ANSWERS[key] }));
 
@@ -127,12 +117,12 @@ document.querySelectorAll('.faq-q').forEach(q => {
     }
 
     function activateDemo() {
-        section.setAttribute('data-mode', 'demo');
-        overlay.classList.add('hidden');
+        phone.setAttribute('data-mode', 'demo');
+        newChatBtn.classList.remove('show');
+        floatCards.forEach(c => c.classList.add('is-hidden'));
         idx = 0;
-        qSlot.textContent = FLOW[0].text;
-        qSlot.classList.add('filled');
-        setSendEnabled(true);
+        qSlot.textContent = '';
+        typeInto(qSlot, FLOW[0].text, () => setSendEnabled(true));
     }
 
     function sendCurrent() {
@@ -191,7 +181,11 @@ document.querySelectorAll('.faq-q').forEach(q => {
         invia.innerHTML = '<img src="./assets/img/icons/vettoriale/check.svg" alt="" style="width:14px; height:14px; display:inline-block; flex-shrink:0; filter:brightness(0) invert(1);">Inviato';
     });
 
-    ctaBtn.addEventListener('click', activateDemo);
+    // Il bottone "Nuova chat" compare quando la chat simulata del telefono
+    // hero finisce di animarsi (evento emesso da animations.js)
+    document.addEventListener('hero-chat-done', () => newChatBtn.classList.add('show'));
+
+    newChatBtn.addEventListener('click', activateDemo);
     sendBtn.addEventListener('click', sendCurrent);
 })();
 

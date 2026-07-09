@@ -287,13 +287,14 @@
     return t;
   }
 
-  function playChat(body) {
+  function playChat(body, onDone) {
     var bubbles = Array.prototype.slice.call(body.querySelectorAll('.bub'));
     if (!bubbles.length) return;
 
     if (REDUCED) {
       bubbles.forEach(function (b) { b.classList.add('pop'); });
       body.scrollTop = body.scrollHeight;
+      if (onDone) onDone();
       return;
     }
 
@@ -307,7 +308,7 @@
     };
 
     function next() {
-      if (i >= bubbles.length) return;
+      if (i >= bubbles.length) { if (onDone) onDone(); return; }
       var bub = bubbles[i];
       var isAI = /\bai\b|ai-card/.test(bub.className);
 
@@ -332,14 +333,25 @@
     setTimeout(next, 360);
   }
 
+  // Al termine della chat simulata nel telefono hero, segnala a script.js
+  // di mostrare il bottone "Nuova chat" (che poi avvia la demo interattiva)
+  function onChatDone(body) {
+    if (body.closest('.hero-phone')) {
+      document.dispatchEvent(new CustomEvent('hero-chat-done'));
+    }
+  }
+
   var chatBodies = document.querySelectorAll('.ps-chat-body');
   if (chatBodies.length) {
     if (REDUCED || !supportsIO) {
-      chatBodies.forEach(playChat);
+      chatBodies.forEach(function (el) { playChat(el, function () { onChatDone(el); }); });
     } else {
       var chatIO = new IntersectionObserver(function (entries, obs) {
         entries.forEach(function (e) {
-          if (e.isIntersecting) { playChat(e.target); obs.unobserve(e.target); }
+          if (e.isIntersecting) {
+            playChat(e.target, function () { onChatDone(e.target); });
+            obs.unobserve(e.target);
+          }
         });
       }, { threshold: 0.35 });
       chatBodies.forEach(function (el) { chatIO.observe(el); });

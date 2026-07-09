@@ -119,20 +119,21 @@ html { scroll-behavior: smooth; }
 .anim-ready .demo-chat .bub.pop,
 .anim-ready .demo-chat .chat-sys-note.pop { opacity: 1; transform: none; }
 
-/* ---------- Demo interattiva: crossfade tra le viste del telefono ---------- */
+/* ---------- Demo interattiva: transizione "pop" tra le viste del telefono ---------- */
 /* Le tre viste (chat statica, welcome, chat generata) sono sempre montate e
-   sovrapposte via .phone-stage (position:absolute); qui si anima solo
-   opacity/visibility, mai display, per un vero dissolvenza incrociata. */
+   sovrapposte via .phone-stage (position:absolute); l'ingresso/uscita usa lo
+   stesso stile "pop" (opacity + translateY/scale) delle bolle di chat,
+   mai una semplice dissolvenza. */
 .phone-stage > .ps-chat-body,
 .phone-stage > .demo-welcome,
 .phone-stage > .demo-chat {
-  transition: opacity 0.35s var(--anim-ease), visibility 0s linear 0.35s;
+  transition: opacity 0.4s var(--anim-ease), transform 0.4s var(--anim-spring), visibility 0s linear 0.4s;
 }
-/* stato "attivo": la visibilità scatta subito, l'opacità continua a dissolversi */
-#funzionalita:not([data-mode="demo"]) .ps-chat-body-normal,
-#funzionalita[data-mode="demo"] .demo-welcome,
-#funzionalita[data-mode="demo"] .demo-chat.active {
-  transition: opacity 0.35s var(--anim-ease), visibility 0s linear 0s;
+/* stato "attivo": la visibilità scatta subito, opacity/transform continuano ad animarsi */
+.hero-phone:not([data-mode="demo"]) .ps-chat-body-normal,
+.hero-phone[data-mode="demo"] .demo-welcome:not(.hidden),
+.hero-phone[data-mode="demo"] .demo-chat.active {
+  transition: opacity 0.4s var(--anim-ease), transform 0.4s var(--anim-spring), visibility 0s linear 0s;
 }
 
 /* typing indicator injected by JS */
@@ -436,4 +437,5 @@ html { scroll-behavior: smooth; }
   .dash-cards > div:hover, .hero-btn:hover, .btn:hover {
     transform: none;
   }
+  .new-chat-btn.show .new-chat-btn-shape { animation: none !important; }
 }
