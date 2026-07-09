@@ -1412,7 +1412,7 @@ h1.hero-h1 b {
     font-size: 19px;
     color: rgba(255, 255, 255, 0.82);
     line-height: 1.55;
-    margin: 22px auto 36px;
+    margin: 24px auto 32px !important;
     max-width: 560px;
 }
 
@@ -2869,6 +2869,7 @@ h1.hero-h1 b {
     font-weight: 700;
     letter-spacing: -0.4px;
     color: var(--ink);
+    margin-top: 16px;
     margin-bottom: 8px;
     font-size: 18px;
 }
