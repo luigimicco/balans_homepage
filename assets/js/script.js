@@ -142,7 +142,6 @@ document.querySelectorAll('.faq-q').forEach(q => {
         bubble.textContent = FLOW[idx].text;
         chat.appendChild(bubble);
         popIn(bubble);
-        scrollBottom();
         qSlot.textContent = PLACEHOLDER;
         qSlot.classList.remove('filled');
 
