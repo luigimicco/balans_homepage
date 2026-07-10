@@ -56,7 +56,13 @@ document.querySelectorAll('.faq-q').forEach(q => {
     };
 
     function scrollBottom() {
-        chat.scrollTop = chat.scrollHeight;
+        // rAF: su iOS Safari leggere/impostare scrollTop nello stesso tick
+        // dell'inserimento DOM può usare un layout non ancora committato,
+        // lasciando la bolla appena aggiunta fuori vista finché non arriva
+        // un altro repaint
+        requestAnimationFrame(() => {
+            chat.scrollTop = chat.scrollHeight;
+        });
     }
 
     function appendHTML(html) {
