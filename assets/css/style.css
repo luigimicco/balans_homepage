@@ -2582,10 +2582,11 @@ h1.hero-h1 b {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     gap: 10px;
-    background: rgba(20, 20, 20, 0.6);
-    backdrop-filter: blur(10px);
+    padding-bottom: 18px;
+    background: rgba(20, 20, 20, 0.5);
+    backdrop-filter: blur(5px);
     transition: opacity .35s ease, visibility 0s linear 0s;
 }
 
