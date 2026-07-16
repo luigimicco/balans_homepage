@@ -44,10 +44,7 @@ document.querySelectorAll('.faq-q').forEach(q => {
 
     const ANSWERS = {
         c2q1: '<div class="bub ai-card" style="max-width:88%">'
-            + '<div class="h"><img src="./assets/img/icons/vettoriale/doc.svg" alt="" style="width:11px; height:11px; display:inline-block; flex-shrink:0; filter:brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(1000%) hue-rotate(120deg) brightness(90%);"> Fattura pronta</div>'
-            + '<div class="row"><span class="k">Cliente</span><span class="v">Studio Bianchi</span></div>'
-            + '<div class="row"><span class="k">Causale</span><span class="v">Consulenza</span></div>'
-            + '<div class="row"><span class="k">Importo</span><span class="v">€ 500,00</span></div>'
+            + '<p class="msg">Riepilogo fattura n.21/2026 a regime forfettario (P.IVA 01234567890) per "Consulenza"<br>500€ + IVA 0% (€0,00) = <b>€500 totali</b><br>Scadenza pagamento <b>2026-08-15</b>. Confermo l\'emissione?</p>'
             + '<button class="demo-invia" type="button">Invia fattura</button>'
             + '</div>'
             + '<div class="bub ai">Ho preparato la fattura per Studio Bianchi di €500,00 con causale «Consulenza». Clicca su <b>Invia</b> per inoltrarla.</div>',

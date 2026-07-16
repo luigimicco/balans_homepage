@@ -373,7 +373,7 @@ body {
     border: 1px solid var(--hairline);
     border-radius: 999px;
     margin-bottom: 32px;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500;
     color: var(--ink-2);
     letter-spacing: -0.1px;
@@ -726,10 +726,11 @@ h1.hero-h1 b {
 }
 
 .bub {
+    font-size: 12px;
     max-width: 78%;
     padding: 10px 14px;
     border-radius: 18px;
-    font-size: 13px;
+    font-size: 12px;
     line-height: 1.4;
     letter-spacing: -0.1px;
 }
@@ -795,11 +796,10 @@ h1.hero-h1 b {
 }
 
 .bub.ai-card .h {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
     color: var(--teal-ink);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
     margin-bottom: 6px;
     display: flex;
     align-items: center;
@@ -811,6 +811,13 @@ h1.hero-h1 b {
     width: 11px;
     height: 11px;
     color: var(--teal-ink);
+}
+
+.bub.ai-card .msg {
+    font-size: 12.5px;
+    line-height: 1.75;
+    color: var(--ink);
+    margin: 0;
 }
 
 .bub.ai-card .row {
@@ -869,7 +876,7 @@ h1.hero-h1 b {
 .ps-chat-comp .ph {
     flex: 1;
     color: var(--ink-2);
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .ps-chat-comp .ph.filled {
@@ -956,7 +963,7 @@ h1.hero-h1 b {
     align-items: center;
     justify-content: center;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .ps-tabs {
@@ -1196,7 +1203,7 @@ h1.hero-h1 b {
 
 .proof-card p {
     margin: 4px 0 0;
-    font-size: 13px;
+    font-size: 12px;
     color: var(--ink-2);
     line-height: 1.45;
 }
@@ -1349,7 +1356,7 @@ h1.hero-h1 b {
 
 .manifesto .sig {
     margin-top: 40px;
-    font-size: 13px;
+    font-size: 12px;
     opacity: 0.6;
     font-family: 'Libre Franklin', sans-serif;
     text-transform: uppercase;
@@ -1410,7 +1417,7 @@ h1.hero-h1 b {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 13px;
+    font-size: 12px;
     color: var(--ink-2);
     font-weight: 500;
 }
@@ -1825,7 +1832,7 @@ h1.hero-h1 b {
 }
 
 .stat-label {
-    font-size: 13px;
+    font-size: 12px;
     color: var(--ink-2);
     margin-top: 6px;
 }
@@ -1919,7 +1926,7 @@ h1.hero-h1 b {
 }
 
 .review-author .role {
-    font-size: 13px;
+    font-size: 12px;
     color: var(--ink-2);
     margin-top: 1px;
 }
@@ -2177,7 +2184,7 @@ h1.hero-h1 b {
 }
 
 .section-cta .note {
-    font-size: 13px;
+    font-size: 12px;
     color: var(--ink-3);
     font-weight: 500;
     display: inline-flex;
@@ -2298,8 +2305,8 @@ h1.hero-h1 b {
 }
 
 .hero-waitlist-check .box svg {
-    width: 13px;
-    height: 13px;
+    width: 12px;
+    height: 12px;
 }
 
 .hero-waitlist-check input:checked+.box {
@@ -2333,7 +2340,7 @@ h1.hero-h1 b {
 
 .hero-waitlist-error {
     margin-top: 10px;
-    font-size: 13px;
+    font-size: 12px;
     color: #C23B3B;
 }
 
@@ -2854,8 +2861,8 @@ h1.hero-h1 b {
 }
 
 .icon-13 {
-    width: 13px;
-    height: 13px;
+    width: 12px;
+    height: 12px;
 }
 
 .icon-14 {
@@ -3170,7 +3177,7 @@ h1.hero-h1 b {
 .step-icon--lg {
     width: 46px;
     height: 46px;
-    border-radius: 13px;
+    border-radius: 12px;
 }
 
 .step-badge {
@@ -3179,7 +3186,7 @@ h1.hero-h1 b {
     right: 26px;
     font-family: 'Libre Franklin', sans-serif;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 12px;
     letter-spacing: 0.3px;
     color: var(--bg);
     background: var(--ink);
@@ -3922,7 +3929,7 @@ h1.hero-h1 b {
 }
 
 .privacy-last-updated {
-    font-size: 13px;
+    font-size: 12px;
     margin-top: 48px;
     padding-top: 24px;
     color: var(--ink-2);
@@ -4333,7 +4340,7 @@ svg,
 
     .hdr-cta {
         height: 40px;
-        padding: 0 13px;
+        padding: 0 12px;
         font-size: 12.5px;
     }
 
