@@ -2014,10 +2014,10 @@ h1.hero-h1 b {
     margin-bottom: 22px;
 }
 
-.feat-card h4 {
+.feat-card h5 {
     margin: 0 0 8px;
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: -0.4px;
     color: var(--ink);
     font-family: 'Libre Franklin', sans-serif;
@@ -3102,7 +3102,7 @@ h1.hero-h1 b {
     background: var(--surface);
     border: 1px solid var(--hairline);
     border-radius: 20px;
-    padding: 32px 28px;
+    padding: 32px 24px;
 }
 
 .step-card-head {
@@ -3145,7 +3145,7 @@ h1.hero-h1 b {
 .step-card h5 {
     margin: 0 0 8px;
     font-family: 'Libre Franklin', sans-serif;
-    font-size: 20px;
+    font-size: 24px; 
     font-weight: 600;
     letter-spacing: -0.4px;
     color: var(--ink);
