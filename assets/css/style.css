@@ -2639,12 +2639,8 @@ h1.hero-h1 b {
     }
 }
 
-.demo-cta-overlay .demo-cta-hint {
-    color: #fff;
-    font-size: 14px;
-    font-weight: bold;
-    font-family: 'Libre Franklin', sans-serif;
-    margin: 16px;
+.demo-cta-overlay .demo-cta-btn {
+    margin-bottom: 45px;
 }
 
 /* Stage: contiene le tre viste del telefono (chat normale, welcome demo,
