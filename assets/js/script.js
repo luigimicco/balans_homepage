@@ -45,9 +45,9 @@ document.querySelectorAll('.faq-q').forEach(q => {
     const ANSWERS = {
         c2q1: '<div class="bub ai-card" style="max-width:88%">'
             + '<p class="msg">Riepilogo fattura n.21/2026 a regime forfettario (P.IVA 01234567890) per "Consulenza"<br>500€ + IVA 0% (€0,00) = <b>€500 totali</b><br>Scadenza pagamento <b>2026-08-15</b>. Confermo l\'emissione?</p>'
-            + '<button class="demo-invia" type="button">Invia fattura</button>'
+            + '<button class="demo-invia" type="button">Conferma fattura</button>'
             + '</div>'
-            + '<div class="bub ai">Ho preparato la fattura per Studio Bianchi di €500,00 con causale «Consulenza». Clicca su <b>Invia</b> per inoltrarla.</div>',
+            + '<div class="bub ai">Ho preparato la fattura per Studio Bianchi di €500,00 con causale «Consulenza». Clicca su <b>Conferma</b> per inoltrarla.</div>',
         qBestClient: '<div class="bub ai">Il tuo miglior cliente è <b>Verdi Consulting Srl</b>: quest\'anno ha generato un fatturato totale di <b>€12.300</b>, il 27% del tuo fatturato complessivo.</div>',
         qMonthRevenue: '<div class="bub ai">Questo mese hai fatturato <b>€4.230</b> con 7 fatture. Sei al 22% del tuo limite forfettario annuale.</div>'
     };
@@ -180,7 +180,27 @@ document.querySelectorAll('.faq-q').forEach(q => {
         const invia = e.target.closest('.demo-invia');
         if (!invia || invia.disabled) return;
         invia.disabled = true;
-        invia.innerHTML = '<img src="./assets/img/icons/vettoriale/check.svg" alt="" style="width:14px; height:14px; display:inline-block; flex-shrink:0; filter:brightness(0) invert(1);">Inviato';
+
+        // Il secondo bottone "Invia fattura" (dopo la conferma) si disabilita
+        // e basta, senza cambiare testo né mostrare altri messaggi
+        if (invia.classList.contains('demo-invia-final')) return;
+
+        invia.innerHTML = '<img src="./assets/img/icons/vettoriale/check.svg" alt="" style="width:14px; height:14px; display:inline-block; flex-shrink:0; filter:brightness(0) invert(1);">Confermata';
+
+        const [typing] = appendHTML('<div class="typing-bub"><span></span><span></span><span></span></div>');
+        scrollBottom();
+
+        setTimeout(() => {
+            typing.remove();
+            const nodes = appendHTML(
+                '<div class="bub ai-card" style="max-width:88%">'
+                + '<p class="msg">Perfetto, hai completato la fattura. Cosa vuoi fare adesso?</p>'
+                + '<button class="demo-invia demo-invia-final" type="button">Invia fattura</button>'
+                + '</div>'
+            );
+            nodes.forEach((n, i) => popIn(n, i * 90));
+            scrollBottom();
+        }, REDUCED ? 0 : 1200);
     });
 
     ctaBtn.addEventListener('click', activateDemo);
@@ -279,4 +299,5 @@ function initWaitlistForm({ formId, modalId, emailId, errorId, scrollAttr }) {
 }
 
 initWaitlistForm({ formId: 'waitlist-form', modalId: 'waitlist-modal', emailId: 'waitlist-email', errorId: 'waitlist-error', scrollAttr: 'data-waitlist-scroll' });
+
 initWaitlistForm({ formId: 'demo-form', modalId: 'demo-modal', emailId: 'demo-email', errorId: 'demo-error', scrollAttr: 'data-demo-scroll' });

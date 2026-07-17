@@ -128,12 +128,7 @@
     box-shadow: none;
 }
 
-[data-theme="dark"] .compare-col.bad {
-    background: rgba(201, 72, 62, 0.10);
-    border-color: rgba(201, 72, 62, 0.28);
-}
-
-[data-theme="dark"] .compare-col.bad .mark {
+[data-theme="dark"] .compare-row--bad .compare-row-icon {
     background: rgba(201, 72, 62, 0.20);
     color: #FF8A7E;
 }
@@ -165,7 +160,7 @@ body,
 .feat-card,
 .review,
 .faq-item,
-.compare-col,
+.compare-row-text,
 .float-card,
 .review-count,
 .hero-input {
@@ -809,7 +804,8 @@ h1.hero-h1 b {
 
 .bub.ai-card .h .ic {
     width: 11px;
-    height: 11px;
+    height: 11px
+    ;
     color: var(--teal-ink);
 }
 
@@ -1625,45 +1621,89 @@ h1.hero-h1 b {
     text-wrap: pretty;
 }
 
-.compare-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+.compare-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 24px;
 }
 
-.compare-col {
-    padding: 36px 32px;
+.compare-row {
+    display: flex;
+    width: 100%;
+    max-width: 800px;
     border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
-.compare-col.bad {
-    background: rgba(201, 72, 62, 0.05);
-    border: 1px solid rgba(201, 72, 62, 0.18);
+.compare-row-text {
+    flex: 1.2;
+    padding: 36px 40px;
+    display: flex;
+    flex-direction: column;
 }
 
-.compare-col.good {
-    background: var(--teal-tint);
-    border: 1px solid var(--teal-soft);
-}
 
-.compare-col h3 {
-    margin: 0 0 24px;
+.compare-row-text h3 {
+    margin: 0 0 20px;
     font-size: 24px;
     font-weight: 700;
     letter-spacing: -0.5px;
     color: var(--ink);
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     font-family: 'Libre Franklin', sans-serif;
 }
 
-.compare-col h3 .emo {
-    font-size: 24px;
+.compare-row-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 16px;
 }
 
-.compare-li .emo {
-    margin-left: 4px;
+.compare-row--bad .compare-row-icon {
+    background: rgba(201, 72, 62, 0.12);
+    color: #C9483E;
+}
+
+.compare-row--good .compare-row-icon {
+    background: var(--teal-tint);
+    color: var(--teal-ink);
+}
+
+.compare-row-visual {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 220px;
+    overflow: hidden;
+}
+
+.compare-row--bad .compare-row-visual {
+    background: linear-gradient(135deg, #E2857B 0%, #C9483E 100%);
+}
+
+.compare-row--good .compare-row-visual {
+    background: linear-gradient(135deg, var(--teal) 0%, var(--teal-2) 100%);
+}
+
+/* Fuori dal flusso: l'immagine riempie la colonna senza spingerne l'altezza,
+   che resta quella del testo nella colonna accanto. */
+.compare-row-visual-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .compare-li {
@@ -1678,32 +1718,32 @@ h1.hero-h1 b {
     letter-spacing: -0.1px;
 }
 
-.compare-col.good .compare-li {
+.compare-row--good .compare-li {
     font-weight: 500;
     color: var(--ink);
 }
 
 .compare-li .mark {
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
     border-radius: 999px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
     margin-top: 1px;
-}
-
-.compare-col.bad .mark {
-    background: rgba(201, 72, 62, 0.15);
-    color: var(--danger, #C9483E);
-    font-weight: 700;
     font-size: 11px;
+    color: #fff;
 }
 
-.compare-col.good .mark {
-    background: var(--teal-soft);
-    color: var(--teal-ink);
+.compare-row--bad .mark {
+    background: rgba(201, 72, 62, 0.12);
+    color: #C9483E;
+}
+
+.compare-row--good .mark {
+    background: var(--teal-tint);
+    color: var(--teal-ink)
 }
 
 /* ─────────────── VIDEO ─────────────── */
@@ -4155,8 +4195,7 @@ svg,
         letter-spacing: -1px !important;
     }
 
-    .compare-grid {
-        grid-template-columns: 1fr !important;
+    .compare-stack {
         gap: 16px !important;
     }
 
@@ -4420,8 +4459,20 @@ svg,
         grid-template-columns: 1fr !important;
     }
 
-    .compare-col {
+    .compare-row {
+        flex-direction: column;
+    }
+
+    .compare-row-text {
         padding: 28px 22px;
+    }
+
+    .compare-row-visual {
+        min-height: 180px;
+    }
+
+    .compare-row-visual-icon {
+        font-size: 48px;
     }
 
     .compare-head h2,
