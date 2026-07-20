@@ -1,0 +1,52 @@
+# =============================================
+#  Balans — performance (cache + compressione) 
+# =============================================
+
+# ---- Compressione (gzip) ----------------------------------
+# WebP e WOFF2 sono già compressi: NON ricomprimerli.
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript text/javascript
+  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE application/json application/manifest+json
+</IfModule>
+
+# ---- Scadenze cache (mod_expires) -------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # Asset statici immutabili: 1 anno
+  ExpiresByType text/css                  "access plus 1 year"
+  ExpiresByType application/javascript    "access plus 1 year"
+  ExpiresByType text/javascript           "access plus 1 year"
+  ExpiresByType image/webp                "access plus 1 year"
+  ExpiresByType image/png                 "access plus 1 year"
+  ExpiresByType image/jpeg                "access plus 1 year"
+  ExpiresByType image/svg+xml             "access plus 1 year"
+  ExpiresByType image/x-icon              "access plus 1 year"
+  ExpiresByType font/woff2                "access plus 1 year"
+  ExpiresByType font/ttf                  "access plus 1 year"
+  ExpiresByType application/font-woff2    "access plus 1 year"
+
+  # HTML: sempre rivalidato (così gli aggiornamenti si vedono subito)
+  ExpiresByType text/html                 "access plus 0 seconds"
+</IfModule>
+
+# ---- Cache-Control espliciti (mod_headers) ----------------
+<IfModule mod_headers.c>
+  # immutable per gli asset con hash/versione (?v=) o nomi stabili
+  <FilesMatch "\.(css|js|woff2|ttf|webp|png|jpe?g|svg|ico)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # HTML: nessuna cache lunga, deve rivalidare
+  <FilesMatch "\.(html)$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# ---- MIME corretti per i font moderni ---------------------
+<IfModule mod_mime.c>
+  AddType font/woff2 .woff2
+</IfModule>

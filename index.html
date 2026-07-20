@@ -17,12 +17,19 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="format-detection" content="telephone=no">
-  <link rel="preconnect" href="https://fonts.googleapis.com/">
-  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="./assets/css/style.css">
-  <link rel="stylesheet" href="./assets/css/animations.css">
-  <script src="https://kit.fontawesome.com/462c643ca4.js" crossorigin="anonymous"></script>
+
+  <!-- Preload dei font critici above-the-fold (H1/LCP) -->
+  <link rel="preload" href="./assets/fonts/Libre_Franklin/LibreFranklin-VariableFont_wght.woff2" as="font"
+    type="font/woff2" crossorigin>
+  <link rel="preload" href="./assets/fonts/Galldis/Galldis.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="./assets/css/style.css?v=1">
+  <!-- animations.css non è critico per il primo paint: caricamento non-bloccante -->
+  <link rel="stylesheet" href="./assets/css/animations.css?v=1" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="./assets/css/animations.css?v=1">
+  </noscript>
 
 
   <script type="application/ld+json">
@@ -275,7 +282,8 @@
                 <div class="bub ai-card" style="border-color: rgb(158, 232, 207)">
                   <p class="msg">Riepilogo fattura n.21/2026 a regime forfettario (P.IVA 01234567890) per
                     "Consulenza marketing"<br>800€ + IVA 0% (€0,00) = <b>€800 totali</b><br>Scadenza pagamento
-                    <b>2026-08-15</b>. Confermo l'emissione?</p>
+                    <b>2026-08-15</b>. Confermo l'emissione?
+                  </p>
                   <button class="ai-card-send-btn" type="button">Apri riepilogo</button>
                 </div>
                 <div class="bub me">Inoltrala al mio commercialista</div>
@@ -334,42 +342,52 @@
       <div class="compare-stack">
         <div class="compare-row compare-row--bad">
           <div class="compare-row-text">
-            <h3><span class="compare-row-icon"><i class="fa-regular fa-face-frown"></i></span> Prima di Balans</h3>
+            <h3><span class="compare-row-icon"><img src="./assets/img/icons/vettoriale/face-frown-regular-full.svg"
+                  alt="" class="icon-img icon-22"></span> Prima di Balans</h3>
             <div class="compare-li">
-              <span class="mark"><i class="fa-solid fa-xmark"></i></span>
+              <span class="mark"><img src="./assets/img/icons/vettoriale/xmark-solid-full.svg"
+                  alt="" class="icon-img p-4"></span>
               Passi ore ogni mese a organizzare fatture e documenti
             </div>
             <div class="compare-li">
-              <span class="mark"><i class="fa-solid fa-xmark"></i></span>
+              <span class="mark"><img src="./assets/img/icons/vettoriale/xmark-solid-full.svg"
+                  alt="" class="icon-img  p-4"></span>
               Software complicati che richiedono corsi per essere usati
             </div>
             <div class="compare-li">
-              <span class="mark"><i class="fa-solid fa-xmark"></i></span>
+              <span class="mark"><img src="./assets/img/icons/vettoriale/xmark-solid-full.svg"
+                  alt="" class="icon-img  p-4"></span>
               Ansia da scadenze e tanta confusione
             </div>
           </div>
           <div class="compare-row-visual">
-            <img src="./assets/img/before.webp" alt="Prima di Balans" class="compare-row-visual-img">
+            <img src="./assets/img/before.webp" alt="Prima di Balans" class="compare-row-visual-img" width="736"
+              height="1104" loading="lazy" decoding="async">
           </div>
         </div>
         <div class="compare-row compare-row--good">
           <div class="compare-row-text">
-            <h3><span class="compare-row-icon"><i class="fa-regular fa-face-smile-beam"></i></span> Con Balans</h3>
+            <h3><span class="compare-row-icon"><img src="./assets/img/icons/vettoriale/face-smile-beam-regular-full.svg"
+                  alt="" class="icon-img icon-22"></span> Con Balans</h3>
             <div class="compare-li">
-              <span class="mark"><i class="fa-solid fa-check"></i></span>
+              <span class="mark"><img src="./assets/img/icons/vettoriale/check-solid-full.svg"
+                  alt="" class="icon-img  p-4"></span>
               Scrivi a Balans e la tua fattura è pronta in 20 secondi
             </div>
             <div class="compare-li">
-              <span class="mark"><i class="fa-solid fa-check"></i></span>
+              <span class="mark"><img src="./assets/img/icons/vettoriale/check-solid-full.svg"
+                  alt="" class="icon-img  p-4"></span>
               Semplice come scrivere un messaggio su WhatsApp
             </div>
             <div class="compare-li">
-              <span class="mark"><i class="fa-solid fa-check"></i></span>
+              <span class="mark"><img src="./assets/img/icons/vettoriale/check-solid-full.svg"
+                  alt="" class="icon-img  p-4"></span>
               Meno ansia: Balans si occupa della burocrazia, tu ti occupi della tua impresa
             </div>
           </div>
           <div class="compare-row-visual">
-            <img src="./assets/img/after.webp" alt="Con Balans" class="compare-row-visual-img">
+            <img src="./assets/img/after.webp" alt="Con Balans" class="compare-row-visual-img" width="1023"
+              height="1537" loading="lazy" decoding="async">
           </div>
         </div>
       </div>
@@ -1058,8 +1076,8 @@
     </div>
   </div>
 
-  <script src="./assets/js/script.js"></script>
-  <script src="./assets/js/animations.js"></script>
+  <script src="./assets/js/script.js?v=1" defer></script>
+  <script src="./assets/js/animations.js?v=1" defer></script>
 </body>
 
 </html>
