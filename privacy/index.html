@@ -18,10 +18,14 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="format-detection" content="telephone=no">
-  <link rel="preconnect" href="https://fonts.googleapis.com/">
-  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
   <link rel="shortcut icon" href="../favicon/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <!-- Preload dei font critici above-the-fold -->
+  <link rel="preload" href="../assets/fonts/Libre_Franklin/LibreFranklin-VariableFont_wght.woff2" as="font"
+    type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/Galldis/Galldis.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="../assets/css/style.css?v=1">
 
 
 </head>
@@ -532,7 +536,7 @@
     </div>
   </footer>
 
-  <script src="../assets/js/script.js"></script>
+  <script src="../assets/js/script.js?v=1" defer></script>
 </body>
 
 </html>

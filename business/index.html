@@ -1,4 +1,4 @@
-<html lang="en" data-theme="light">
+<html lang="it" data-theme="light">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -16,11 +16,19 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no">
-    <link rel="preconnect" href="https://fonts.googleapis.com/">
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
     <link rel="shortcut icon" href="../favicon/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/animations.css">
+
+    <!-- Preload dei font critici above-the-fold -->
+    <link rel="preload" href="../assets/fonts/Libre_Franklin/LibreFranklin-VariableFont_wght.woff2" as="font"
+        type="font/woff2" crossorigin>
+    <link rel="preload" href="../assets/fonts/Galldis/Galldis.woff2" as="font" type="font/woff2" crossorigin>
+
+    <link rel="stylesheet" href="../assets/css/style.css?v=1">
+    <!-- animations.css non è critico per il primo paint: caricamento non-bloccante -->
+    <link rel="stylesheet" href="../assets/css/animations.css?v=1" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="../assets/css/animations.css?v=1">
+    </noscript>
 </head>
 
 
@@ -810,8 +818,8 @@
         </div>
     </div>
 
-    <script src="../assets/js/script.js"></script>
-    <script src="../assets/js/animations.js"></script>
+    <script src="../assets/js/script.js?v=1" defer></script>
+    <script src="../assets/js/animations.js?v=1" defer></script>
 
 
 </body>
