@@ -1,6 +1,28 @@
 # =============================================
-#  Balans — performance (cache + compressione) 
+#  Balans — SEO (URL canonici) + performance
 # =============================================
+
+# ---- Redirect 301 verso https://www.balansapp.it ----------
+# Unifica le 4 varianti (http/https × www/non-www) su un solo URL.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # 1) HTTP -> HTTPS. Le due condizioni insieme evitano il loop
+  #    se l'SSL è gestito da un proxy che passa X-Forwarded-Proto.
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteRule ^ https://www.balansapp.it%{REQUEST_URI} [R=301,L]
+
+  # 2) senza www -> con www
+  RewriteCond %{HTTP_HOST} !^www\. [NC]
+  RewriteRule ^ https://www.balansapp.it%{REQUEST_URI} [R=301,L]
+
+  # 3) slash finale sulle directory (/business -> /business/).
+  #    Esplicito, così non interviene mod_dir che genera URL con ":443".
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteCond %{REQUEST_URI} !/$
+  RewriteRule ^(.*)$ https://www.balansapp.it/$1/ [R=301,L]
+</IfModule>
 
 # ---- Compressione (gzip) ----------------------------------
 # WebP e WOFF2 sono già compressi: NON ricomprimerli.
