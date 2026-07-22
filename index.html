@@ -177,6 +177,8 @@
     </div>
   </header>
 
+  <main id="main">
+
   <!-- ─────────────── HERO ─────────────── -->
   <section class="hero">
     <div class="hero-bg"></div>
@@ -196,7 +198,8 @@
           <input type="hidden" name="access_key" value="61f714c0-2082-4df7-b0d9-77fbf7235f55">
           <input type="hidden" name="subject" value="Nuova iscrizione waiting list — Balans">
           <input type="hidden" name="from_name" value="Sito Balans">
-          <input type="checkbox" name="botcheck" class="hero-waitlist-honeypot" tabindex="-1" autocomplete="off">
+          <input type="checkbox" name="botcheck" class="hero-waitlist-honeypot" tabindex="-1" autocomplete="off"
+            aria-hidden="true" aria-label="botcheck">
           <div class="hero-waitlist-row">
             <input class="hero-input" id="waitlist-email" name="email" type="email" placeholder="La tua email"
               required="">
@@ -411,7 +414,7 @@
               <img src="./assets/img/icons/png/download.png" alt="" class="icon-img icon-22 icon-teal-ink">
             </div>
           </div>
-          <h5>Scarichi l'app</h5>
+          <h3>Scarichi l'app</h3>
           <p>Disponibile per iOS e Android.
             Bastano pochi secondi per iniziare.</p>
         </div>
@@ -423,7 +426,7 @@
               <img src="./assets/img/icons/vettoriale/user.svg" alt="" class="icon-img icon-22 icon-teal-ink">
             </div>
           </div>
-          <h5>Ti registri con la tua P.IVA</h5>
+          <h3>Ti registri con la tua P.IVA</h3>
           <p>Inserisci la partita iva e attivi l’account.
             Attivando la delega, Balans configura i tuoi clienti e il tuo storico in automatico.</p>
         </div>
@@ -434,7 +437,7 @@
               <img src="./assets/img/icons/vettoriale/up.svg" alt="" class="icon-img icon-22 icon-teal-ink">
             </div>
           </div>
-          <h5>Scrivi a Balans</h5>
+          <h3>Scrivi a Balans</h3>
           <p>Con un semplice messaggio di testo, Balans crea e invia la tua fattura in meno di 30 secondi.</p>
         </div>
 
@@ -585,7 +588,7 @@
           <div class="ic-bg">
             <img src="./assets/img/icons/vettoriale/chat.svg" alt="" class="icon-img icon-24 icon-teal-ink">
           </div>
-          <h5>Interfaccia Conversazionale</h5>
+          <h3>Interfaccia Conversazionale</h3>
           <p>Parla naturalmente, come faresti con un amico. Niente moduli complicati da compilare.</p>
         </div>
 
@@ -593,7 +596,7 @@
           <div class="ic-bg ic-bg--orange">
             <img src="./assets/img/icons/vettoriale/up.svg" alt="" class="icon-img icon-24 icon-orange">
           </div>
-          <h5>Veloce come un Lampo</h5>
+          <h3>Veloce come un Lampo</h3>
           <p>Crea fatture in 30 secondi. Importa scontrini con una foto. Tutto automatizzato.</p>
         </div>
 
@@ -601,7 +604,7 @@
           <div class="ic-bg">
             <img src="./assets/img/icons/png/lock.png" alt="" class="icon-img icon-24 icon-teal-ink">
           </div>
-          <h5>Sempre in regola</h5>
+          <h3>Sempre in regola</h3>
           <p>Controlli automatici per evitare errori. Aggiornato alle ultime normative fiscali.</p>
         </div>
 
@@ -609,7 +612,7 @@
           <div class="ic-bg ic-bg--orange">
             <img src="./assets/img/icons/vettoriale/time.svg" alt="" class="icon-img icon-24 icon-orange">
           </div>
-          <h5>Risparmi Tempo</h5>
+          <h3>Risparmi Tempo</h3>
           <p>In media 15 ore al mese risparmiate. Più tempo per far crescere il tuo business.</p>
         </div>
 
@@ -617,7 +620,7 @@
           <div class="ic-bg">
             <img src="./assets/img/icons/vettoriale/ai.svg" alt="" class="icon-img icon-24 icon-teal-ink">
           </div>
-          <h5>Categorizzazione Intelligente</h5>
+          <h3>Categorizzazione Intelligente</h3>
           <p>L'AI riconosce automaticamente le spese e le categorizza correttamente.</p>
         </div>
 
@@ -625,7 +628,7 @@
           <div class="ic-bg ic-bg--orange">
             <img src="./assets/img/icons/vettoriale/user.svg" alt="" class="icon-img icon-24 icon-orange">
           </div>
-          <h5>Supporto Umano</h5>
+          <h3>Supporto Umano</h3>
           <p>Team italiano sempre disponibile. Risposte in minuti, non giorni.</p>
         </div>
 
@@ -851,11 +854,9 @@
           </div>
 
           <div class="business-actions">
-            <button type="button" class="business-cta-btn">
-              <a href="./business"
-                title="Contattaci per il servizio Balans Business dedicato a commercialisti e studi">Scopri
-                Balans Business</a>
-            </button>
+            <a class="business-cta-btn" href="./business"
+              title="Contattaci per il servizio Balans Business dedicato a commercialisti e studi">Scopri
+              Balans Business</a>
             <span class="business-note">Onboarding e formazione inclusi</span>
           </div>
         </div>
@@ -992,6 +993,8 @@
     </div>
   </section>
 
+  </main>
+
   <!-- ─────────────── FOOTER ─────────────── -->
   <footer class="ftr">
     <div class="container">
@@ -1003,21 +1006,21 @@
           </p>
         </div>
         <div>
-          <h6>Prodotto</h6>
+          <h3>Prodotto</h3>
           <a href="./#" title="Scopri le funzionalità di Balans">Funzionalità</a>
           <a href="./#" title="Scopri i prezzi di Balans">Prezzi</a>
           <a href="./#" title="Leggi le testimonianze">Testimonianze</a>
           <a href="./#" title="Scopri la roadmap di Balans">Roadmap</a>
         </div>
         <div>
-          <h6>Risorse</h6>
+          <h3>Risorse</h3>
           <a href="./#" title="Consulta le guide di Balans">Guide</a>
           <a href="./#" title="Guarda i video tutorial di Balans">Video Tutorial</a>
           <a href="./#" title="Leggi il blog di Balans">Blog</a>
           <a href="./#" title="Consulta le domande frequenti">FAQ</a>
         </div>
         <div>
-          <h6>Azienda</h6>
+          <h3>Azienda</h3>
           <a href="./#" title="Scopri chi siamo">Chi Siamo</a>
           <a href="mailto:info@balansapp.it" title="Scrivici una email">Contatti</a>
           <a href="./privacy" target="_blank"

@@ -1528,7 +1528,7 @@ h1.hero-h1 b {
     border-bottom: 1px solid rgba(255, 255, 255, 0.10);
 }
 
-.ftr-top h6 {
+.ftr-top h3 {
     margin: 0 0 16px;
     font-size: 14px;
     font-weight: 700;
@@ -2068,7 +2068,7 @@ h1.hero-h1 b {
     margin-bottom: 22px;
 }
 
-.feat-card h5 {
+.feat-card h3 {
     margin: 0 0 8px;
     font-size: 24px;
     font-weight: 600;
@@ -3196,7 +3196,7 @@ h1.hero-h1 b {
     justify-content: center;
 }
 
-.step-card h5 {
+.step-card h3 {
     margin: 0 0 8px;
     font-family: 'Libre Franklin', sans-serif;
     font-size: 24px; 
@@ -3684,6 +3684,11 @@ h1.hero-h1 b {
 }
 
 .business-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    min-width: 48px;
     height: 54px;
     padding: 0 26px;
     background: var(--teal);
