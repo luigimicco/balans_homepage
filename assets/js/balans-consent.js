@@ -60,7 +60,17 @@
         }
     ];
 
+    // URL della Cookie Policy, calcolato in modo indipendente dalla pagina.
+    // Lo script è sempre servito da <radice>/assets/js/balans-consent.js:
+    // dal suo stesso URL risaliamo alla radice del sito (due livelli su) e
+    // aggiungiamo "cookie/". Così il link è corretto sia in homepage sia
+    // nelle sottocartelle (business/, privacy/, cookie/), e resta valido
+    // anche se il sito venisse spostato in una sottodirectory.
+    // Fallback a "/cookie/" se document.currentScript non è disponibile.
     var POLICY_URL = '/cookie/';
+    try {
+        POLICY_URL = new URL('../../cookie/', document.currentScript.src).href;
+    } catch (e) { /* mantiene il fallback root-relative */ }
 
     /* ───────── Lettura / scrittura del cookie di consenso ───────── */
 
