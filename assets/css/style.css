@@ -1265,7 +1265,7 @@ h1.hero-h1 b {
      grayscale(100%)  azzera la saturazione
      brightness(0)    schiaccia ogni pixel a nero, colori inclusi
      invert(100%)     ribalta il nero in bianco → silhouette bianca uniforme
-     opacity(0.8)     integra il logo nella striscia senza spegnerlo
+   Nessuno smorzamento in opacità: i loghi restano bianco pieno sul fondo scuro.
    Vale per SVG/PNG con sfondo TRASPARENTE, siano essi scuri, chiari o a colori.
    Alternative scartate dopo il confronto a video:
      · brightness(200%) schiarisce solo i loghi già chiari, quelli scuri
@@ -1273,7 +1273,7 @@ h1.hero-h1 b {
      · invert(100%) da solo ribalta a nero i loghi già bianchi, facendoli
        sparire sul fondo scuro. */
 .press-logos img {
-    filter: grayscale(100%) brightness(0) invert(100%) opacity(0.8);
+    filter: grayscale(100%) brightness(0) invert(100%) opacity(0.85);
 }
 
 /* ── Deroga: loghi con sfondo pieno ──
