@@ -1211,6 +1211,109 @@ h1.hero-h1 b {
     line-height: 1.45;
 }
 
+/* ───────── Parlano di noi — striscia press / partner ───────── */
+
+/* Sfondo: banda a tutta larghezza, grigio molto scuro quasi nero.
+   Colori fissi e non variabili di tema: la striscia resta scura sia in light che in dark. */
+.press {
+    background: #14161B;
+    /* Padding verticale della striscia; quello orizzontale arriva da .container (32px) */
+    padding: 30px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Layout: gruppo loghi centrato nella striscia */
+.press-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Contenitore loghi — centrato, con respiro tra un marchio e l'altro */
+.press-logos {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 24px 64px;
+}
+
+/* Singolo logo — altezza comune per uniformare otticamente marchi di forma diversa */
+.press-logo {
+    display: flex;
+    align-items: center;
+}
+
+.press-logo img {
+    display: block;
+    height: 60px;
+    width: auto;
+    max-width: 100%;
+}
+
+/* ── Monocromia forzata ──
+   Regola generale: qualsiasi logo dentro .press-logos diventa bianco pieno,
+   a prescindere dai colori dell'immagine originale.
+     grayscale(100%)  azzera la saturazione
+     brightness(0)    schiaccia ogni pixel a nero, colori inclusi
+     invert(100%)     ribalta il nero in bianco → silhouette bianca uniforme
+     opacity(0.8)     integra il logo nella striscia senza spegnerlo
+   Vale per SVG/PNG con sfondo TRASPARENTE, siano essi scuri, chiari o a colori.
+   Alternative scartate dopo il confronto a video:
+     · brightness(200%) schiarisce solo i loghi già chiari, quelli scuri
+       restano grigi e poco leggibili;
+     · invert(100%) da solo ribalta a nero i loghi già bianchi, facendoli
+       sparire sul fondo scuro. */
+.press-logos img {
+    filter: grayscale(100%) brightness(0) invert(100%) opacity(0.8);
+}
+
+/* ── Deroga: loghi con sfondo pieno ──
+   Un raster con fondo bianco opaco (il badge Partner 24 ORE) sotto la regola
+   qui sopra diventa un rettangolo bianco compatto: non c'è trasparenza da cui
+   ricavare la silhouette, quindi il lettering interno si perde. Questa classe
+   lo esclude dal filtro e lo lascia nei colori originali del marchio. */
+.press-logo--original img {
+    filter: none;
+}
+
+/* Il badge Partner 24 ORE è un raster con lettering interno:
+   ha bisogno di qualche pixel in più per restare leggibile accanto ai loghi mono */
+.press-logo--badge img {
+    height: 70px;
+    border-radius: 4px;
+}
+
+/* Tablet / piccoli laptop: distanza tra i loghi ridotta */
+@media (max-width: 920px) {
+    .press-logos {
+        gap: 20px 44px;
+    }
+}
+
+/* Telefono: loghi più piccoli e più vicini */
+@media (max-width: 600px) {
+    .press {
+        padding: 24px 0;
+    }
+
+    .press-logos {
+        gap: 16px 28px;
+    }
+
+    .press-logo img {
+        height: 46px;
+    }
+
+    .press-logo--badge img {
+        height: 54px;
+    }
+}
+
 /* ───────── Feature section ───────── */
 .feat {
     padding: 120px 0;
@@ -1561,39 +1664,6 @@ h1.hero-h1 b {
     margin-top: 16px;
 }
 
-/* Badge Partner 24 ORE — selettore discendente necessario: `.ftr-top a`
-   impone display:block, padding:6px 0 e opacity:.8 e vincerebbe per specificità */
-.ftr-top .ftr-badge {
-    display: inline-block;
-    margin-top: 24px;
-    padding: 0;
-    line-height: 0;
-    opacity: .92;
-    transition: opacity .15s;
-}
-
-.ftr-top .ftr-badge:hover {
-    opacity: 1;
-}
-
-.ftr-top .ftr-badge:focus-visible {
-    outline: 2px solid var(--teal);
-    outline-offset: 4px;
-    border-radius: 12px;
-}
-
-.ftr-top .ftr-badge img {
-    display: block;
-    width: auto;
-    height: 54px;
-}
-
-@media (max-width: 600px) {
-    .ftr-top .ftr-badge img {
-        height: 48px;
-    }
-}
-
 .ftr-bottom {
     padding-top: 32px;
     display: flex;
@@ -1675,6 +1745,7 @@ h1.hero-h1 b {
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    background-color: #FFFFFF;
 }
 
 .compare-row-text {
