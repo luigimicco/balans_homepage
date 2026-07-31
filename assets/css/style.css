@@ -57,6 +57,10 @@
     --video-navy: #0E1130;
     --right-stat-panel: rgba(255, 255, 255, 0.05);
     --fatture: #1A1D24;
+
+    /* Header sticky: .hdr-row (72px) + il suo border-bottom.
+       Serve all'hero per calcolare l'altezza a piena finestra. */
+    --hdr-h: 73px;
 }
 
 /* ───────── Theme: Dark ───────── */
@@ -4376,107 +4380,91 @@ svg,
     }
 }
 
-/* Hero: viewport bassi a larghezza desktop (es. MacBook, finestre non massimizzate) */
-@media (max-height: 860px) and (min-width: 921px) {
+/* ── Hero a piena finestra — desktop e laptop ──
+   L'hero occupa esattamente l'altezza della finestra meno l'header sticky, e tutto
+   ciò che contiene è dimensionato su --hero-space, cioè lo spazio verticale netto
+   davvero disponibile. Sostituisce i due scaglioni @media (max-height: 860px/700px)
+   usati prima: fra uno scalino e l'altro restavano due fasce scoperte — viewport
+   861-980px (dove cade il MacBook Pro 14": 1512x982 → ~871px di viewport) e
+   701-752px — in cui l'hero sforava la finestra fino a ~120px.
+
+   Unità: vh e non svh perché la regola vale solo da 921px di larghezza in su, dove
+   non esistono barre browser dinamiche; vh è supportato ovunque e non richiede
+   fallback (una var() con unità non supportata invaliderebbe height e larghezza). */
+@media (min-width: 921px) {
 
     .hero {
-        padding: 56px 0 64px !important;
+        /* Padding proporzionale all'altezza, con tetto ai valori desktop originali */
+        --hero-pad-t: clamp(32px, 6vh, 88px);
+        --hero-pad-b: clamp(40px, 7vh, 100px);
+        /* Spazio verticale netto per il contenuto */
+        --hero-space: calc(100vh - var(--hdr-h) - var(--hero-pad-t) - var(--hero-pad-b));
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: calc(100vh - var(--hdr-h));
+        padding: var(--hero-pad-t) 0 var(--hero-pad-b);
     }
 
-    .hero-eyebrow {
-        margin-bottom: 20px;
+    /* Titolo: il più piccolo fra il vincolo di larghezza (il titolo affianca il
+       telefono nel grid a 2 colonne) e quello di altezza. Il termine in vh passa
+       con continuità per 46px a 700px di viewport e 64px da 980px in su, cioè gli
+       stessi valori dei vecchi scaglioni ma senza salti. */
+    h1.hero-h1,
+    h1.hero-h1 b {
+        font-size: min(clamp(44px, 7.17vw - 22px, 64px), clamp(46px, 6.43vh + 1px, 64px)) !important;
     }
 
     h1.hero-h1 {
-        font-size: 58px !important;
-        letter-spacing: -2px;
+        /* in em al posto dei px: la crenatura segue la dimensione invece di essere
+           ritarata a mano a ogni breakpoint */
+        letter-spacing: -0.034em;
     }
 
     h1.hero-h1 span {
-        font-size: 51px !important;
+        font-size: min(clamp(39px, 6.35vw - 19.5px, 56px), clamp(40px, 5.71vh, 56px)) !important;
     }
 
-    h1.hero-h1 b {
-        font-size: 58px !important;
-    }
-
+    /* Il titolo di #funzionalita resta della stessa dimensione di quello dell'hero */
     .feat h2 {
-        font-size: 58px !important;
-        letter-spacing: -1.4px;
-    }
-
-    .hero-sub {
-        margin: 16px 0 24px !important;
-    }
-
-    .hero-phone-wrap {
-        min-height: 460px;
-    }
-
-    .hero-phone-wrap .phone.lg {
-        width: 280px;
-    }
-
-    .hero-phone-wrap .float-1 {
-        top: 74px !important;
-        left: -31px !important;
-    }
-
-    .hero-phone-wrap .float-2 {
-        bottom: 50px !important;
-        right: -40px !important;
-    }
-}
-
-@media (max-height: 700px) and (min-width: 921px) {
-
-    .hero {
-        padding: 32px 0 40px !important;
+        font-size: min(clamp(44px, 7.17vw - 22px, 64px), clamp(46px, 6.43vh + 1px, 64px)) !important;
+        letter-spacing: -0.023em;
     }
 
     .hero-eyebrow {
-        margin-bottom: 14px;
-    }
-
-    h1.hero-h1 {
-        font-size: 46px !important;
-        letter-spacing: -1.6px;
-    }
-
-    h1.hero-h1 span {
-        font-size: 40px !important;
-    }
-
-    h1.hero-h1 b {
-        font-size: 46px !important;
-    }
-
-    .feat h2 {
-        font-size: 46px !important;
-        letter-spacing: -1.3px;
+        margin-bottom: clamp(14px, 10vh - 66px, 32px);
     }
 
     .hero-sub {
-        margin: 12px 0 18px !important;
-        font-size: 16px !important;
+        margin: clamp(12px, 10vh - 70px, 28px) 0 clamp(18px, 20vh - 148px, 48px);
     }
 
+    /* Telefono: pilotato dall'altezza disponibile, la larghezza segue via aspect-ratio.
+       Prima era il contrario — width in px più un min-height sul wrapper che in realtà
+       non aveva effetto, perché l'altezza reale usciva comunque dall'aspect-ratio. */
     .hero-phone-wrap {
-        min-height: 340px;
+        --phone-h: min(720px, var(--hero-space));
+        --phone-w: calc(var(--phone-h) / 2);
+        min-height: 0;
     }
 
     .hero-phone-wrap .phone.lg {
-        width: 230px;
+        height: var(--phone-h);
+        width: auto;
     }
 
+    /* Card flottanti: offset in proporzione al telefono, così restano agganciate
+       agli stessi punti mentre si ridimensiona (le percentuali riproducono i valori
+       desktop: 96px su 720 di altezza, -40px su 360 di larghezza, ecc.) */
     .hero-phone-wrap .float-1 {
-        top: 61px !important;
-        left: -26px !important;
+        top: calc(var(--phone-h) * 0.133);
+        left: calc(var(--phone-w) * -0.111);
     }
 
     .hero-phone-wrap .float-2 {
-        bottom: 41px !important;
-        right: -33px !important;
+        bottom: calc(var(--phone-h) * 0.089);
+        right: calc(var(--phone-w) * -0.144);
     }
 }
 
