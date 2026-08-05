@@ -5,6 +5,10 @@
  * Per cambiare il contenuto di una mail modifica solo l'array in
  * balans_email_content(): oggetto, titolo, paragrafi, testo del bottone.
  * Il layout HTML (balans_email_layout) di norma non va toccato.
+ *
+ * Nei testi si possono usare tag HTML semplici, per esempio <br> per andare
+ * a capo e <b> per il grassetto. Fanno eccezione 'subject' e 'heading', che
+ * sono sempre trattati come testo semplice.
  */
 
 if (!defined('BALANS_API')) {
@@ -27,15 +31,26 @@ function balans_email_content($type)
 
         'waitlist' => array(
             'subject'  => 'Confermata l\'iscrizione alla waiting list',
-            'preview'  => 'Sei tra i primi che potranno provare Balans. Ecco cosa succede adesso.',
+            'preview'  => 'Da oggi sei tra i primi che verranno invitati a provare l\'app.',
             'heading'  => 'Sei in lista!',
-            'intro'    => 'Sei in lista: sarai tra i primi a mettere le mani su Balans.',
+            'intro'    => 'Ciao, grazie per esserti iscritto alla waiting list di Balans! Da oggi sei tra i primi che verranno invitati a provare l\'app.',
             'paragraphs' => array(
-                'Balans nasce per una cosa sola: smettere di perdere le serate dietro a fatture e movimenti. Scrivi quello che ti serve, come faresti in chat, e il resto lo fa l\'app.',
-                'Apriamo gli accessi a ondate e chi è in lista entra per primo, con condizioni riservate. Ti scriviamo a questo indirizzo appena tocca a te.',
+                array(
+                    'tipo'  => 'lista',
+                    'testo' => 'Con Balans potrai:',
+                    'voci'  => array(
+                        'creare fatture parlando in linguaggio naturale;',
+                        'gestire scontrini e spese senza perdere tempo;',
+                        'ricevere promemoria automatici sulle scadenze.',
+                    ),
+                ),
+                array('tipo' => 'sottotitolo', 'testo' => 'Cosa succede adesso?'),
+                'Nei prossimi mesi apriremo gli accessi a piccoli gruppi. Quando arriverà il tuo turno riceverai una mail con il link per attivare il tuo account.',
+                'Essere tra i primi iscritti significa avere priorità di accesso e ricevere eventuali vantaggi riservati ai beta tester.',
+                'Nel frattempo stiamo lavorando per rendere la gestione della Partita IVA semplice quanto inviare un messaggio.',
             ),
-            'cta_label' => 'Guarda cosa sa fare',
-            'cta_url'   => BALANS_SITE_URL,
+            // Senza 'cta_label' e 'cta_url' il pulsante non viene mostrato.
+            'signature' => 'A presto,<br><b>il Team Balans</b>',
             'footer_reason' => 'Ricevi questa email perché hai richiesto di entrare nella waiting list su balansapp.it.',
         ),
 
@@ -58,14 +73,73 @@ function balans_email_content($type)
 }
 
 /**
+ * Trasforma gli elementi di 'paragraphs' in HTML.
+ *
+ * Ogni elemento puo' essere:
+ *  - una stringa, e diventa un paragrafo (il caso piu' comune);
+ *  - array('tipo' => 'sottotitolo', 'testo' => '...');
+ *  - array('tipo' => 'lista', 'testo' => 'riga introduttiva', 'voci' => array(...)).
+ */
+function balans_email_blocchi($blocchi)
+{
+    $stilePar = 'margin:0 0 16px;font-size:15px;line-height:1.65;color:#393E4A;';
+    $html = '';
+
+    foreach ($blocchi as $b) {
+        if (!is_array($b)) {
+            $html .= '<p style="' . $stilePar . '">' . $b . '</p>';
+            continue;
+        }
+
+        $tipo = isset($b['tipo']) ? $b['tipo'] : '';
+
+        if ($tipo === 'sottotitolo') {
+            $html .= '<p style="margin:26px 0 12px;font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:bold;line-height:1.4;color:#1A1D24;">'
+                . $b['testo'] . '</p>';
+        } elseif ($tipo === 'lista') {
+            if (!empty($b['testo'])) {
+                $html .= '<p style="margin:0 0 8px;font-size:15px;line-height:1.65;color:#393E4A;">' . $b['testo'] . '</p>';
+            }
+            $voci = '';
+            foreach ($b['voci'] as $v) {
+                $voci .= '<li style="margin:0 0 6px;">' . $v . '</li>';
+            }
+            $html .= '<ul style="margin:0 0 16px;padding-left:22px;font-size:15px;line-height:1.65;color:#393E4A;">' . $voci . '</ul>';
+        }
+    }
+
+    return $html;
+}
+
+/**
  * Versione HTML dell'email: tabelle e stili inline, gli unici che i client
  * di posta (Outlook e Gmail in testa) rendono in modo affidabile.
  */
 function balans_email_layout($c)
 {
-    $paragraphs = '';
-    foreach ($c['paragraphs'] as $p) {
-        $paragraphs .= '<p style="margin:0 0 16px;font-size:15px;line-height:1.65;color:#393E4A;">' . $p . '</p>';
+    $paragraphs = balans_email_blocchi($c['paragraphs']);
+
+    // Il pulsante compare solo se il testo prevede 'cta_label' e 'cta_url'.
+    $cta = '';
+    if (!empty($c['cta_label']) && !empty($c['cta_url'])) {
+        $cta = '<tr>
+      <td align="center" style="padding:12px 32px ' . (empty($c['signature']) ? '32px' : '26px') . ';">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+          <tr><td align="center" style="background:#1ABFA0;border-radius:999px;">
+            <a href="' . $c['cta_url'] . '" style="display:inline-block;padding:14px 30px;font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:bold;color:#FFFFFF;text-decoration:none;">' . htmlspecialchars($c['cta_label'], ENT_QUOTES, 'UTF-8') . '</a>
+          </td></tr>
+        </table>
+      </td>
+    </tr>';
+    }
+
+    // La firma sta in fondo, in una riga a parte. Senza pulsante sopra le
+    // serve un po' di respiro in piu' rispetto all'ultimo paragrafo.
+    $firma = '';
+    if (!empty($c['signature'])) {
+        $firma = '<tr><td style="padding:' . ($cta === '' ? '10px' : '0') . ' 32px 32px;font-family:Arial,Helvetica,sans-serif;">'
+            . '<p style="margin:0;font-size:15px;line-height:1.65;color:#393E4A;">' . $c['signature'] . '</p>'
+            . '</td></tr>';
     }
 
     return '<!DOCTYPE html>
@@ -98,20 +172,14 @@ function balans_email_layout($c)
 
     <tr>
       <td style="padding:0 32px;font-family:Arial,Helvetica,sans-serif;">
-        <p style="margin:0 0 16px;font-size:16px;line-height:1.6;color:#1A1D24;">' . htmlspecialchars($c['intro'], ENT_QUOTES, 'UTF-8') . '</p>
+        <p style="margin:0 0 16px;font-size:15px;line-height:1.65;color:#393E4A;">' . $c['intro'] . '</p>
         ' . $paragraphs . '
       </td>
     </tr>
 
-    <tr>
-      <td align="center" style="padding:12px 32px 32px;">
-        <table role="presentation" cellpadding="0" cellspacing="0" border="0">
-          <tr><td align="center" style="background:#1ABFA0;border-radius:999px;">
-            <a href="' . $c['cta_url'] . '" style="display:inline-block;padding:14px 30px;font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:bold;color:#FFFFFF;text-decoration:none;">' . htmlspecialchars($c['cta_label'], ENT_QUOTES, 'UTF-8') . '</a>
-          </td></tr>
-        </table>
-      </td>
-    </tr>
+    ' . $cta . '
+
+    ' . $firma . '
 
     <tr>
       <td style="padding:0 32px 32px;">
@@ -135,21 +203,48 @@ function balans_email_layout($c)
 </html>';
 }
 
+/** Ripulisce un frammento dai tag HTML per la versione testuale. */
+function balans_solo_testo($html)
+{
+    return trim(html_entity_decode(strip_tags($html), ENT_QUOTES, 'UTF-8'));
+}
+
 /**
  * Versione testuale. Va sempre allegata: i filtri antispam penalizzano
  * le email con il solo corpo HTML.
  */
 function balans_email_plaintext($c)
 {
-    $lines = array($c['heading'], '', $c['intro'], '');
+    $lines = array($c['heading'], '', balans_solo_testo(str_replace('<br>', "\n", $c['intro'])), '');
 
     foreach ($c['paragraphs'] as $p) {
-        $lines[] = trim(strip_tags(str_replace('&nbsp;', ' ', $p)));
+        if (!is_array($p)) {
+            $lines[] = balans_solo_testo($p);
+            $lines[] = '';
+            continue;
+        }
+
+        if (!empty($p['testo'])) {
+            $lines[] = balans_solo_testo($p['testo']);
+        }
+        if (isset($p['voci'])) {
+            foreach ($p['voci'] as $v) {
+                $lines[] = '- ' . balans_solo_testo($v);
+            }
+        }
         $lines[] = '';
     }
 
-    $lines[] = $c['cta_label'] . ': ' . $c['cta_url'];
-    $lines[] = '';
+    if (!empty($c['cta_label']) && !empty($c['cta_url'])) {
+        $lines[] = $c['cta_label'] . ': ' . $c['cta_url'];
+        $lines[] = '';
+    }
+
+    if (!empty($c['signature'])) {
+        $lines[] = balans_solo_testo(str_replace('<br>', "\n", $c['signature']));
+        $lines[] = '';
+    }
+
     $lines[] = '---';
     $lines[] = $c['footer_reason'];
     $lines[] = 'Se non sei stato tu, ignora pure questo messaggio.';
