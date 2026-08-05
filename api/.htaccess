@@ -1,0 +1,24 @@
+# Nessun accesso diretto dal browser ai file interni della cartella /api.
+# Restano raggiungibili solo send-confirmation.php e diagnostica.php.
+
+<FilesMatch "^(config|config\.example|mailer|templates)\.php$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# Librerie e dati di servizio: mai serviti via web.
+RedirectMatch 404 ^/api/lib/
+RedirectMatch 404 ^/api/\.data/
+
+# Le risposte dell'endpoint non vanno mai messe in cache
+# (l'.htaccess principale imposta 1 anno sui .js/.css, non tocca i .php).
+<IfModule mod_headers.c>
+  <FilesMatch "\.php$">
+    Header set Cache-Control "no-store"
+  </FilesMatch>
+</IfModule>

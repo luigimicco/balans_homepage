@@ -1,3 +1,8 @@
+// URL di questo script: serve per ricavare i percorsi assoluti del sito
+// (stesso approccio di balans-consent.js), così i link restano corretti
+// sia in homepage sia nelle sottocartelle.
+const BALANS_SCRIPT_SRC = document.currentScript ? document.currentScript.src : '';
+
 // Theme toggle (light/dark)
 (function () {
     const KEY = 'balans-theme';
@@ -207,8 +212,26 @@ document.querySelectorAll('.faq-q').forEach(q => {
     sendBtn.addEventListener('click', sendCurrent);
 })();
 
+// Mail di conferma all'utente: Web3Forms (piano free) notifica solo noi,
+// così l'endpoint PHP su /api/ scrive anche a chi si è appena iscritto.
+// È volutamente "fire and forget": se l'invio fallisce l'iscrizione resta
+// valida, quindi non mostriamo alcun errore a video.
+const CONFIRMATION_ENDPOINT = BALANS_SCRIPT_SRC
+    ? new URL('../../api/send-confirmation.php', BALANS_SCRIPT_SRC).href
+    : '/api/send-confirmation.php';
+
+function sendConfirmationEmail(email, type) {
+    if (!email) return;
+    fetch(CONFIRMATION_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ email, type }),
+        keepalive: true
+    }).catch(() => { /* l'iscrizione è già andata a buon fine: nulla da segnalare */ });
+}
+
 // Waitlist / demo forms — submit via Web3Forms, confirmation modal, satellite buttons scroll to form
-function initWaitlistForm({ formId, modalId, emailId, errorId, scrollAttr }) {
+function initWaitlistForm({ formId, modalId, emailId, errorId, scrollAttr, confirmationType }) {
     const form = document.getElementById(formId);
     const modal = document.getElementById(modalId);
     if (!form || !modal) return;
@@ -265,14 +288,17 @@ function initWaitlistForm({ formId, modalId, emailId, errorId, scrollAttr }) {
         submitBtn.disabled = true;
         submitLabel.textContent = 'Invio in corso...';
 
+        const payload = Object.fromEntries(new FormData(form));
+
         try {
             const res = await fetch(form.action, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-                body: JSON.stringify(Object.fromEntries(new FormData(form)))
+                body: JSON.stringify(payload)
             });
             const data = await res.json();
             if (data.success) {
+                sendConfirmationEmail(payload.email, confirmationType);
                 form.reset();
                 openModal();
             } else {
@@ -298,6 +324,6 @@ function initWaitlistForm({ formId, modalId, emailId, errorId, scrollAttr }) {
     });
 }
 
-initWaitlistForm({ formId: 'waitlist-form', modalId: 'waitlist-modal', emailId: 'waitlist-email', errorId: 'waitlist-error', scrollAttr: 'data-waitlist-scroll' });
+initWaitlistForm({ formId: 'waitlist-form', modalId: 'waitlist-modal', emailId: 'waitlist-email', errorId: 'waitlist-error', scrollAttr: 'data-waitlist-scroll', confirmationType: 'waitlist' });
 
-initWaitlistForm({ formId: 'demo-form', modalId: 'demo-modal', emailId: 'demo-email', errorId: 'demo-error', scrollAttr: 'data-demo-scroll' });
+initWaitlistForm({ formId: 'demo-form', modalId: 'demo-modal', emailId: 'demo-email', errorId: 'demo-error', scrollAttr: 'data-demo-scroll', confirmationType: 'demo' });

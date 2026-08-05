@@ -1,0 +1,9 @@
+.*
+!.gitignore
+!.htaccess
+
+# Credenziali SMTP della casella OVH: restano solo in locale e sul server.
+api/config.php
+
+# Contatori anti-abuso e log generati dall'endpoint sul server.
+api/.data/

@@ -1,0 +1,90 @@
+<?php
+/**
+ * Endpoint che invia all'utente l'email di conferma dell'iscrizione.
+ *
+ * Viene chiamato da assets/js/script.js subito dopo che Web3Forms ha
+ * accettato l'invio del form: Web3Forms continua a notificare noi,
+ * questo script scrive all'utente.
+ *
+ * Richiesta:  POST /api/send-confirmation.php
+ *             {"email": "...", "type": "waitlist"|"demo"}
+ * Risposta:   {"success": true} oppure {"success": false, "message": "..."}
+ *
+ * Non espone mai il motivo tecnico dell'errore: l'iscrizione e' comunque
+ * andata a buon fine e l'utente non deve vedere messaggi allarmanti.
+ */
+
+define('BALANS_API', true);
+
+require_once __DIR__ . '/mailer.php';
+
+header('Content-Type: application/json; charset=utf-8');
+header('Cache-Control: no-store');
+
+/**
+ * @param int    $status codice HTTP
+ * @param bool   $ok
+ * @param string $message
+ */
+function balans_respond($status, $ok, $message = '')
+{
+    http_response_code($status);
+    echo json_encode(array('success' => $ok, 'message' => $message));
+    exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    balans_respond(405, false, 'Metodo non consentito.');
+}
+
+$config = balans_load_config();
+if ($config === null) {
+    balans_log('ERRORE config.php mancante o illeggibile');
+    balans_respond(500, false, 'Servizio non configurato.');
+}
+
+if (!balans_origin_allowed($config)) {
+    balans_respond(403, false, 'Richiesta non autorizzata.');
+}
+
+$payload = json_decode(file_get_contents('php://input'), true);
+if (!is_array($payload)) {
+    balans_respond(400, false, 'Dati non validi.');
+}
+
+$email = isset($payload['email']) ? trim((string) $payload['email']) : '';
+$type  = isset($payload['type']) ? (string) $payload['type'] : '';
+
+if (!filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($email) > 254) {
+    balans_respond(400, false, 'Indirizzo email non valido.');
+}
+
+if (!in_array($type, array('waitlist', 'demo'), true)) {
+    balans_respond(400, false, 'Tipo di richiesta non valido.');
+}
+
+balans_gc_counters();
+
+// Doppio invio ravvicinato: rispondiamo ok, la mail e' gia' stata spedita.
+// Il controllo viene prima della quota per IP cosi' un doppio click non
+// consuma i tentativi disponibili.
+if (!balans_email_not_recent($config, $email)) {
+    balans_respond(200, true, 'Email gia\' inviata di recente.');
+}
+
+if (!balans_ip_quota_ok($config, balans_client_ip())) {
+    balans_log('LIMITE ip=' . sha1(balans_client_ip()) . ' type=' . $type);
+    balans_respond(429, false, 'Troppe richieste, riprova piu\' tardi.');
+}
+
+$result = balans_send_confirmation($config, $email, $type);
+
+// Nel log finisce solo l'impronta dell'indirizzo, mai l'indirizzo in chiaro.
+balans_log(($result['ok'] ? 'OK' : 'KO') . ' type=' . $type . ' to=' . substr(sha1($email), 0, 12)
+    . ($result['ok'] ? '' : ' err=' . str_replace("\n", ' ', $result['error'])));
+
+if (!$result['ok']) {
+    balans_respond(502, false, 'Invio non riuscito.');
+}
+
+balans_respond(200, true);
