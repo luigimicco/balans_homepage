@@ -220,27 +220,63 @@ const CONFIRMATION_ENDPOINT = BALANS_SCRIPT_SRC
     ? new URL('../../api/send-confirmation.php', BALANS_SCRIPT_SRC).href
     : '/api/send-confirmation.php';
 
-function sendConfirmationEmail(email, type) {
+function sendConfirmationEmail(email, type, name) {
     if (!email) return;
     fetch(CONFIRMATION_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ email, type }),
+        body: JSON.stringify({ email, type, name: name || '' }),
         keepalive: true
     }).catch(() => { /* l'iscrizione è già andata a buon fine: nulla da segnalare */ });
 }
 
 // Waitlist / demo forms — submit via Web3Forms, confirmation modal, satellite buttons scroll to form
-function initWaitlistForm({ formId, modalId, emailId, errorId, scrollAttr, confirmationType }) {
+//
+// L'invio è in due passi: al primo click si valida la sola email, che lascia il
+// posto al campo nome; al secondo si invia tutto. Finché resta nascosto il campo
+// nome è anche `disabled`, così non entra né in FormData né in checkValidity().
+// L'email invece viene solo nascosta: disabilitarla la toglierebbe dai dati.
+function initWaitlistForm({ formId, modalId, emailId, nameId, errorId, scrollAttr, confirmationType, step2Label }) {
     const form = document.getElementById(formId);
     const modal = document.getElementById(modalId);
     if (!form || !modal) return;
 
     const emailInput = document.getElementById(emailId);
+    const nameInput = document.getElementById(nameId);
     const errorBox = document.getElementById(errorId);
     const submitBtn = form.querySelector('.hero-btn');
     const submitLabel = submitBtn.querySelector('.btn-label') || submitBtn;
-    const submitLabelDefault = submitLabel.textContent;
+    const submitLabelInitial = submitLabel.textContent;
+    // Etichetta da ripristinare dopo un invio: cambia quando si passa al passo 2.
+    let submitLabelDefault = submitLabelInitial;
+    let nameRevealed = false;
+
+    // La classe sul form pilota l'incrocio dei due campi; qui restano solo gli
+    // attributi che decidono cosa viene inviato e cosa viene validato.
+    function revealName() {
+        nameRevealed = true;
+        nameInput.disabled = false;
+        nameInput.required = true;
+        form.classList.add('is-step2');
+        submitLabelDefault = step2Label;
+        submitLabel.textContent = step2Label;
+        // Il focus dopo un frame: il campo è ancora `visibility: hidden` finché
+        // il browser non ha applicato la classe, e un campo invisibile non si
+        // può mettere a fuoco.
+        requestAnimationFrame(() => nameInput.focus({ preventScroll: true }));
+    }
+
+    function collapseName() {
+        if (!nameRevealed) return;
+        nameRevealed = false;
+        // form.reset() svuota i campi ma non tocca disabled/required, che
+        // abbiamo impostato via JS: vanno riportati a mano.
+        nameInput.required = false;
+        nameInput.disabled = true;
+        form.classList.remove('is-step2');
+        submitLabelDefault = submitLabelInitial;
+        submitLabel.textContent = submitLabelInitial;
+    }
 
     function showError(msg) {
         if (!errorBox) return;
@@ -280,6 +316,17 @@ function initWaitlistForm({ formId, modalId, emailId, errorId, scrollAttr, confi
         e.preventDefault();
         clearError();
 
+        // Passo 1: si controlla la sola email, così la checkbox privacy non
+        // viene contestata prima che l'utente abbia finito di compilare.
+        if (nameInput && !nameRevealed) {
+            if (!emailInput.checkValidity()) {
+                emailInput.reportValidity();
+                return;
+            }
+            revealName();
+            return;
+        }
+
         if (!form.checkValidity()) {
             form.reportValidity();
             return;
@@ -298,8 +345,9 @@ function initWaitlistForm({ formId, modalId, emailId, errorId, scrollAttr, confi
             });
             const data = await res.json();
             if (data.success) {
-                sendConfirmationEmail(payload.email, confirmationType);
+                sendConfirmationEmail(payload.email, confirmationType, payload.nome);
                 form.reset();
+                collapseName();
                 openModal();
             } else {
                 showError('Non siamo riusciti a completare l\'iscrizione. Riprova tra poco.');
@@ -312,18 +360,21 @@ function initWaitlistForm({ formId, modalId, emailId, errorId, scrollAttr, confi
         }
     });
 
-    // Satellite buttons: scroll to the form and focus the email field
+    // Satellite buttons: scroll to the form and focus the field still to fill.
+    // Se il form è già al passo 2 puntiamo al nome invece che all'email, così
+    // non si azzera quello che l'utente ha già scritto.
     document.querySelectorAll(`[${scrollAttr}]`).forEach((btn) => {
         btn.addEventListener('click', () => {
+            const target = nameRevealed ? nameInput : emailInput;
             form.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            emailInput.classList.remove('wl-highlight');
-            void emailInput.offsetWidth; // restart animation
-            emailInput.classList.add('wl-highlight');
-            window.setTimeout(() => emailInput.focus({ preventScroll: true }), 400);
+            target.classList.remove('wl-highlight');
+            void target.offsetWidth; // restart animation
+            target.classList.add('wl-highlight');
+            window.setTimeout(() => target.focus({ preventScroll: true }), 400);
         });
     });
 }
 
-initWaitlistForm({ formId: 'waitlist-form', modalId: 'waitlist-modal', emailId: 'waitlist-email', errorId: 'waitlist-error', scrollAttr: 'data-waitlist-scroll', confirmationType: 'waitlist' });
+initWaitlistForm({ formId: 'waitlist-form', modalId: 'waitlist-modal', emailId: 'waitlist-email', nameId: 'waitlist-name', errorId: 'waitlist-error', scrollAttr: 'data-waitlist-scroll', confirmationType: 'waitlist', step2Label: 'Conferma iscrizione' });
 
-initWaitlistForm({ formId: 'demo-form', modalId: 'demo-modal', emailId: 'demo-email', errorId: 'demo-error', scrollAttr: 'data-demo-scroll', confirmationType: 'demo' });
+initWaitlistForm({ formId: 'demo-form', modalId: 'demo-modal', emailId: 'demo-email', nameId: 'demo-name', errorId: 'demo-error', scrollAttr: 'data-demo-scroll', confirmationType: 'demo', step2Label: 'Invia richiesta' });

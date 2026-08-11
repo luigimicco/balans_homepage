@@ -2426,6 +2426,49 @@ h1.hero-h1 b {
     flex: 1;
 }
 
+/* Passo 1 → 2: i due campi stanno nella stessa cella della griglia, così si
+   incrociano sul posto e la riga non cambia mai altezza (nessun layout shift).
+   L'email esce verso sinistra e il nome entra da destra: la direzione racconta
+   l'avanzamento, come una navigazione in avanti. */
+.hero-input-swap {
+    display: grid;
+    flex: 1;
+    min-width: 0;
+}
+
+.hero-input-swap>.hero-input {
+    grid-area: 1 / 1;
+}
+
+/* Fuori campo. `visibility` toglie il campo dal tab order e dagli screen
+   reader, ma solo a dissolvenza finita: da qui il ritardo di .16s. */
+.hero-input--name,
+.hero-waitlist.is-step2 .hero-input--email {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .16s ease-in, transform .16s ease-in, visibility 0s linear .16s,
+        border-color .15s, background .15s;
+}
+
+.hero-input--name {
+    transform: translateX(14px);
+}
+
+.hero-waitlist.is-step2 .hero-input--email {
+    transform: translateX(-14px);
+}
+
+/* In campo. L'entrata dura più dell'uscita e decelera dolcemente, così il
+   campo che arriva guida l'occhio invece di limitarsi ad apparire. */
+.hero-input--email,
+.hero-waitlist.is-step2 .hero-input--name {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: opacity .26s ease-out, transform .26s cubic-bezier(.22, 1, .36, 1), visibility 0s,
+        border-color .15s, background .15s;
+}
+
 .hero-waitlist-check {
     display: flex;
     align-items: flex-start;
@@ -2512,6 +2555,26 @@ h1.hero-h1 b {
 
     30% {
         box-shadow: 0 0 0 4px var(--teal-soft);
+    }
+}
+
+/* Chi ha chiesto meno animazioni vede lo scambio avvenire di colpo: senza
+   transizione anche il ritardo su `visibility` sparisce, quindi i due campi
+   si sostituiscono lo stesso, solo senza movimento. */
+@media (prefers-reduced-motion: reduce) {
+
+    /* Gli stati del passo 2 hanno specificità (0,3,0): vanno ripetuti tali e
+       quali, altrimenti vincono loro e la transizione resta attiva. */
+    .hero-input--email,
+    .hero-input--name,
+    .hero-waitlist.is-step2 .hero-input--email,
+    .hero-waitlist.is-step2 .hero-input--name {
+        transform: none;
+        transition: border-color .15s, background .15s;
+    }
+
+    .hero-input.wl-highlight {
+        animation: none;
     }
 }
 
@@ -4362,6 +4425,13 @@ svg,
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
+    }
+
+    /* In colonna il vincolo di larghezza va sul contenitore dei due campi:
+       gli input dentro riempiono la cella della griglia. */
+    .hero-waitlist-row .hero-input-swap {
+        width: 100%;
+        max-width: 340px;
     }
 
     .hero-waitlist-row .hero-input {

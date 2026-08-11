@@ -23,17 +23,24 @@ define('BALANS_PRIVACY_URL', BALANS_SITE_URL . '/privacy/');
  * Contenuti delle due email, per tipo di form.
  *
  * @param string $type 'waitlist' oppure 'demo'
+ * @param string $name nome dell'iscritto; se vuoto si usa il saluto neutro
  * @return array|null  null se il tipo non esiste
  */
-function balans_email_content($type)
+function balans_email_content($type, $name = '')
 {
+    // Il nome arriva da un form pubblico e i testi qui sotto ammettono HTML:
+    // va sempre escapato, altrimenti finisce interpretato nel corpo della mail.
+    $saluto = $name !== ''
+        ? 'Ciao ' . htmlspecialchars($name, ENT_QUOTES, 'UTF-8') . ','
+        : 'Ciao,';
+
     $contents = array(
 
         'waitlist' => array(
             'subject'  => 'Confermata l\'iscrizione alla waiting list',
             'preview'  => 'Da oggi sei tra i primi che verranno invitati a provare l\'app.',
             'heading'  => 'Sei in lista!',
-            'intro'    => 'Ciao, grazie per esserti iscritto alla waiting list di Balans! Da oggi sei tra i primi che verranno invitati a provare l\'app.',
+            'intro'    => $saluto . ' grazie per esserti iscritto alla waiting list di Balans! Da oggi sei tra i primi che verranno invitati a provare l\'app.',
             'paragraphs' => array(
                 array(
                     'tipo'  => 'lista',
@@ -58,7 +65,7 @@ function balans_email_content($type)
             'subject'  => 'La tua richiesta di demo è arrivata',
             'preview'  => 'Ti ricontattiamo per organizzare insieme la demo di Balans Business.',
             'heading'  => 'Ti ricontattiamo a breve',
-            'intro'    => 'Abbiamo ricevuto la tua richiesta di demo per Balans Business.',
+            'intro'    => $saluto . ' abbiamo ricevuto la tua richiesta di demo per Balans Business.',
             'paragraphs' => array(
                 'Ti scriviamo a questo indirizzo per organizzare la demo, nel giorno e nell\'orario che preferisci.',
                 'Con Balans vedrai i tuoi clienti in un\'unica dashboard, la chat privata con ciascuno di loro e l\'app che useranno con il logo del tuo studio. Onboarding e formazione sono inclusi.',

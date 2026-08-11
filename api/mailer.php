@@ -208,11 +208,12 @@ function balans_email_not_recent($config, $email)
  * @param array  $config
  * @param string $email  destinatario, gia' validato
  * @param string $type   'waitlist' | 'demo'
+ * @param string $name   nome dell'iscritto, gia' ripulito; '' se non disponibile
  * @return array array('ok' => bool, 'error' => string)
  */
-function balans_send_confirmation($config, $email, $type)
+function balans_send_confirmation($config, $email, $type, $name = '')
 {
-    $content = balans_email_content($type);
+    $content = balans_email_content($type, $name);
     if ($content === null) {
         return array('ok' => false, 'error' => 'Tipo di messaggio sconosciuto: ' . $type);
     }

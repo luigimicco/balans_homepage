@@ -26,7 +26,7 @@
     type="font/woff2" crossorigin>
   <link rel="preload" href="./assets/fonts/Galldis/Galldis.woff2" as="font" type="font/woff2" crossorigin>
 
-  <link rel="stylesheet" href="./assets/css/style.css?v=8">
+  <link rel="stylesheet" href="./assets/css/style.css?v=9">
   <!-- animations.css non è critico per il primo paint: caricamento non-bloccante -->
   <link rel="stylesheet" href="./assets/css/animations.css?v=2" media="print" onload="this.media='all'">
   <noscript>
@@ -197,15 +197,27 @@
           e movimenti della tua partita IVA in pochissimo tempo.
           Quello che risparmi lo dedichi alla tua azienda — e a far crescere i tuoi guadagni.</p>
 
-        <form class="hero-waitlist" id="waitlist-form" action="https://api.web3forms.com/submit" method="POST">
+        <!-- novalidate: la validazione la guida script.js, che al primo invio
+             controlla la sola email per rivelare il campo nome. Senza, il
+             browser bloccherebbe l'evento submit sulla checkbox privacy. -->
+        <form class="hero-waitlist" id="waitlist-form" action="https://api.web3forms.com/submit" method="POST"
+          novalidate>
           <input type="hidden" name="access_key" value="61f714c0-2082-4df7-b0d9-77fbf7235f55">
           <input type="hidden" name="subject" value="Nuova iscrizione waiting list — Balans">
           <input type="hidden" name="from_name" value="Sito Balans">
           <input type="checkbox" name="botcheck" class="hero-waitlist-honeypot" tabindex="-1" autocomplete="off"
             aria-hidden="true" aria-label="botcheck">
           <div class="hero-waitlist-row">
-            <input class="hero-input" id="waitlist-email" name="email" type="email" placeholder="La tua email"
-              required="">
+            <!-- I due campi condividono la stessa cella: al primo invio l'email
+                 esce a sinistra e il nome entra da destra, senza spostare nulla.
+                 Il nome è `disabled` finché è fuori campo, così non entra nei
+                 dati inviati; l'email invece resta attiva anche da nascosta. -->
+            <div class="hero-input-swap">
+              <input class="hero-input hero-input--email" id="waitlist-email" name="email" type="email"
+                placeholder="La tua email" required="">
+              <input class="hero-input hero-input--name" id="waitlist-name" name="nome" type="text"
+                placeholder="Il tuo nome" aria-label="Il tuo nome" autocomplete="given-name" maxlength="60" disabled>
+            </div>
             <button class="hero-btn" type="submit">
               <span class="btn-label">Iscriviti alla waiting list</span>
             </button>
@@ -1118,7 +1130,7 @@
     </div>
   </div>
 
-  <script src="./assets/js/script.js?v=3" defer></script>
+  <script src="./assets/js/script.js?v=4" defer></script>
   <script src="./assets/js/animations.js?v=2" defer></script>
   <script src="./assets/js/balans-consent.js?v=1" defer></script>
 </body>

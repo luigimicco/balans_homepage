@@ -7,7 +7,8 @@
  * questo script scrive all'utente.
  *
  * Richiesta:  POST /api/send-confirmation.php
- *             {"email": "...", "type": "waitlist"|"demo"}
+ *             {"email": "...", "type": "waitlist"|"demo", "name": "..."}
+ *             'name' e' facoltativo: se manca la mail parte col saluto neutro.
  * Risposta:   {"success": true} oppure {"success": false, "message": "..."}
  *
  * Non espone mai il motivo tecnico dell'errore: l'iscrizione e' comunque
@@ -63,6 +64,20 @@ if (!in_array($type, array('waitlist', 'demo'), true)) {
     balans_respond(400, false, 'Tipo di richiesta non valido.');
 }
 
+// Il nome serve solo a personalizzare il saluto: se arriva vuoto, malformato
+// o con caratteri di controllo lo scartiamo e proseguiamo. L'iscrizione su
+// Web3Forms e' gia' andata a buon fine, non e' un motivo per rispondere 400.
+$name = isset($payload['name']) ? trim((string) $payload['name']) : '';
+if ($name !== '') {
+    // Con /u su UTF-8 non valido preg_replace restituisce null: in quel caso
+    // il nome sparisce, che e' esattamente il comportamento voluto.
+    $name = (string) preg_replace('/[\x00-\x1F\x7F]/u', '', $name);
+    $name = function_exists('mb_substr')
+        ? mb_substr($name, 0, 60, 'UTF-8')
+        : substr($name, 0, 60);
+    $name = trim($name);
+}
+
 balans_gc_counters();
 
 // Doppio invio ravvicinato: rispondiamo ok, la mail e' gia' stata spedita.
@@ -77,7 +92,7 @@ if (!balans_ip_quota_ok($config, balans_client_ip())) {
     balans_respond(429, false, 'Troppe richieste, riprova piu\' tardi.');
 }
 
-$result = balans_send_confirmation($config, $email, $type);
+$result = balans_send_confirmation($config, $email, $type, $name);
 
 // Nel log finisce solo l'impronta dell'indirizzo, mai l'indirizzo in chiaro.
 balans_log(($result['ok'] ? 'OK' : 'KO') . ' type=' . $type . ' to=' . substr(sha1($email), 0, 12)
