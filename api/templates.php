@@ -38,9 +38,9 @@ function balans_email_content($type, $name = '')
 
         'waitlist' => array(
             'subject'  => 'Confermata l\'iscrizione alla waiting list',
-            'preview'  => 'Da oggi sei tra i primi che verranno invitati a provare l\'app.',
+            'preview'  => 'Da oggi sei tra le prime persone che verranno invitate a provare l\'app.',
             'heading'  => 'Sei in lista!',
-            'intro'    => $saluto . ' grazie per esserti iscritto alla waiting list di Balans! Da oggi sei tra i primi che verranno invitati a provare l\'app.',
+            'intro'    => $saluto . ' grazie per la tua iscrizione alla waiting list di Balans! Da oggi sei tra le prime persone che verranno invitate a provare l\'app.',
             'paragraphs' => array(
                 array(
                     'tipo'  => 'lista',
@@ -192,7 +192,7 @@ function balans_email_layout($c)
       <td style="padding:0 32px 32px;">
         <div style="border-top:1px solid #E6EBE9;padding-top:20px;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.6;color:#6B7080;">
           <p style="margin:0 0 8px;">' . htmlspecialchars($c['footer_reason'], ENT_QUOTES, 'UTF-8') . '</p>
-          <p style="margin:0;">Se non sei stato tu, ignora pure questo messaggio.<br>
+          <p style="margin:0;">Se non hai fatto tu questa richiesta, ignora pure questo messaggio.<br>
           <a href="' . BALANS_PRIVACY_URL . '" style="color:#0E7A66;">Privacy Policy</a> &nbsp;&middot;&nbsp;
           <a href="' . BALANS_SITE_URL . '" style="color:#0E7A66;">balansapp.it</a></p>
         </div>
@@ -254,7 +254,7 @@ function balans_email_plaintext($c)
 
     $lines[] = '---';
     $lines[] = $c['footer_reason'];
-    $lines[] = 'Se non sei stato tu, ignora pure questo messaggio.';
+    $lines[] = 'Se non hai fatto tu questa richiesta, ignora pure questo messaggio.';
     $lines[] = 'Privacy Policy: ' . BALANS_PRIVACY_URL;
 
     return implode("\n", $lines);
