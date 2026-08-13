@@ -188,5 +188,7 @@ https://www.balansapp.it/api/diagnostica.php?token=IL-TUO-TOKEN&anteprima=1&tipo
   peggiore dei casi l'utente non riceve la mail, ma risulta comunque iscritto
   e la notifica arriva a noi.
 - **Anti-abuso:** l'endpoint accetta richieste solo dalle pagine di
-  `balansapp.it`, non riscrive due volte allo stesso indirizzo entro 24 ore e
-  limita il numero di invii per IP (valori modificabili in `config.php`).
+  `balansapp.it`, non riscrive due volte allo stesso indirizzo **per lo stesso
+  form** entro 24 ore e limita il numero di invii per IP (valori modificabili in
+  `config.php`). Waitlist e demo hanno contatori separati: chi si iscrive alla
+  waitlist e poi chiede la demo con la stessa email riceve entrambe le conferme.

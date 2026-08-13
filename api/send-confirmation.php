@@ -80,10 +80,11 @@ if ($name !== '') {
 
 balans_gc_counters();
 
-// Doppio invio ravvicinato: rispondiamo ok, la mail e' gia' stata spedita.
-// Il controllo viene prima della quota per IP cosi' un doppio click non
-// consuma i tentativi disponibili.
-if (!balans_email_not_recent($config, $email)) {
+// Doppio invio ravvicinato dello stesso form: rispondiamo ok, la mail e'
+// gia' stata spedita. Il controllo viene prima della quota per IP cosi' un
+// doppio click non consuma i tentativi disponibili.
+if (!balans_email_not_recent($config, $email, $type)) {
+    balans_log('DEDUPE type=' . $type . ' to=' . substr(sha1($email), 0, 12));
     balans_respond(200, true, 'Email gia\' inviata di recente.');
 }
 

@@ -181,16 +181,21 @@ function balans_ip_quota_ok($config, $ip)
  * Evita di riscrivere allo stesso indirizzo se il form viene inviato
  * due volte di fila (doppio click, ricaricamento della pagina).
  *
+ * Il contatore e' separato per tipo di richiesta: chi si iscrive alla
+ * waitlist e poi chiede la demo con la stessa email deve ricevere
+ * entrambe le conferme.
+ *
+ * @param string $type 'waitlist' | 'demo', gia' validato dal chiamante
  * @return bool true se all'indirizzo si puo' scrivere adesso
  */
-function balans_email_not_recent($config, $email)
+function balans_email_not_recent($config, $email, $type)
 {
     $hours = isset($config['dedupe_hours']) ? (int) $config['dedupe_hours'] : 24;
     if ($hours <= 0) {
         return true;
     }
 
-    $path = balans_counter_path('mail', $email);
+    $path = balans_counter_path('mail', $type . '|' . $email);
     $last = (int) @file_get_contents($path);
 
     if ($last > 0 && (time() - $last) < ($hours * 3600)) {
