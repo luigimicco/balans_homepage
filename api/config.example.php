@@ -31,6 +31,29 @@ return array(
     // Lasciato vuoto, le risposte tornano su from_email.
     'reply_to'    => '',
 
+    // --- StudioGestione (API esterna del team) ---------------------------
+    // Le iscrizioni vengono registrate in anagrafica tramite l'API dello
+    // studio. La chiave si genera dalla scheda studio, tab "API esterne":
+    // viene mostrata in chiaro una sola volta, quindi va copiata subito.
+    'studio_api_base'    => 'https://studio.luigimicco.it/api/v1',
+    'studio_api_key'     => 'INSERISCI-LA-CHIAVE-API',   // formato sk_live_...
+    'studio_api_enabled' => true,
+
+    // Con dry_run attivo il payload viene costruito e registrato nel log,
+    // ma NON viene inviato: serve a provare tutto il resto senza creare
+    // contatti veri nello studio. Va messo a false solo alla fine.
+    'studio_api_dry_run' => true,
+
+    // Secondi di attesa massima per la chiamata. Tenuto basso di proposito:
+    // se lo studio non risponde, l'iscrizione non deve restare appesa.
+    'studio_api_timeout' => 6,
+
+    // --- Notifica interna -----------------------------------------------
+    // Indirizzo che riceve l'avviso a ogni nuova iscrizione. Prima lo faceva
+    // Web3Forms; adesso l'email parte da qui e riporta anche l'esito della
+    // registrazione nello studio.
+    'notify_email'       => 'info@balansapp.it',
+
     // --- Sicurezza ------------------------------------------------------
     // Solo le pagine servite da questi domini possono chiamare l'endpoint.
     'allowed_origins' => array(

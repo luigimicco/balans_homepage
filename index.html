@@ -200,11 +200,8 @@
         <!-- novalidate: la validazione la guida script.js, che al primo invio
              controlla la sola email per rivelare il campo nome. Senza, il
              browser bloccherebbe l'evento submit sulla checkbox privacy. -->
-        <form class="hero-waitlist" id="waitlist-form" action="https://api.web3forms.com/submit" method="POST"
+        <form class="hero-waitlist" id="waitlist-form" action="./api/subscribe.php" method="POST"
           novalidate>
-          <input type="hidden" name="access_key" value="61f714c0-2082-4df7-b0d9-77fbf7235f55">
-          <input type="hidden" name="subject" value="Nuova iscrizione waiting list — Balans">
-          <input type="hidden" name="from_name" value="Sito Balans">
           <input type="checkbox" name="botcheck" class="hero-waitlist-honeypot" tabindex="-1" autocomplete="off"
             aria-hidden="true" aria-label="botcheck">
           <div class="hero-waitlist-row">
@@ -1130,7 +1127,7 @@
     </div>
   </div>
 
-  <script src="./assets/js/script.js?v=4" defer></script>
+  <script src="./assets/js/script.js?v=5" defer></script>
   <script src="./assets/js/animations.js?v=2" defer></script>
   <script src="./assets/js/balans-consent.js?v=1" defer></script>
 </body>

@@ -259,3 +259,151 @@ function balans_email_plaintext($c)
 
     return implode("\n", $lines);
 }
+
+/* =========================================================================
+ * NOTIFICA INTERNA
+ *
+ * L'email che avvisa il team a ogni nuova iscrizione: prima la mandava
+ * Web3Forms, adesso parte da qui. Ha un layout suo, piu' asciutto di quello
+ * delle email agli iscritti, perche' serve a leggere dei dati e non a fare
+ * bella figura.
+ *
+ * Riporta anche l'esito della registrazione nello studio: se la chiamata
+ * all'API non e' andata a buon fine, questa email resta l'unica traccia del
+ * contatto, e deve dirlo chiaramente.
+ * ========================================================================= */
+
+/**
+ * @param array $dati   array('type','email','name','quando','origine','consenso')
+ * @param array $studio esito di balans_studio_create_contact()
+ * @return array pronto per balans_internal_layout()
+ */
+function balans_internal_notification($dati, $studio)
+{
+    $etichetta = $dati['type'] === 'demo'
+        ? 'Richiesta demo — Balans Business'
+        : 'Waiting list — Balans';
+
+    if (!empty($studio['ok'])) {
+        $stato = 'ok';
+        $titoloEsito = 'Registrato in StudioGestione';
+        $noteEsito = $studio['id'] !== null
+            ? 'Contatto creato con ID ' . $studio['id'] . '.'
+            : 'Contatto creato (lo studio non ha restituito un ID).';
+    } elseif ($studio['skipped'] !== '') {
+        $stato = 'neutro';
+        $titoloEsito = 'Non inviato allo studio';
+        $noteEsito = 'Motivo: ' . $studio['skipped'] . '. Nessun contatto e\' stato creato.';
+    } else {
+        $stato = 'ko';
+        $titoloEsito = 'NON registrato — da inserire a mano';
+        $noteEsito = 'La chiamata all\'API dello studio non e\' riuscita (' . rtrim($studio['error'], '. ')
+            . '). I dati qui sotto sono l\'unica traccia di questa iscrizione: vanno inseriti a mano.';
+    }
+
+    $righe = array(
+        'Tipo di richiesta' => $etichetta,
+        'Nome'              => $dati['name'] !== '' ? $dati['name'] : '(non indicato)',
+        'Email'             => $dati['email'],
+        'Consenso privacy'  => $dati['consenso'],
+        'Pagina'            => $dati['origine'] !== '' ? $dati['origine'] : '(non rilevata)',
+        'Data e ora'        => $dati['quando'],
+    );
+
+    // Quando il nome digitato manca, all'API ne e' stato mandato uno di
+    // ripiego: chi legge deve sapere cosa si trovera' in anagrafica.
+    if (isset($studio['payload']['name']) && $studio['payload']['name'] !== $dati['name']) {
+        $righe['Nome in anagrafica'] = $studio['payload']['name'];
+    }
+
+    return array(
+        'subject' => ($dati['type'] === 'demo' ? 'Nuova richiesta demo' : 'Nuova iscrizione waiting list')
+                     . ' — ' . $dati['email'],
+        'stato'       => $stato,
+        'titolo'      => $titoloEsito,
+        'nota'        => $noteEsito,
+        'righe'       => $righe,
+    );
+}
+
+/** Versione HTML della notifica interna. */
+function balans_internal_layout($n)
+{
+    $colori = array(
+        'ok'     => array('#0E7A66', '#EEF8F4', '#BEE6DB'),
+        'ko'     => array('#A03028', '#FAECEA', '#EAC4BF'),
+        'neutro' => array('#6B7080', '#F4F7F6', '#E6EBE9'),
+    );
+    list($testo, $sfondo, $bordo) = $colori[$n['stato']];
+
+    $righe = '';
+    foreach ($n['righe'] as $etichetta => $valore) {
+        $righe .= '<tr>'
+            . '<td style="padding:9px 14px 9px 0;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:#9CA0AE;white-space:nowrap;vertical-align:top;">'
+            . htmlspecialchars($etichetta, ENT_QUOTES, 'UTF-8') . '</td>'
+            . '<td style="padding:9px 0;font-size:15px;color:#1A1D24;border-bottom:1px solid #F0F3F2;">'
+            . htmlspecialchars($valore, ENT_QUOTES, 'UTF-8') . '</td>'
+            . '</tr>';
+    }
+
+    return '<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>' . htmlspecialchars($n['subject'], ENT_QUOTES, 'UTF-8') . '</title>
+</head>
+<body style="margin:0;padding:0;background:#F4F7F6;">
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F4F7F6;">
+<tr><td align="center" style="padding:28px 16px;">
+
+  <table role="presentation" width="560" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:560px;background:#FFFFFF;border-radius:14px;border:1px solid #E6EBE9;font-family:Arial,Helvetica,sans-serif;">
+
+    <tr>
+      <td style="padding:26px 28px 0;">
+        <p style="margin:0 0 18px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#9CA0AE;">Balans &middot; notifica automatica</p>
+        <div style="background:' . $sfondo . ';border:1px solid ' . $bordo . ';border-radius:10px;padding:14px 16px;">
+          <p style="margin:0 0 4px;font-size:15px;font-weight:bold;color:' . $testo . ';">' . htmlspecialchars($n['titolo'], ENT_QUOTES, 'UTF-8') . '</p>
+          <p style="margin:0;font-size:13.5px;line-height:1.55;color:#393E4A;">' . htmlspecialchars($n['nota'], ENT_QUOTES, 'UTF-8') . '</p>
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="padding:22px 28px 6px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">' . $righe . '</table>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="padding:16px 28px 26px;">
+        <p style="margin:0;font-size:12px;line-height:1.6;color:#6B7080;">Puoi rispondere direttamente a questa email: la risposta arriva all\'indirizzo dell\'iscritto.</p>
+      </td>
+    </tr>
+
+  </table>
+
+</td></tr>
+</table>
+
+</body>
+</html>';
+}
+
+/** Versione testuale della notifica interna. */
+function balans_internal_plaintext($n)
+{
+    $lines = array($n['titolo'], $n['nota'], '');
+
+    foreach ($n['righe'] as $etichetta => $valore) {
+        $lines[] = $etichetta . ': ' . $valore;
+    }
+
+    $lines[] = '';
+    $lines[] = '---';
+    $lines[] = 'Notifica automatica del sito balansapp.it.';
+    $lines[] = 'Rispondendo a questa email si scrive direttamente all\'iscritto.';
+
+    return implode("\n", $lines);
+}

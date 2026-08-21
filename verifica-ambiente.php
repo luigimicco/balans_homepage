@@ -1,7 +1,8 @@
 <?php
 /**
  * File temporaneo di verifica: risponde alla domanda "su questo hosting si
- * puo' usare l'invio delle email di conferma?".
+ * possono gestire le iscrizioni?" — sia le email sia la chiamata all'API
+ * dello studio.
  *
  * Non serve nessuna password e nessun accesso al pannello OVH: basta
  * caricarlo via FTP nella stessa cartella di index.html e aprirlo nel
@@ -56,7 +57,37 @@ foreach (array(587 => '', 465 => 'ssl://') as $porta => $prefisso) {
     );
 }
 
-// 4. Serve per i contatori anti-abuso (non e' bloccante).
+// 4. Le iscrizioni vengono registrate chiamando l'API dello studio: serve
+//    poter uscire in HTTPS. curl e' la strada preferita, allow_url_fopen il
+//    ripiego; se mancano entrambe l'integrazione non puo' funzionare.
+$curl = function_exists('curl_init');
+$fopen = (bool) ini_get('allow_url_fopen');
+$controlli[] = array(
+    'label' => 'Chiamate HTTPS in uscita (API dello studio)',
+    'ok'    => $curl || $fopen,
+    'note'  => $curl
+        ? 'estensione curl attiva'
+        : ($fopen
+            ? 'curl assente, si userà allow_url_fopen'
+            : 'né curl né allow_url_fopen: va chiesta a OVH l\'attivazione di curl'),
+);
+
+// 5. L'hosting riesce davvero a raggiungere il server dello studio?
+//    E' una sola apertura di connessione: non invia e non legge nulla.
+$errno = 0;
+$errstr = '';
+$socket = @fsockopen('ssl://studio.luigimicco.it', 443, $errno, $errstr, 8);
+$raggiungibile = (bool) $socket;
+if ($socket) {
+    fclose($socket);
+}
+$controlli[] = array(
+    'label' => 'Connessione a studio.luigimicco.it sulla porta 443',
+    'ok'    => $raggiungibile,
+    'note'  => $raggiungibile ? 'raggiungibile' : 'bloccata — ' . trim($errstr . ' (' . $errno . ')'),
+);
+
+// 6. Serve per i contatori anti-abuso (non e' bloccante).
 $prova = __DIR__ . '/.verifica-scrittura.tmp';
 $scrivibile = @file_put_contents($prova, 'ok') !== false;
 if ($scrivibile) {
@@ -104,7 +135,8 @@ foreach ($controlli as $c) {
 
   <div class="card">
     <h1>Verifica ambiente</h1>
-    <p class="note">Controlla se su questo hosting può funzionare l'invio dell'email di conferma agli iscritti.</p>
+    <p class="note">Controlla se su questo hosting possono funzionare le iscrizioni: le email agli iscritti e la
+    registrazione dei contatti nello studio.</p>
   </div>
 
   <div class="card">
@@ -123,8 +155,9 @@ foreach ($controlli as $c) {
     <div class="esito-finale <?php echo $tuttoOk ? '' : 'no'; ?>">
       <?php if ($tuttoOk): ?>
         <strong>Si può procedere.</strong><br>
-        Manca solo una casella email sul dominio con la relativa password:
-        va chiesta a chi ha l'accesso al Manager OVH.
+        Mancano solo due cose: la password della casella email del dominio,
+        da chiedere a chi ha l'accesso al Manager OVH, e la chiave API dello
+        studio, da chiedere al responsabile di StudioGestione.
       <?php else: ?>
         <strong>Qualcosa non torna.</strong><br>
         Manda uno screenshot di questa pagina a chi gestisce l'hosting:

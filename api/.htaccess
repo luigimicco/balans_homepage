@@ -1,7 +1,7 @@
 # Nessun accesso diretto dal browser ai file interni della cartella /api.
-# Restano raggiungibili solo send-confirmation.php e diagnostica.php.
+# Restano raggiungibili solo subscribe.php e diagnostica.php.
 
-<FilesMatch "^(config|config\.example|mailer|templates)\.php$">
+<FilesMatch "^(config|config\.example|mailer|templates|studio-client)\.php$">
   <IfModule mod_authz_core.c>
     Require all denied
   </IfModule>

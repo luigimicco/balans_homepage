@@ -1,8 +1,3 @@
-// URL di questo script: serve per ricavare i percorsi assoluti del sito
-// (stesso approccio di balans-consent.js), così i link restano corretti
-// sia in homepage sia nelle sottocartelle.
-const BALANS_SCRIPT_SRC = document.currentScript ? document.currentScript.src : '';
-
 // Theme toggle (light/dark)
 (function () {
     const KEY = 'balans-theme';
@@ -212,25 +207,7 @@ document.querySelectorAll('.faq-q').forEach(q => {
     sendBtn.addEventListener('click', sendCurrent);
 })();
 
-// Mail di conferma all'utente: Web3Forms (piano free) notifica solo noi,
-// così l'endpoint PHP su /api/ scrive anche a chi si è appena iscritto.
-// È volutamente "fire and forget": se l'invio fallisce l'iscrizione resta
-// valida, quindi non mostriamo alcun errore a video.
-const CONFIRMATION_ENDPOINT = BALANS_SCRIPT_SRC
-    ? new URL('../../api/send-confirmation.php', BALANS_SCRIPT_SRC).href
-    : '/api/send-confirmation.php';
-
-function sendConfirmationEmail(email, type, name) {
-    if (!email) return;
-    fetch(CONFIRMATION_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ email, type, name: name || '' }),
-        keepalive: true
-    }).catch(() => { /* l'iscrizione è già andata a buon fine: nulla da segnalare */ });
-}
-
-// Waitlist / demo forms — submit via Web3Forms, confirmation modal, satellite buttons scroll to form
+// Waitlist / demo forms — submit a /api/subscribe.php, confirmation modal, satellite buttons scroll to form
 //
 // L'invio è in due passi: al primo click si valida la sola email, che lascia il
 // posto al campo nome; al secondo si invia tutto. Finché resta nascosto il campo
@@ -335,7 +312,10 @@ function initWaitlistForm({ formId, modalId, emailId, nameId, errorId, scrollAtt
         submitBtn.disabled = true;
         submitLabel.textContent = 'Invio in corso...';
 
+        // L'endpoint distingue waiting list e demo dal campo `type`: non è nel
+        // form perché lo sa già il codice che lo inizializza.
         const payload = Object.fromEntries(new FormData(form));
+        payload.type = confirmationType;
 
         try {
             const res = await fetch(form.action, {
@@ -345,7 +325,6 @@ function initWaitlistForm({ formId, modalId, emailId, nameId, errorId, scrollAtt
             });
             const data = await res.json();
             if (data.success) {
-                sendConfirmationEmail(payload.email, confirmationType, payload.nome);
                 form.reset();
                 collapseName();
                 openModal();
